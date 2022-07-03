@@ -25,4 +25,5 @@ public class Admin{
     private String contactNo;
     private String email;
 
+
 }

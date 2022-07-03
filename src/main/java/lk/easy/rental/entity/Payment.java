@@ -13,9 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 @ToString
-@Entity
+
 public class Payment{
-    @Id
+
     private String paymentID;
     private LocalDate paymentDate;
 }

@@ -1,4 +1,7 @@
 package lk.easy.rental.repo;
 
-public interface UserRepo {
+import lk.easy.rental.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepo extends JpaRepository<User,String> {
 }

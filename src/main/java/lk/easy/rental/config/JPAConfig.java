@@ -35,8 +35,6 @@ public class JPAConfig {
         bean.setPackagesToScan(environment.getRequiredProperty("entity.package.name"));
         return bean;
     }
-
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -47,7 +45,6 @@ public class JPAConfig {
         return dataSource;
 
     }
-
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter vendor = new HibernateJpaVendorAdapter();

@@ -1,13 +1,20 @@
 package lk.easy.rental.entity;
 
 import lk.easy.rental.enums.RequestType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@ToString
 @Entity
 public class BookingDetails {
     @Id
@@ -19,5 +26,13 @@ public class BookingDetails {
     private RequestType needDriver;
     private double damageFee;
     private double rentFee;
+
+
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @JoinColumn(name = "customerID",referencedColumnName = "cusId",nullable = false)
+    private Customer customer;
+
+
+
 
 }

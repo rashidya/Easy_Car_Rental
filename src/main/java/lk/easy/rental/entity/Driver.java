@@ -10,6 +10,8 @@ import lombok.ToString;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -27,4 +29,6 @@ public class Driver {
     private String address;
     private String contactNo;
     private Availability DriverAvailability;
+
+
 }
