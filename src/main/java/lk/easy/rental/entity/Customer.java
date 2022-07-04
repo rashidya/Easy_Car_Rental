@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Customer {
     @Id
     private String cusId;
-    private String NIC;
+    private String customerNic;
     @Embedded
     private Name name;
     private String drivingLicenseNo;
