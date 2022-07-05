@@ -35,5 +35,5 @@ public class Vehicle {
     private Availability vehicleAvailability;
     private double refundableDamageFee;
     private int millage;
-    private int lastServiceKM;
+    private int lastServiceMileage;
 }
