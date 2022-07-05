@@ -19,17 +19,17 @@ import java.util.List;
 public class BookingDetails {
     @Id
     private String booking_Id;
+    private String cusId;
     private LocalDate pickupDate;
     private LocalTime pickupTime;
     private LocalDate returnDate;
     private LocalTime returnTime;
     private RequestType needDriver;
-    private double damageFee;
-    private double rentFee;
+
 
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "customerID",referencedColumnName = "cusId",nullable = false)
+    @JoinColumn(name = "cusId",referencedColumnName = "cusId",nullable = false)
     private Customer customer;
 
 

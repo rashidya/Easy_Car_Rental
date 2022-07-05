@@ -29,9 +29,11 @@ public class Vehicle {
     private FuelType fuelType;
     private VehicleType vehicleType;
     private TransmissionType transmissionType;
-    private PriceRate pricePerExtraKM;
+    private double pricePerExtraKM;
+    private PriceRate priceRate;
     private FreeMileage freeMileage;
     private Availability vehicleAvailability;
     private double refundableDamageFee;
-
+    private int millage;
+    private int lastServiceKM;
 }

@@ -47,8 +47,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
-        return mapper.map(customerRepo.findAll(), new TypeToken<List<CustomerDTO>>(){}.getType());
-
+        if (!customerRepo.findAll().isEmpty()) {
+            return mapper.map(customerRepo.findAll(), new TypeToken<List<CustomerDTO>>() {
+            }.getType());
+        }else{
+            throw new NotFoundException("There is no Customers");
+        }
     }
 
     @Override
