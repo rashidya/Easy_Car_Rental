@@ -23,10 +23,10 @@ public class VehicleBookingDetails {
 
     @ManyToOne
     @JoinColumn(name = "vehicleId",referencedColumnName = "vehicleId",insertable = false,updatable = false)
-    private Vehicle driver;
+    private Vehicle vehicle;
 
 
     @ManyToOne
     @JoinColumn(name = "booking_Id",referencedColumnName = "booking_Id",insertable = false,updatable = false)
-    private BookingDetails bookingDetails;
+    private Booking booking;
 }
