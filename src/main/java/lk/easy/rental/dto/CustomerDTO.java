@@ -22,4 +22,5 @@ public class CustomerDTO {
     private String address;
     private String contactNo;
     private String email;
+    private UserDTO user;
 }

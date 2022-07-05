@@ -17,7 +17,6 @@ public class CustomerController {
 
     @PostMapping()
     public ResponseUtil saveCustomer(@RequestBody CustomerDTO dto){
-        System.out.println(dto.toString());
         customerService.saveCustomer(dto);
         return new ResponseUtil(200,"Customer added Successfully",null);
     }

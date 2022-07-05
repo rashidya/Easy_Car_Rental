@@ -16,7 +16,6 @@ import javax.persistence.*;
 public class Customer {
     @Id
     private String cusId;
-    private String userId;
     private String customerNic;
     @Embedded
     private Name name;
@@ -27,6 +26,5 @@ public class Customer {
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId",referencedColumnName = "userId",insertable = false,updatable = false)
-    private User user;
+     private User user;
 }
