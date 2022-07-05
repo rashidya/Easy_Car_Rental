@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,7 +28,7 @@ public class DriverSchedule {
 
     @ManyToOne
     @JoinColumn(name = "booking_Id",referencedColumnName = "booking_Id",insertable = false,updatable = false)
-    private BookingDetails bookingDetails;
+    private Booking booking;
 
 
 
