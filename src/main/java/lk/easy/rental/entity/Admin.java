@@ -16,7 +16,6 @@ import javax.persistence.*;
 public class Admin{
     @Id
     private String adminId;
-    private String userId;
     private String adminNic;
     @Embedded
     private Name name;
@@ -25,7 +24,6 @@ public class Admin{
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId",referencedColumnName = "userId",insertable = false,updatable = false)
     private User user;
 
 
