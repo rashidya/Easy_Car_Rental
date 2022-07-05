@@ -6,28 +6,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
-
+@Entity
 public class Payment{
 
+    @Id
     private String paymentID;
-    private String booking_Id;
     private LocalDate paymentDate;
+    @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
     private double amount;
 
     @ManyToOne
     @JoinColumn(name = "booking_Id",referencedColumnName = "booking_Id",insertable = false,updatable = false)
-    private BookingDetails bookingDetails;
+    private Booking booking;
 
 
 }
