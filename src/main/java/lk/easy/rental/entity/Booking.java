@@ -16,10 +16,9 @@ import java.util.List;
 @Data
 @ToString
 @Entity
-public class BookingDetails {
+public class Booking {
     @Id
     private String booking_Id;
-    private String cusId;
     private LocalDate pickupDate;
     private LocalTime pickupTime;
     private LocalDate returnDate;
@@ -29,14 +28,14 @@ public class BookingDetails {
 
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "cusId",referencedColumnName = "cusId",nullable = false)
+    @JoinColumn(name = "CustomerId",referencedColumnName = "cusId",nullable = false,insertable = false,updatable = false)
     private Customer customer;
 
 
-    @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL)
     private List<DriverSchedule> driverScheduleList;
 
 
-    @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL)
     private List<VehicleBookingDetails> bookedVehicleList;
 }
