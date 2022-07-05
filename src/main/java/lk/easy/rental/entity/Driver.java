@@ -19,7 +19,6 @@ import java.util.List;
 public class Driver {
     @Id
     private String driverId;
-    private String userId;
     private String driverNic;
     @Embedded
     private Name name;
@@ -32,6 +31,5 @@ public class Driver {
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId",referencedColumnName = "userId",insertable = false,updatable = false)
     private User user;
 }

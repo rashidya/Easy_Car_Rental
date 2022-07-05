@@ -37,13 +37,13 @@ public class DriverController {
     public ResponseUtil updateDriver(@RequestBody DriverDTO dto){
 
         driverService.updateDriver(dto);
-        return new ResponseUtil(200,"Customer Updated Successfully",null );
+        return new ResponseUtil(200,"Driver Updated Successfully",null );
     }
 
 
     @DeleteMapping(params = {"id"})
     public ResponseUtil deleteDriver(@RequestParam String id){
         driverService.deleteDriver(id);
-        return new ResponseUtil(200,"Customer Deleted Successfully",null );
+        return new ResponseUtil(200,"Driver Deleted Successfully",null );
     }
 }
