@@ -19,7 +19,7 @@ public class PaymentController {
     public ResponseUtil addPayment(@RequestBody PaymentDTO dto){
 
         paymentService.addPayment(dto);
-        return new ResponseUtil(200,"Vehicle added Successfully",null);
+        return new ResponseUtil(200,"Payment added Successfully",null);
     }
 
     @GetMapping(path = "/{id}")
