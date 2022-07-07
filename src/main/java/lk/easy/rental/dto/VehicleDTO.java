@@ -11,6 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -29,6 +31,6 @@ public class VehicleDTO {
     private FreeMileage freeMileage;
     private Availability vehicleAvailability;
     private double refundableDamageFee;
-    private int millage;
+    private int mileage;
     private int lastServiceMileage;
 }

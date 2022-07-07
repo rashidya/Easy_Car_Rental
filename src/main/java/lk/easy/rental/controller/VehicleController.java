@@ -18,7 +18,7 @@ public class VehicleController {
 
     @PostMapping()
     public ResponseUtil saveVehicle(@RequestBody VehicleDTO dto){
-
+        System.out.println(dto.toString());
         vehicleService.saveVehicle(dto);
         return new ResponseUtil(200,"Vehicle added Successfully",null);
     }
