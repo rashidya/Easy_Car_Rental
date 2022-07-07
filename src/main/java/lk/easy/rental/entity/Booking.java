@@ -23,12 +23,13 @@ public class Booking {
     private LocalTime pickupTime;
     private LocalDate returnDate;
     private LocalTime returnTime;
+    @Enumerated(EnumType.STRING)
     private RequestType needDriver;
 
 
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "CustomerId",referencedColumnName = "cusId",nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "cusId",referencedColumnName = "cusId",nullable = false,insertable = false,updatable = false)
     private Customer customer;
 
 

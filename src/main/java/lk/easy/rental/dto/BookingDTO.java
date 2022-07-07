@@ -1,5 +1,6 @@
 package lk.easy.rental.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lk.easy.rental.entity.Customer;
 import lk.easy.rental.entity.DriverSchedule;
 import lk.easy.rental.entity.VehicleBookingDetails;
@@ -19,12 +20,27 @@ import java.util.List;
 @ToString
 public class BookingDTO {
     private String booking_Id;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickupDate;
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime pickupTime;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime returnTime;
     private RequestType needDriver;
     private CustomerDTO customer;
     private List<DriverScheduleDTO> driverScheduleList;
     private List<VehicleBookingDetailDTO> bookedVehicleList;
+
+    public BookingDTO(String booking_Id, LocalDate pickupDate, LocalTime pickupTime, LocalDate returnDate, LocalTime returnTime, RequestType needDriver, CustomerDTO customer, List<DriverScheduleDTO> driverScheduleList) {
+        this.booking_Id = booking_Id;
+        this.pickupDate = pickupDate;
+        this.pickupTime = pickupTime;
+        this.returnDate = returnDate;
+        this.returnTime = returnTime;
+        this.needDriver = needDriver;
+        this.customer = customer;
+        this.driverScheduleList = driverScheduleList;
+    }
 }

@@ -16,6 +16,7 @@ public class BookingController {
 
     @PostMapping()
     public ResponseUtil placeBooking(@RequestBody BookingDTO dto){
+        System.out.println(dto.toString());
         bookingService.placeBooking(dto);
         return new ResponseUtil(200,"Booking placed Successfully",null);
     }
