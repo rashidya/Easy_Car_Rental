@@ -8,6 +8,8 @@ import lk.easy.rental.exception.DuplicateEntryException;
 import lk.easy.rental.exception.NotFoundException;
 import lk.easy.rental.repo.BookingRepo;
 import lk.easy.rental.repo.CustomerRepo;
+import lk.easy.rental.repo.DriverRepo;
+import lk.easy.rental.repo.VehicleRepo;
 import lk.easy.rental.service.BookingService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -26,14 +28,44 @@ public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private BookingRepo bookingRepo;
+    @Autowired
+    private CustomerRepo customerRepo;
+    @Autowired
+    private DriverRepo driverRepo;
+    @Autowired
+    private VehicleRepo vehicleRepo;
+
     @Override
     public void placeBooking(BookingDTO dto) {
         if (!bookingRepo.existsById(dto.getBooking_Id())) {
-            bookingRepo.save(mapper.map(dto, Booking.class));
+            if(customerRepo.existsById(dto.getCustomer().getCusId())){
+                if (!dto.getBookedVehicleList().isEmpty()){
+                    if (dto.getNeedDriver().equals("YES")){
+                        //Driver is needed
+                        if (!dto.getDriverScheduleList().isEmpty()) bookingRepo.save(mapper.map(dto, Booking.class));
+                    }else {
+                        //No driver Is needed
+                        if (dto.getDriverScheduleList().isEmpty()) bookingRepo.save(mapper.map(dto, Booking.class));
+                    }
+                }else {
+                    throw new RuntimeException("No vehicles added for the booking..!");
+                }
+
+            }else {
+                throw new NotFoundException("Customer Not Found..!");
+            }
 
         }else {
             throw new DuplicateEntryException("Booking already exists with this Id");
         }
+
+        //update the vehicle
+
+            /*for (OrderDetails  : dto.getBookedVehicleList()) {
+                Item item = itemRepo.findById(orderDetail.getItemCode()).get();
+                item.setQtyOnHand(item.getQtyOnHand() - orderDetail.getQty());
+                itemRepo.save(item);
+            }*/
 
     }
 
