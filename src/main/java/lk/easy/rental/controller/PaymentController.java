@@ -17,7 +17,7 @@ public class PaymentController {
 
     @PostMapping()
     public ResponseUtil addPayment(@RequestBody PaymentDTO dto){
-
+        System.out.println(dto.toString());
         paymentService.addPayment(dto);
         return new ResponseUtil(200,"Payment added Successfully",null);
     }

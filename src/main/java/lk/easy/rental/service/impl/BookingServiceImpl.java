@@ -42,6 +42,7 @@ public class BookingServiceImpl implements BookingService {
                 if (!dto.getBookedVehicleList().isEmpty()){
                     if (dto.getNeedDriver().equals("YES")){
                         //Driver is needed
+                        System.out.println("Entity: "+mapper.map(dto, Booking.class).toString());
                         if (!dto.getDriverScheduleList().isEmpty()) bookingRepo.save(mapper.map(dto, Booking.class));
                     }else {
                         //No driver Is needed
