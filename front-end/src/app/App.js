@@ -5,6 +5,7 @@ import About from "../pages/Customer/about";
 
 import React from "react";
 import "../pages/Customer/style.css";
+import "../pages/SignIn/index";
 
 
 import {Route, Routes} from "react-router-dom";
@@ -12,6 +13,10 @@ import Drawer from "../pages/Customer/drawer";
 import { makeStyles } from "@material-ui/core/styles";
 import {withStyles} from "@mui/styles";
 import Contact from "../pages/Customer/contact";
+import SignIn from "../pages/SignIn";
+import Browse from "../pages/Browse";
+import BasicDatePicker from "../pages/components/DatePicker";
+import VehicleDetailBooking from "../pages/VehicleDetailBooking";
 
 
 
@@ -37,7 +42,7 @@ export default function App() {
         </Routes>
       </div>*/
 
-      <Home/>
+      <VehicleDetailBooking/>
   );
 }
 

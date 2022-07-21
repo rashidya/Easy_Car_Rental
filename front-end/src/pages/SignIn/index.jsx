@@ -16,13 +16,6 @@ import {
 import * as React from "react";
 
 
-
-
-
-
-
-
-
 class SignIn extends Component{
    constructor(props) {
        super(props);
