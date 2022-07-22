@@ -17,6 +17,8 @@ import SignIn from "../pages/SignIn";
 import Browse from "../pages/Browse";
 import BasicDatePicker from "../pages/components/DatePicker";
 import VehicleDetailBooking from "../pages/VehicleDetailBooking";
+import CustomerDashBoard from "../pages/Customer";
+import AdminDashBoard from "../pages/Admin";
 
 
 
@@ -42,7 +44,7 @@ export default function App() {
         </Routes>
       </div>*/
 
-      <VehicleDetailBooking/>
+      <AdminDashBoard/>
   );
 }
 

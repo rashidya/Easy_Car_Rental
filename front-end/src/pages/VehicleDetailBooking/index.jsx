@@ -7,7 +7,7 @@ import RadioButtonList from "../components/RadioButtonList";
 import ImageList from "../components/ImageList";
 import {withStyles} from "@mui/styles";
 import {styleSheet} from "./style";
-import carImage from "../../assets/contact.jpg";
+import carImage from "../../assets/carDetail.jpg";
 
 class VehicleDetailBooking extends Component{
     render() {
@@ -58,43 +58,65 @@ class VehicleDetailBooking extends Component{
 
                 <Grid className={classes.detailBody}>
                     <Grid className={classes.detailBodyBackground}>
-                        <Grid >
-                            <Grid className={classes.image}>
+                        <Grid>
+                            <Grid className={classes.image} style={{backgroundImage:'url(${carImage})',backgroundSize:"cover",backgroundRepeat:'no-repeat'}}>
                                 <img src={carImage}
-                                     style={{height: '70vh',width:'35vw',borderRadius:'10px'}}
+                                     style={{height: '70vh', width: '35vw', borderRadius: '10px'}}
 
                                 />
                             </Grid>
 
                         </Grid>
 
-                        <Grid >
+                        <Grid>
                             <Grid className={classes.details}>
-                                <Grid>
-                                    Color - Black<br/><br/>
-                                    Type - Luxury<br/><br/>
-                                    No of passengers - 5<br/><br/>
-                                    Transmission type - Manual<br/><br/>
-                                    Fuel Type - Diesel<br/><br/>
-                                    Registration number - 4506584798463
+                                <Grid style={{display:'flex', justifyContent:'space-between'}}>
+                                    <Grid style={{fontSize:'20px'}}>
+                                        Color - Black<br/><br/>
+                                        Type - Luxury<br/><br/>
+                                        No of passengers - 5<br/><br/>
+                                        Transmission type - Manual<br/><br/>
+                                        Fuel Type - Diesel<br/><br/>
+                                        Registration number - 4506584798463
+
+                                    </Grid>
+                                    <Grid style={{display:'flex',alignItems:'start', height:'64.5%',fontSize:'20px'}}>
+                                        Prices for the rent durations.<br/>
+                                        - Daily rate (Rs) - 18,000<br/>
+                                        - Monthly rate (Rs) - 300,000.00<br/><br/>
+                                        Free mileage for the price and duration<br/>
+                                        - Free Km for a Day - 100<br/>
+                                        - Free Km for a month - 2400<br/><br/>
+                                    </Grid>
 
                                 </Grid>
-                                <Grid>
-                                    Prices for the rent durations.<br/>
-                                    - Daily rate (Rs) - 18,000<br/>
-                                    - Monthly rate (Rs) - 300,000.00<br/><br/>
-                                    Free mileage for the price and duration<br/>
-                                    - Free Km for a Day - 100<br/>
-                                    - Free Km for a month - 2400<br/><br/>
+
+                                <Grid style={{display:'flex',justifyContent:'end',width:'100%'}}>
+
+                                    <Button variant="contained"  style={{
+                                        height: '35px',
+                                        borderRadius: 10,
+                                        margin:'2px',
+                                        backgroundColor:'#949292'
+                                    }}>Back</Button>
+
+                                    <Button variant="contained" color={'success'} style={{
+                                        height: '35px',
+                                        borderRadius: 10,
+                                        margin:'2px'
+                                    }}>Book Now</Button>
+
                                 </Grid>
                             </Grid>
+
+
 
                         </Grid>
                     </Grid>
                 </Grid>
 
             </Grid>
-        )
+        );
     }
 }
 

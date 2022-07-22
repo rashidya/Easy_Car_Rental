@@ -28,11 +28,11 @@ export const styleSheet={
         display: 'flex',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#42876F'
+        backgroundColor:'black'
     },
     detailBodyBackground:{
-        width: '95%',
-        height: '80vh',
+        width: '90%',
+        height: '75vh',
         display: 'flex',
         backgroundColor: 'white',
         borderRadius:'10px',
@@ -40,20 +40,17 @@ export const styleSheet={
         justifyContent:'space-evenly'
     },
     image:{
-        width: '35vw',
-        height: '70vh',
-        display: 'flex',
-        backgroundColor: 'black',
-        borderRadius:'10px'
+
 
     },
     details:{
-        width: '55vw',
+        width: '51vw',
         height: '70vh',
         display: 'flex',
-        backgroundColor: 'white',
-        borderRadius:'10px',
-        flexDirection:'column'
+        justifyContent:'space-evenly',
+         alignItems:'center',
+        flexDirection:'column',
+
 
     }
 
