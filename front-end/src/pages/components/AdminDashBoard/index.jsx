@@ -20,37 +20,57 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import BookIcon from '@mui/icons-material/Book';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {Grid} from "@material-ui/core";
+import HomeIcon from "@mui/icons-material/Home";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import {NavLink, Route, Routes} from "react-router-dom";
+import Profile from "./profile";
+import ManageBooking from "./manageBooking";
+import AdminProfile from "./profile";
+import ManageVehicle from "./manageVehicle";
+import ManageCustomer from "./manageCustomer";
+import ManageDriver from "./manageDriver";
+import IncomeReports from "./incomeReports";
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
-    const {window} = props;
+    const {classes} = props;
+    const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
+    const listItemData = [
+        {label: "Profile", link: "/profile", icon: <AccountBoxIcon color={'primary'} /> },
+        {label: "Manage Customer", link: "/manageCustomer", icon: <BookIcon color={'success'} />},
+        {label: "Mange Driver", link: "/manageDriver", icon: <BookIcon color={'success'} />},
+        {label: "Mange Vehicle", link: "/manageVehicle", icon: <BookIcon color={'success'} />},
+        {label: "Manage Booking", link: "/manageBooking", icon: <CollectionsBookmarkIcon color={'warning'}/> },
+        {label: "Income Reports", link: "/incomeReports", icon: <CollectionsBookmarkIcon color={'warning'}/> },
+        {label: "Log out", link: "/logout", icon: <LogoutIcon style={{color:'#000000'}}/>},
+    ]
+
     const drawer = (
         <div>
-            <Toolbar/>
+            <Toolbar />
 
             <List>
-                {['Dashboard', 'Profile', 'Manage Customer', 'Manage Vehicle', 'Manage Driver', 'Manage Booking', 'Reports', 'Log out'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                {listItemData.map((item, index) => (
+                    <ListItem key={index} disablePadding
+                              exact
+                              component={NavLink}
+                              to={item.link}
+
+                        // className={classes.navLinks}
+                        // activeClassName={classes.activeNavLinks}
+
+                    >
                         <ListItemButton>
-                            <ListItemIcon>
-                                {index == 0 ? <DashboardIcon color={'primary'}/> : index == 1 ?
-                                    <AccountBoxIcon color={'success'}/> : index == 2 ?
-                                        <CollectionsBookmarkIcon color={'warning'}/> : index == 3 ?
-                                            <CollectionsBookmarkIcon color={'warning'}/> : index == 4 ?
-                                                <CollectionsBookmarkIcon color={'warning'}/> : index == 5 ?
-                                                    <CollectionsBookmarkIcon color={'warning'}/> : index == 6 ?
-                                                        <CollectionsBookmarkIcon color={'warning'}/> :
-                                                        <LogoutIcon style={{color: '#000000'}}/>}
-                            </ListItemIcon>
-                            <ListItemText primary={text}/>
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText>{item.label}</ListItemText>
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -62,15 +82,15 @@ function ResponsiveDrawer(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{display: 'flex'}}>
-            <CssBaseline/>
+        <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
             <AppBar
                 position="fixed"
                 sx={{
-                    width: {sm: `calc(100% - ${drawerWidth}px)`},
-                    ml: {sm: `${drawerWidth}px`},
+                    width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    ml: { sm: `${drawerWidth}px` },
                 }}
-                style={{backgroundColor: 'black'}}
+                style={{backgroundColor:'black'}}
             >
                 <Toolbar>
                     <IconButton
@@ -78,18 +98,18 @@ function ResponsiveDrawer(props) {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{mr: 2, display: {sm: 'none'}}}
+                        sx={{ mr: 2, display: { sm: 'none' } }}
                     >
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                     <Typography width={'100%'} variant="h5" noWrap component="div" textAlign={'end'}>
-                        Admin DashBoard
+                        Customer Dashboard
                     </Typography>
                 </Toolbar>
             </AppBar>
             <Box
                 component="nav"
-                sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
             >
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -102,8 +122,8 @@ function ResponsiveDrawer(props) {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: {xs: 'block', sm: 'none'},
-                        '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
+                        display: { xs: 'block', sm: 'none' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >
                     {drawer}
@@ -111,8 +131,8 @@ function ResponsiveDrawer(props) {
                 <Drawer
                     variant="permanent"
                     sx={{
-                        display: {xs: 'none', sm: 'block'},
-                        '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
+                        display: { xs: 'none', sm: 'block' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                     open
                 >
@@ -122,573 +142,25 @@ function ResponsiveDrawer(props) {
 
             <Box
                 component="main"
-                sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
-                <Toolbar/>
+                <Toolbar />
+                <Box >
+                    <Routes>
+                        <Route exact path="/profile" element={<AdminProfile/>}/>
+                        <Route exact path="/manageCustomer" element={<ManageCustomer/>}/>
+                        <Route exact path="/manageDriver" element={<ManageDriver/>}/>
+                        <Route exact path="/manageVehicle" element={<ManageVehicle/>}/>
+                        <Route exact path="/manageBooking" element={<ManageBooking/>}/>
+                        <Route exact path="/incomeReports" element={<IncomeReports/>}/>
 
-                <Grid style={{
-                    width: '81vw',
-                    height: '84vh',
-                    display: 'flex',
-                    justifyContent: 'space-evenly',
-                    alignItems: 'center'}}>
+                        {/*   <Route exact path="/logout" element={<LogOut/>}/>*/}
+                    </Routes>
+                </Box>
 
-                <Grid style={{
-                    width: '70vw',
-                    height: '84vh',
-                    display: 'flex',
-                    justifyContent: 'space-evenly',
-                    alignItems: 'center'
-                }}>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-
-                </Grid>
-
-                <Grid style={{
-                    width: '70vw',
-                    height: '84vh',
-                    display: 'flex',
-                    justifyContent: 'space-evenly',
-                    alignItems: 'center',
-                    flexWrap: 'wrap'
-                }}>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-                        <Grid style={{
-                            width: '100%',
-                            height: '80%',
-                            backgroundColor: '#c4c4c4',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>11</Typography>
-                        </Grid>
-
-                    </Grid>
-                    <Grid style={{
-                        width: '20vw',
-                        height: '26vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}>
-                        <Grid style={{
-                            width: '100%',
-                            height: '20%',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography>Registered Users</Typography>
-                        </Grid>
-
-
-                    </Grid>
-
-                </Grid>
-            </Grid>
-
+            </Box>
         </Box>
-</Box>
-);
+    );
 }
 
 ResponsiveDrawer.propTypes = {
@@ -699,4 +171,4 @@ ResponsiveDrawer.propTypes = {
     window: PropTypes.func,
 };
 
-export default ResponsiveDrawer;
+export default  ResponsiveDrawer;
