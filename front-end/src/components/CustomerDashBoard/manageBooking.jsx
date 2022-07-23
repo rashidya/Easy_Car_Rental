@@ -1,16 +1,17 @@
 import {Component} from "react";
 import {Grid} from "@mui/joy";
+import ManageBookingForm from '../ManageBooking'
 
-class AdminProfile extends Component{
+class ManageBooking extends Component{
 
     render() {
         return(
             <Grid>
-                <h2>AdminProfile</h2>
+                <ManageBookingForm/>
             </Grid>
         )
     }
 
 }
 
-export default AdminProfile
+export default ManageBooking

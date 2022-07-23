@@ -1,16 +1,16 @@
 import {Component} from "react";
 import {Grid} from "@mui/joy";
 
-class ManageBooking extends Component{
+class DriverSchedule extends Component{
 
     render() {
         return(
             <Grid>
-<h2>MMMMMBBBBBB</h2>
+                <h2>DriverSchedule</h2>
             </Grid>
         )
     }
 
 }
 
-export default ManageBooking
+export default DriverSchedule

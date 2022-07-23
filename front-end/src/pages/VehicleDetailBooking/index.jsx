@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {Grid} from "@material-ui/core";
 import {Avatar, Button, Tab, Tabs} from "@mui/material";
-import DatePicker from "../components/DatePicker";
-import TimePicker from "../components/TimePicker";
-import RadioButtonList from "../components/RadioButtonList";
-import ImageList from "../components/ImageList";
+import DatePicker from "../../components/DatePicker";
+import TimePicker from "../../components/TimePicker";
+import RadioButtonList from "../../components/RadioButtonList";
+import ImageList from "../../components/ImageList";
 import {withStyles} from "@mui/styles";
 import {styleSheet} from "./style";
 import carImage from "../../assets/carDetail.jpg";

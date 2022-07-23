@@ -1,8 +1,8 @@
 import {Component} from "react";
-import Drawer from '../../components/AdminDashBoard'
+import Drawer from '../../components/DriverDashBoard'
 import {Grid} from "@material-ui/core";
 
-class AdminDashBoard extends Component{
+class DriverDashBoard extends Component{
 
     render() {
         return(
@@ -13,4 +13,4 @@ class AdminDashBoard extends Component{
     }
 }
 
-export default AdminDashBoard
+export default DriverDashBoard

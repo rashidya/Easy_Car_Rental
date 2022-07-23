@@ -10,7 +10,7 @@ export default function BasicTimePicker() {
 
     return (
 
-        <Grid style={{width: '13vw', backgroundColor: 'white', borderRadius: '5px',margin:'2px'}}>
+        <Grid style={{width: '50%', backgroundColor: 'white', borderRadius: '5px',margin:'2px'}}>
             < LocalizationProvider dateAdapter={AdapterDateFns}>
                 <TimePicker
                     label="Pick-up Time"

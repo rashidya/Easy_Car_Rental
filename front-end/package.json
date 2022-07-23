@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@mui/material": "^5.9.0"
+    "@mui/material": "^5.9.0",
+    "@mui/utils": "^5.9.1"
   }
 }

@@ -4,13 +4,14 @@ import {Avatar, Button, Tab, Tabs} from "@mui/material";
 import React from "react";
 import {withStyles} from "@mui/styles";
 import {styleSheet} from "./style";
-import DatePicker from "../components/DatePicker";
-import TimePicker from "../components/TimePicker";
-import RadioButtonList from "../components/RadioButtonList";
+import DatePicker from "../../components/DatePicker";
+import TimePicker from "../../components/TimePicker";
+import RadioButtonList from "../../components/RadioButtonList";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
-import ImageList from "../components/ImageList";
+import ImageList from "../../components/ImageList";
+import {BrowseGrid} from '../../components/BrowsePage'
 
 
 class Browse extends Component {
@@ -22,10 +23,18 @@ class Browse extends Component {
         const {classes} = this.props;
 
         return (
-            <Grid className={classes.container}>
+            <Grid style={{width:'100vw',height:'100vh',overflow:"hidden"}}>
+                <Grid style={{backgroundColor: 'black',
+                    width: '100%',
+                    height: '10vh',
+                    display: 'flex',
+                    justifyContent: 'end'}}>
 
-                <Grid className={classes.navBar}>
-                    <Grid className={classes.nav}>
+                    <Grid style={{ width: '40%',
+                        height: '10vh',
+                        display:'flex',
+                        justifyContent:'space-evenly',
+                        alignItems:'center'}}>
                         <Grid>
                             <Tabs
                                 variant="scrollable"
@@ -61,61 +70,10 @@ class Browse extends Component {
 
                 </Grid>
 
-
-                <Grid className={classes.browseBody}>
-                    <Grid className={classes.sideBar}>
-                        <Grid className={classes.dateSearch}>
-
-                            <Grid style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'space-evenly',
-                                marginTop: '10vh'
-                            }}>
-
-                                <Grid className={classes.dateGrids}>
-
-                                    <DatePicker/>
-                                    <TimePicker/>
-                                </Grid>
-
-
-                                <Grid className={classes.dateGrids}>
-                                    <DatePicker/>
-                                    <TimePicker/>
-                                </Grid>
-
-
-                            </Grid>
-
-                            <Grid style={{margin: '4vh'}}>
-                                <Button variant="contained" href="#contained-buttons"
-                                        style={{
-                                            width: '10vw',
-                                            backgroundColor: '#595959',
-
-                                        }}>
-                                    Search
-                                </Button>
-                            </Grid>
-                        </Grid>
-
-                        <Grid className={classes.filterArea}>
-
-                            <Grid style={{marginTop:'10vh',marginLeft:'2vw'}}>
-                                <RadioButtonList/>
-                            </Grid>
-
-                        </Grid>
-                    </Grid>
-
-
-                    <Grid className={classes.resultBody}>
-                        <ImageList/>
-                    </Grid>
-                </Grid>
+                <BrowseGrid/>
 
             </Grid>
+
         )
     }
 

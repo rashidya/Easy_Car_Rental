@@ -148,11 +148,11 @@ function ResponsiveDrawer(props) {
                 <Box >
                     <Routes>
                         <Route exact path="/profile" element={<AdminProfile/>}/>
-                        <Route exact path="/manageCustomer" element={<ManageCustomer/>}/>
-                        <Route exact path="/manageDriver" element={<ManageDriver/>}/>
-                        <Route exact path="/manageVehicle" element={<ManageVehicle/>}/>
-                        <Route exact path="/manageBooking" element={<ManageBooking/>}/>
-                        <Route exact path="/incomeReports" element={<IncomeReports/>}/>
+                        <Route  path="/manageCustomer" element={<ManageCustomer/>}/>
+                        <Route  path="/manageDriver" element={<ManageDriver/>}/>
+                        <Route  path="/manageVehicle" element={<ManageVehicle/>}/>
+                        <Route  path="/manageBooking" element={<ManageBooking/>}/>
+                        <Route  path="/incomeReports" element={<IncomeReports/>}/>
 
                         {/*   <Route exact path="/logout" element={<LogOut/>}/>*/}
                     </Routes>

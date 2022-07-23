@@ -15,11 +15,12 @@ import {withStyles} from "@mui/styles";
 
 import SignIn from "../pages/SignIn";
 import Browse from "../pages/Browse";
-import BasicDatePicker from "../pages/components/DatePicker";
+import BasicDatePicker from "../components/DatePicker";
 import VehicleDetailBooking from "../pages/VehicleDetailBooking";
 import CustomerDashBoard from "../pages/Customer";
 import AdminDashBoard from "../pages/Admin";
-import ManageCustomer from "../pages/components/AdminDashBoard/manageCustomer";
+import ManageCustomer from "../components/AdminDashBoard/manageCustomer";
+import DriverDashBoard from "../pages/Driver";
 
 
 
@@ -45,7 +46,7 @@ export default function App() {
         </Routes>
       </div>*/
 
-      <AdminDashBoard/>
+      <CustomerDashBoard/>
   );
 }
 

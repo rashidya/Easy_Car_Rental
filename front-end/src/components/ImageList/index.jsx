@@ -8,8 +8,8 @@ import BookIcon from '@mui/icons-material/Book';
 
 export default function TitleBarImageList() {
     return (
-        <ImageList sx={{ width: '60vw', height: '85vh' }}>
-            <ImageListItem key="Subheader" cols={4}>
+        <ImageList sx={{ width: '95%', height: '100%' }}>
+            <ImageListItem key="Subheader" cols={3}>
                 {/*<ListSubheader component="div">December</ListSubheader>*/}
             </ImageListItem>
             {itemData.map((item) => (
