@@ -43,7 +43,7 @@ function ResponsiveDrawer(props) {
 
     const listItemData = [
         {label: "Profile", link: "/", icon: <AccountBoxIcon color={'primary'} /> },
-        {label: "Book", link: "/booking", icon: <BookIcon color={'success'} />},
+        {label: "Place Booking", link: "/booking", icon: <BookIcon color={'success'} />},
         {label: "Bookings", link: "/manageBooking", icon: <CollectionsBookmarkIcon color={'warning'}/> },
 
     ]
@@ -65,7 +65,7 @@ function ResponsiveDrawer(props) {
                     >
                         <ListItemButton>
                             <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText>{item.label}</ListItemText>
+                            <ListItemText style={{color:'black'}}>{item.label}</ListItemText>
                         </ListItemButton>
                     </ListItem>
                 ))}

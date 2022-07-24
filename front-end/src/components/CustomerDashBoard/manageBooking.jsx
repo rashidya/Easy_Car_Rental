@@ -1,6 +1,6 @@
 import {Component} from "react";
 import {Grid} from "@mui/joy";
-import ManageBookingForm from '../ManageBooking'
+import ManageBookingForm from '../BookingTable'
 
 class ManageBooking extends Component{
 

@@ -63,7 +63,7 @@ function ResponsiveDrawer(props) {
                     >
                         <ListItemButton>
                             <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText>{item.label}</ListItemText>
+                            <ListItemText style={{color:'black'}}>{item.label}</ListItemText>
                         </ListItemButton>
                     </ListItem>
                 ))}

@@ -24,13 +24,17 @@ import HomeIcon from "@mui/icons-material/Home";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {NavLink, Route, Routes} from "react-router-dom";
-import Profile from "./profile";
+import Profile from "./dashBoard";
 import ManageBooking from "./manageBooking";
-import AdminProfile from "./profile";
+import AdminProfile from "./dashBoard";
 import ManageVehicle from "./manageVehicle";
 import ManageCustomer from "./manageCustomer";
 import ManageDriver from "./manageDriver";
 import IncomeReports from "./incomeReports";
+import CarRentalIcon from '@mui/icons-material/CarRental';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import {Abc} from "@mui/icons-material";
+import AdminDashBoard from "./dashBoard";
 
 const drawerWidth = 240;
 
@@ -44,12 +48,11 @@ function ResponsiveDrawer(props) {
     };
 
     const listItemData = [
-        {label: "Profile", link: "/profile", icon: <AccountBoxIcon color={'primary'} /> },
-        {label: "Manage Customer", link: "/manageCustomer", icon: <BookIcon color={'success'} />},
-        {label: "Mange Driver", link: "/manageDriver", icon: <BookIcon color={'success'} />},
-        {label: "Mange Vehicle", link: "/manageVehicle", icon: <BookIcon color={'success'} />},
-        {label: "Manage Booking", link: "/manageBooking", icon: <CollectionsBookmarkIcon color={'warning'}/> },
-        {label: "Income Reports", link: "/incomeReports", icon: <CollectionsBookmarkIcon color={'warning'}/> },
+        {label: "DashBoard", link: "/dashboard", icon: <DashboardIcon color={'primary'} /> },
+        {label: "Manage Customer", link: "/manageCustomer", icon: <AccountBoxIcon color={'success'} />},
+        {label: "Mange Vehicle", link: "/manageVehicle", icon: <CarRentalIcon color={"warning"}  />},
+        {label: "Manage Booking", link: "/manageBooking", icon: <CollectionsBookmarkIcon color={'info'}/> },
+        {label: "Income Reports", link: "/incomeReports", icon: <AssessmentIcon color={'secondary'}/> },
         {label: "Log out", link: "/logout", icon: <LogoutIcon style={{color:'#000000'}}/>},
     ]
 
@@ -70,7 +73,7 @@ function ResponsiveDrawer(props) {
                     >
                         <ListItemButton>
                             <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText>{item.label}</ListItemText>
+                            <ListItemText style={{color:'black'}}>{item.label}</ListItemText>
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -103,7 +106,7 @@ function ResponsiveDrawer(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography width={'100%'} variant="h5" noWrap component="div" textAlign={'end'}>
-                        Customer Dashboard
+                        Admin Dashboard
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -147,7 +150,7 @@ function ResponsiveDrawer(props) {
                 <Toolbar />
                 <Box >
                     <Routes>
-                        <Route exact path="/profile" element={<AdminProfile/>}/>
+                        <Route exact path="/dashboard" element={<AdminDashBoard/>}/>
                         <Route  path="/manageCustomer" element={<ManageCustomer/>}/>
                         <Route  path="/manageDriver" element={<ManageDriver/>}/>
                         <Route  path="/manageVehicle" element={<ManageVehicle/>}/>

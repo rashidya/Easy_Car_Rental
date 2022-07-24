@@ -7,7 +7,8 @@ export const styleSheet={
     },
 
     navBar:{
-        backgroundColor: '#949292',
+        //backgroundColor: '#949292',
+        backgroundColor: '#39745F',
         width: '100%',
         height: '10vh',
         display: 'flex',
@@ -28,7 +29,7 @@ export const styleSheet={
         display: 'flex',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'black'
+        backgroundColor:'#c4c4c4'
     },
     detailBodyBackground:{
         width: '90%',

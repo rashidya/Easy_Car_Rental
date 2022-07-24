@@ -95,6 +95,22 @@ export default function InputAdornments() {
                     sx={{ m: 1, width: '67ch' }}
                 />
 
+                <TextField
+                    required
+                    id="outlined-required"
+                    label="NIC No"
+                    defaultValue=""
+                    sx={{ m: 1, width: '40ch' }}
+                />
+
+                <TextField
+                    required
+                    id="outlined-required"
+                    label="Driving Lisence No"
+                    defaultValue=""
+                    sx={{ m: 1, width: '25ch' }}
+                />
+
 
             </div>
 
