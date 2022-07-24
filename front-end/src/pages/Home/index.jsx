@@ -10,6 +10,7 @@ import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {TimePicker} from '@mui/x-date-pickers/TimePicker';
 import {DatePicker} from '@mui/x-date-pickers/DatePicker';
+import EmailIcon from '@mui/icons-material/Email';
 
 
 class Home extends Component {
@@ -115,19 +116,19 @@ class Home extends Component {
 
                     </Grid>
 
-                    <Grid className={classes.polygon} width={'60vw'} overflowX='hidden'>
+                    <Grid className={classes.polygon} width={'57vw'} overflowX='hidden'>
 
                         <Grid display={'flex'} justifyContent={'space-evenly'} alignItems={'center'}
-                              position={'absolute'} top={'7vh'} right={'3vw'} width='40vw'>
+                              position={'absolute'} top={'7vh'} right={'2vw'} width='20vw'>
                             <Tabs
                                 variant="scrollable"
                                 scrollButtons="auto"
                                 aria-label="scrollable auto tabs example"
 
                             >
-                                <Tab label="Home" style={{color: 'white'}}/>
+                               {/* <Tab label="Home" style={{color: 'white'}}/>
                                 <Tab label="About" style={{color: 'white'}}/>
-                                <Tab label="Contact" style={{color: 'white'}}/>
+                                <Tab label="Contact" style={{color: 'white'}}/>*/}
                                 <Tab label=" Sign In" style={{color: 'white'}}/>
 
                             </Tabs>
@@ -144,16 +145,16 @@ class Home extends Component {
 
                         </Grid>
 
-                        <Grid position={'absolute'} top={'30vh'} right={'5vh'}> <img src={carImage}
-                                                                                     style={{height: '80vh'}}
+                        <Grid position={'absolute'} top={'26vh'} right={'10vh'}> <img src={carImage}
+                                                                                     style={{width: '57vw'}}
 
                         /></Grid>
 
 
-                        <Grid>
-                            <svg height="100vh" width="60vw" overflow={'hidden'}>
+                        <Grid width={'57vw'} overflow={'hidden'}>
+                            <svg height="100vh" width="60vw" >
                                 <polygon
-                                    points="880,0 880,720  250,720 50,150 230,0"
+                                    points="880,0 880,720  300,720 110,150 280,0"
 
 
                                     fill='#39745F'
@@ -169,7 +170,7 @@ class Home extends Component {
 
                 </Grid>
 
-                <Grid className={classes.about}>
+             {/*   <Grid className={classes.about}>
                     <Grid position={"absolute"} display={"flex"}>
                         <Grid zIndex={1}>
                             <svg height="100vh" width="100vw">
@@ -250,7 +251,7 @@ class Home extends Component {
                 </Grid>
 
                 <Grid className={classes.contact}>
-                    <Grid position={"absolute"} display={"flex"}>
+                    <Grid position={"absolute"} display={"flex"} width={'100vw'} height={'100vh'} overflow={'hidden'}>
 
                         <Grid position={'absolute'} left={0} top={0}>
                             <img src={contactImage}
@@ -275,51 +276,26 @@ class Home extends Component {
 
                                     <Typography variant="h4" component="h2" style={{
                                         fontWeight: 'bold',
-                                        fontFamily: 'sans-serif'
+                                        fontFamily: 'sans-serif',
+                                        textAlign:'right'
                                     }}>
-                                        About Us
+                                        Contact Us
                                     </Typography>
 
                                 </Grid>
 
                                 <Grid display={"flex"} justifyContent={"center"} paddingTop={'10vh'}>
-                                    <Typography variant="h6" component="h2" style={{
-                                        fontFamily: 'sans-serif',
-                                        textAlign: 'left,',
-                                        width: '40vw'
-                                    }}>
+                                    <Grid>
+                                        <Typography variant="h6" component="h2" style={{
+                                            fontFamily: 'sans-serif',
+                                            textAlign: 'right,',
+                                            width: '40vw'
+                                        }}>
 
-                                        Easy car rental private limited is a car rental service <br/>with 5 years of
-                                        history.
-                                        This
-                                        company has about
-                                        50 cars and 40 drivers working for them in regular shifts. This company is
-                                        located
-                                        at
-                                        No.
-                                        200, Galle
-                                        Road, Panadura, and well known for their services. Usually, people who don’t own
-                                        a
-                                        car,
-                                        people who
-                                        are waiting for their car to be repaired and, travelers or tourists seek their
-                                        services.
-                                        Easy car rental private limited is a car rental service <br/>with 5 years of
-                                        history.
-                                        This
-                                        company has about
-                                        50 cars and 40 drivers working for them in regular shifts. This company is
-                                        located
-                                        at
-                                        No.
-                                        200, Galle
-                                        Road, Panadura, and well known for their services. Usually, people who don’t own
-                                        a
-                                        car,
-                                        people who
-                                        are waiting for their car to be repaired and, travelers or tourists seek their
-                                        services.
-                                    </Typography>
+                                            easycarrental@gmail.com
+                                        </Typography>
+                                    </Grid>
+
                                 </Grid>
                             </Grid>
 
@@ -327,7 +303,7 @@ class Home extends Component {
                     </Grid>
 
 
-                </Grid>
+                </Grid>*/}
 
 
             </Grid>

@@ -10,61 +10,43 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BookIcon from "@mui/icons-material/Book";
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import LogoutIcon from "@mui/icons-material/Logout";
+import carImage from '../../assets/contact.jpg'
+
 
 const listItemData = [
-    {image: "Profile", text: "/profile", description: 'ggggggggg' },
-    {image: "Profile", text: "/profile", description: 'ggggggggg' },
-    {image: "Profile", text: "/profile", description: 'ggggggggg' },
-    {image: "Profile", text: "/profile", description: 'ggggggggg' },
+    {image: '../../assets/contact.jpg', link: "/profile", description: 'Toyota Axio' },
+    {image: {carImage}, link: "/profile", description: 'Toyota Axio' },
+    {image: {carImage}, link: "/profile", description: 'Toyota Axio' },
+    {image: {carImage}, link: "/profile", description: 'Toyota Axio' },
+    {image: {carImage}, link: "/profile", description: 'Toyota Axio' },
+    {image: {carImage}, link: "/profile", description: 'Toyota Axio' },
+
+
+
 
 ]
 
 export default function TitleBarImageList() {
     return (
-        <Grid sx={{ width: '95%', height: '100%' }}>
-           {/* <ImageListItem key="Subheader" cols={3}>
-                <ListSubheader component="div">December</ListSubheader>
-            </ImageListItem>
-            {itemData.map((item) => (
-                <ImageListItem key={item.img}>
-                    <img
-                        src={`${item.img}?w=248&fit=crop&auto=format`}
-                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                        alt={item.title}
-                        loading="lazy"
-                    />
-                    <ImageListItemBar
-                        title={item.title}
-                        subtitle={item.author}
-                        actionIcon={
-                            <IconButton
-                                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                                aria-label={`info about ${item.title}`}
-                            >
-                                <BookIcon />
-                            </IconButton>
-                        }
-                    />
-                </ImageListItem>
-            ))}*/}
+        <Grid sx={{ width: '95%',}} style={{height:'88%',display:'flex',flexWrap:'wrap',justifyContent:'space-evenly',alignItems:'center'}}>
+
             {listItemData.map((item, index) => (
-                <Card sx={{ maxWidth: 345 }}>
+                <Card style={{width:'20vw'} }>
                     <CardMedia
                         component="img"
-                        alt="green iguana"
-                        height="140"
-                        image={item.image}
+                        alt="img"
+                        height="130"
+                        image={carImage}
+
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {item.text}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography  variant="h6" textAlign={'center'}>
                             {item.description}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button size="small">Book Now</Button>
+                    <CardActions style={{display:'flex',justifyContent:'center'}}>
+
+                        <Button size="small"  style={{backgroundColor:'green',color:'white'}}>Book Now</Button>
                     </CardActions>
                 </Card>
             ))}

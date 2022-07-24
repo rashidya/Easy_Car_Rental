@@ -1,14 +1,15 @@
 export const styleSheet={
 
     container:{
-        width:'100vw',
-        overflow:'hidden'
+        width: "100vw",
+        overflow:'hidden',
+
     },
     home:{
         height:'100vh',
         display:'flex',
         justifyContent:'space-between',
-        overflow:'hidden'
+        overflowY:'hidden'
     },
     about:{
         height:'100vh',
@@ -18,6 +19,7 @@ export const styleSheet={
     },
 
     contact:{
+
         height:'100vh',
         display:'flex',
         justifyContent:'space-between',

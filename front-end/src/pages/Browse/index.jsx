@@ -23,12 +23,13 @@ class Browse extends Component {
         const {classes} = this.props;
 
         return (
-            <Grid style={{width:'100vw',height:'100vh',overflow:"hidden"}}>
-                <Grid style={{backgroundColor: 'black',
+            <Grid style={{width:'100%',overflowX:"hidden"}}>
+                <Grid style={{backgroundColor: '#39745F',
                     width: '100%',
                     height: '10vh',
                     display: 'flex',
-                    justifyContent: 'end'}}>
+                    justifyContent: 'end',
+                overflowX:"hidden"}}>
 
                     <Grid style={{ width: '40%',
                         height: '10vh',
@@ -70,7 +71,10 @@ class Browse extends Component {
 
                 </Grid>
 
-                <BrowseGrid/>
+                <Grid style={{width:'100%',height:'100vh',overflowX:"hidden"}}>
+                    <BrowseGrid/>
+                </Grid>
+
 
             </Grid>
 
