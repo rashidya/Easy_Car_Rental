@@ -39,13 +39,13 @@ class SignInPage extends Component {
                             aria-label="scrollable auto tabs example"
 
                         >
-                            <Tab label="Home" style={{color: 'white'}}/>
-                            <Tab label="About" style={{color: 'white'}}/>
-                            <Tab label="Contact" style={{color: 'white'}}/>
-                            <Tab label=" Sign In" style={{color: 'white'}}/>
+                            <Tab label="Home" style={{color: 'white'}} href={'/'}/>
+                           {/* <Tab label="About" style={{color: 'white'}}/>
+                            <Tab label="Contact" style={{color: 'white'}}/>*/}
+                            <Tab label=" Sign In" style={{color: 'white'}} href={'signInPage'}/>
 
                         </Tabs>
-                        <Button variant="outlined" style={{
+                        <Button variant="outlined" href={'sighUpPage'} style={{
                             height: '35px',
                             color: 'white',
                             borderColor: 'white',

@@ -34,22 +34,14 @@ export default function App() {
 
 
   return (
-     /* <div style={{display:'flex'}}>
-        <Drawer />
-        <Routes>
-        {/!*  <Route exact from="/" render={props => <Home {...props} />} />
-          <Route exact path="/contact" render={props => <Contact {...props} />} />
-          <Route exact path="/about" render={props => <About {...props} />} />*!/}
+       <Routes>
+         <Route exact path='/' element={<Home/>}/>
+         <Route path='browse' element={<Browse/>}/>
+         <Route path='vehicleDetailsPage' element={<VehicleDetailBooking/>}/>
+         <Route path='sighUpPage' element={<SignUp/>}/>
+         <Route path='signInPage' element={<SignIn/>}/>
 
-            <Route  path='/' element={<Home/>}/>
-            <Route  path='/about' element={<About/>}/>
-            <Route  path='/contact' element={<Contact/>}/>
-         {/!*   <Route  path='/home' element={<Home/>}/>
-            <Route  path='/home' element={<Home/>}/>*!/}
-        </Routes>
-      </div>*/
-
-      <AdminDashBoard/>
+       </Routes>
   );
 }
 
