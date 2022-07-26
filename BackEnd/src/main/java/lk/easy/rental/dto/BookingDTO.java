@@ -19,7 +19,7 @@ import java.util.List;
 @Data
 @ToString
 public class BookingDTO {
-    private String booking_Id;
+    private String bookingId;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickupDate;
     @JsonFormat(pattern = "HH:mm:ss")
@@ -34,7 +34,7 @@ public class BookingDTO {
     private List<VehicleBookingDetailDTO> bookedVehicleList;
 
     public BookingDTO(String booking_Id, LocalDate pickupDate, LocalTime pickupTime, LocalDate returnDate, LocalTime returnTime, RequestType needDriver, CustomerDTO customer, List<DriverScheduleDTO> driverScheduleList) {
-        this.booking_Id = booking_Id;
+        this.bookingId = booking_Id;
         this.pickupDate = pickupDate;
         this.pickupTime = pickupTime;
         this.returnDate = returnDate;

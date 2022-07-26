@@ -17,19 +17,24 @@ export const styleSheet = {
     loginContainer:{
         width: '22vw',
         height:'50vh',
-        marginTop:'12vh',
-        marginLeft:'41.5vw',
         backgroundColor:'#FCFCFC',
+        display:'flex',
+        flexDirection:'column !important',
+        justifyContent: 'space-evenly'
     },
     loginForm:{
         width:'22vw',
-        height:'20vh',
-        marginTop:'16vh',
-        direction:'column',
+        height:'80%',
         alignItems:'center',
-        paddingLeft:'2.5vw',
+        display:'flex',
+        flexDirection:'column !important',
+        justifyContent: 'space-evenly'
     },
     btn_container:{
         height: '20%',
+        display:'flex',
+        flexDirection:'column !important',
+        justifyContent: 'space-evenly',
+        alignItems:'center',
     }
 }

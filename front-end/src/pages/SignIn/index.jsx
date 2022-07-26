@@ -58,25 +58,26 @@ class SignInPage extends Component {
 
 
                 </Grid>
+
                 <Grid className={classes.loginContainer} >
-                    <Grid style={{width:'65px',height:"0px"}}>
-                        <AccountCircleIcon style={{fontSize:'85px',paddingLeft:'8vw',color:'white'}}/>
-                    </Grid>
                     <Grid container className={classes.loginForm}>
-                        <Grid item lg={12} md={12} sm={6} xm={6}>
+
+                        <Grid item lg={12} md={12} sm={6} xm={6} width={'10vh'}><Typography textAlign={"center"} fontWeight={'bolder'}>LOG IN</Typography></Grid>
+
+
+
                             <TextField id="outlined-basic" style={{width:'87%'}} label="User name"  variant="outlined" />
-                        </Grid>
-                        <Grid item lg={12} md={12} sm={6} xm={6}>
+
+
                             <TextField id="outlined-basic" style={{width:'87%'}} label="Password" type='password' variant="outlined"/>
-                        </Grid>
+
                     </Grid>
-                    <Grid className={classes.btn_container}  paddingLeft='2.5vw' paddingTop='4vh'>
+                    <Grid className={classes.btn_container} >
                         <Button style={{backgroundColor:'#040404',color:'white',fontWeight:'semi',height:'6vh',width:'17vw',
                             fontSize:'15px',opacity:'95%'}}>Login</Button>
                     </Grid>
                 </Grid>
-                <Grid style={{width:'15vw',height:'16vh',backgroundColor:'#040404',marginTop:'-54vh',marginLeft: '45vw'}}>
-                </Grid>
+
             </Grid>
         )
     }

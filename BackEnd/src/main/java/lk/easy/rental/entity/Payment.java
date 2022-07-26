@@ -24,7 +24,7 @@ public class Payment{
     private double amount;
 
     @ManyToOne
-    @JoinColumn(name = "booking_Id",referencedColumnName = "booking_Id",nullable = false)
+    @JoinColumn(name = "bookingId",referencedColumnName = "bookingId",nullable = false)
     private Booking booking;
 
 

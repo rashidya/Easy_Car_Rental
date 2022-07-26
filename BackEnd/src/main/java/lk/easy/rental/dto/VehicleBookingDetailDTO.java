@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class VehicleBookingDetailDTO {
 
     private String vehicleId;
-    private String booking_Id;
+    private String bookingId;
     private VehicleDTO driver;
     private BookingDTO booking;
 }

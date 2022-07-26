@@ -39,7 +39,7 @@ export default function App() {
          <Route path='browse' element={<Browse/>}/>
          <Route path='vehicleDetailsPage' element={<VehicleDetailBooking/>}/>
          <Route path='sighUpPage' element={<SignUp/>}/>
-         <Route path='signInPage' element={<SignIn/>}/>
+         <Route path='signInPage' element={<SignInPage/>}/>
 
        </Routes>
   );

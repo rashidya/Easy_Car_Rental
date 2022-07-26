@@ -20,7 +20,7 @@ public class DriverSchedule {
     @Id
     private String driverId;
     @Id
-    private String booking_Id;
+    private String bookingId;
 
 
     @ManyToOne
@@ -29,7 +29,7 @@ public class DriverSchedule {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "booking_Id",referencedColumnName = "booking_Id",insertable = false,updatable = false)
+    @JoinColumn(name = "bookingId",referencedColumnName = "bookingId",insertable = false,updatable = false)
     private Booking booking;
 
 

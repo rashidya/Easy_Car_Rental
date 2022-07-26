@@ -14,5 +14,5 @@ import java.io.Serializable;
 @ToString
 public class DriverSchedule_PK implements Serializable {
     private String driverId;
-    private String booking_Id;
+    private String bookingId;
 }

@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 public class Booking {
     @Id
-    private String booking_Id;
+    private String bookingId;
     private LocalDate pickupDate;
     private LocalTime pickupTime;
     private LocalDate returnDate;
