@@ -16,85 +16,100 @@ import {
 import * as React from "react";
 
 import SignUpForm from '../../components/SignUp'
+import loginBg from "../../assets/contact.jpg";
+import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
+import SignUpService from '../../services/signUpService';
 
 
-class SignUp extends Component{
-   constructor(props) {
-       super(props);
-   }
+class SignUp extends Component {
+    constructor(props) {
+        super(props);
+/*
+        this.state = {
+            ,
+            alert: false,
+            message: '',
+            severity: '',
 
-   render() {
-       const {classes}=this.props;
-       return(
+            data: [],
+            btnLabel: 'save',
+            btnColor: 'primary'
+        }*/
 
-
-
-
-
-             <Grid className={classes.container}
-
-
-                   >
-                 <Grid className={classes.nav}>
-
-                     <Grid display="flex" width={'40vw'} justifyContent={'space-evenly'} alignItems={'center'}>
-                         <Tabs
-                             variant="scrollable"
-                             scrollButtons="auto"
-                             aria-label="scrollable auto tabs example"
-
-                         >
-                             <Tab label="Home" style={{color: 'white'}}/>
-                             <Tab label="About" style={{color: 'white'}}/>
-                             <Tab label="Contact" style={{color: 'white'}}/>
-                             <Tab label=" Sign In" style={{color: 'white'}}/>
-
-                         </Tabs>
-                         <Button variant="outlined" style={{
-                             height: '35px',
-                             color: 'white',
-                             borderColor: 'white',
-                             borderRadius: 50,
-                         }}>Sign Up</Button>
+    }
 
 
-                         <Avatar src="/broken-image.jpg" />
-                     </Grid>
+   /* submitUser = async () => {
+        let formData = this.state.formData;
 
-
-                 </Grid>
+        console.log(formData)
+        let res;
+        if (formData.user.role=='DRIVER'){
+            res= await SignUpService.postSignUpDriver(formData);
+        }else {
+            res=await SignUpService.postSignUpCustomer(formData);
+        }
 
 
 
+            if (res.status === 201) {
+                this.setState({
+                    alert: true,
+                    message: res.data.message,
+                    severity: 'success'
+                });
+                this.clearFields();
 
-                 <Grid width="100vw" height={'90vh'}  display={'flex'} alignItems={'center'} justifyContent={'center'} style={{backgroundColor:'#c4c4c4'}}>
+            } else {
+                this.setState({
+                    alert: true,
+                    message: res.response.data.message,
+                    severity: 'error'
+                });
+            }
 
-                     <Grid width="80vw" height={'85vh'}  display={'flex'}  justifyContent={'space-evenly'} alignItems={'center'} flexDirection={'column'} style={{backgroundColor:'white'}}>
-                    <SignUpForm/>
-
-                     <Grid marginRight={"8%"}>
-
-                         <Button variant="contained" color="info" style={{marginRight:"1vh"}}>
-                             Cancel
-                         </Button>
-                         <Button variant="contained" color="success" style={{marginLeft:"1vh"}}>
-                             Register
-                         </Button>
-
-                     </Grid>
-
-                 </Grid>
-                 </Grid>
+    };*/
 
 
+    render() {
+        const {classes} = this.props;
+        return (
+
+            <>
+                <Grid className={classes.container} display={'flex'} alignItems={'center'} justifyContent={'center'}
+                      style={{
+                          backgroundImage: `url(${loginBg})`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundSize: 'cover',
+                          opacity: '90%'
+                      }}>
 
 
-             </Grid>
 
+                    <ValidatorForm ref="form" className="pt-2" onSubmit={this.submitUser}>
 
+                        <Grid width="68vw" height={'80vh'} display={'flex'} justifyContent={'space-evenly'}
+                              alignItems={'center'} flexDirection={'column'}
+                              style={{backgroundColor: 'white', opacity: '93%'}}>
+                            <SignUpForm/>
 
-       );
-   }
+                            <Grid marginTop={'2vh'}>
+
+                                <Button variant="contained" style={{color: "white", backgroundColor: 'black'}}>
+                                    Register
+                                </Button>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </ValidatorForm>
+                </Grid>
+
+            </>
+        );
+    }
+
 
 }
 

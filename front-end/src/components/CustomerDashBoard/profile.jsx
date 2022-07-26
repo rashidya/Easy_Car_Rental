@@ -1,6 +1,6 @@
 import {Component} from "react";
 import {Grid} from "@mui/joy";
-import FormDetails from '../CustomerProfile'
+import FormDetails from '../UserDetailsForm'
 import {Upload} from "@mui/icons-material";
 import IconButton from "../UploadButton";
 import Typography from "@mui/material/Typography";

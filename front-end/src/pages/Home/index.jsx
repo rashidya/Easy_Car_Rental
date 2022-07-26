@@ -102,11 +102,11 @@ class Home extends Component {
                             </Grid>
 
                             <Grid display={'flex'} justifyContent={'center'} paddingTop={'2vh'}>
-                                <Button variant="contained" href="#contained-buttons"
+                                <Button variant="contained" href="browse"
                                         style={{
                                             width: '10vw',
                                             backgroundColor: '#666666'
-                                        }}>
+                                        }} >
                                     Search
                                 </Button>
                             </Grid>
@@ -132,6 +132,7 @@ class Home extends Component {
                                 <Tab label=" Sign In" style={{color: 'white'}} href={'/signInPage'}/>
 
                             </Tabs>
+
                             <Button variant="outlined" href={'/sighUpPage'} style={{
                                 height: '35px',
                                 color: 'white',

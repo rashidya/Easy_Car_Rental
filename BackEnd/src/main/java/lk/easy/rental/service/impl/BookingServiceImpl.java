@@ -39,7 +39,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void placeBooking(BookingDTO dto) {
         if (!bookingRepo.existsById(dto.getBookingId())) {
-            if(customerRepo.existsById(dto.getCustomer().getCusId())){
+            if(customerRepo.existsById(dto.getCustomer().getId())){
                 if (!dto.getBookedVehicleList().isEmpty()){
                     if (isVehicleAvailable(dto)){
                         if (dto.getNeedDriver().equals("YES")){

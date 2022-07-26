@@ -1,7 +1,7 @@
 import {Component} from "react";
 import {Grid} from "@mui/joy";
 import IconButton from "../UploadButton";
-import FormDetails from "../CustomerProfile";
+import FormDetails from "../UserDetailsForm";
 import {Button} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import * as React from "react";

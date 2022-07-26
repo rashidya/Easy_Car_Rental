@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void saveCustomer(CustomerDTO dto) {
 
-        if (!customerRepo.existsById(dto.getCusId())) {
+        if (!customerRepo.existsById(dto.getId())) {
             if(!userRepo.existsByUserName(dto.getUser().getUserName())){
                 customerRepo.save(mapper.map(dto, Customer.class));
             }else{
@@ -67,10 +67,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomer(CustomerDTO dto) {
-        if (customerRepo.existsById(dto.getCusId())) {
+        if (customerRepo.existsById(dto.getId())) {
             customerRepo.save(mapper.map(dto,Customer.class));
         }else {
-            throw new NotFoundException("There is no customer  with ID- " +dto.getCusId());
+            throw new NotFoundException("There is no customer  with ID- " +dto.getId());
         }
 
     }

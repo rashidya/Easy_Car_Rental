@@ -18,8 +18,8 @@ import java.util.List;
 @Entity
 public class Driver {
     @Id
-    private String driverId;
-    private String driverNic;
+    private String id;
+    private String userNIC;
     @Embedded
     private Name name;
     private String drivingLicenseNo;
@@ -32,4 +32,14 @@ public class Driver {
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
+
+    public Driver(String id, String nic, Name name, String drivingLicenseNo, String address, String contactNo, User user) {
+        this.id = id;
+        this.userNIC = nic;
+        this.name = name;
+        this.drivingLicenseNo = drivingLicenseNo;
+        this.address = address;
+        this.contactNo = contactNo;
+        this.user = user;
+    }
 }

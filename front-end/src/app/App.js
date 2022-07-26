@@ -41,6 +41,7 @@ export default function App() {
          <Route path='sighUpPage' element={<SignUp/>}/>
          <Route path='signInPage' element={<SignInPage/>}/>
 
+
        </Routes>
   );
 }

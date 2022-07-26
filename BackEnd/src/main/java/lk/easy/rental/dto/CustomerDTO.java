@@ -14,13 +14,12 @@ import javax.persistence.Embedded;
 @Data
 @ToString
 public class CustomerDTO {
-    private String cusId;
-    private String customerNic;
+    private String id;
+    private String userNIC;
     @Embedded
     private Name name;
     private String drivingLicenseNo;
     private String address;
     private String contactNo;
-    private String email;
     private UserDTO user;
 }

@@ -31,7 +31,7 @@ class Browse extends Component {
                     justifyContent: 'end',
                 overflowX:"hidden"}}>
 
-                    <Grid style={{ width: '40%',
+                    <Grid style={{ width: '20%',
                         height: '10vh',
                         display:'flex',
                         justifyContent:'space-evenly',
@@ -43,9 +43,7 @@ class Browse extends Component {
                                 aria-label="scrollable auto tabs example"
 
                             >
-                                <Tab label="Home" style={{color: 'white'}}/>
-                                <Tab label="About" style={{color: 'white'}}/>
-                                <Tab label="Contact" style={{color: 'white'}}/>
+
                                 <Tab label=" Sign In" style={{color: 'white'}}/>
 
                             </Tabs>

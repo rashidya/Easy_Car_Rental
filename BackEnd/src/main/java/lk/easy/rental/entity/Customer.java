@@ -15,16 +15,17 @@ import javax.persistence.*;
 @Entity
 public class Customer {
     @Id
-    private String cusId;
-    private String customerNic;
+    private String id;
+    private String userNIC;
     @Embedded
     private Name name;
     private String drivingLicenseNo;
     private String address;
     private String contactNo;
-    private String email;
 
 
     @OneToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
      private User user;
+
+
 }
