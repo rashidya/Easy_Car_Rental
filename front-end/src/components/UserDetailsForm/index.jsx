@@ -13,12 +13,13 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import SignUpService from "../../services/signUpService";
+import {Button, Grid} from "@mui/material";
 
 export default function InputAdornments(prop) {
 
 
 
-    const [formData, setFormData] = React.useState({
+  /*  const [formData, setFormData] = React.useState({
         formData: {
             id: '',
             userNIC: '',
@@ -32,6 +33,13 @@ export default function InputAdornments(prop) {
                 password: '',
                 role:''
             },
+
+            alert: false,
+            message: '',
+            severity: '',
+            data: [],
+            btnLabel: 'save',
+            btnColor: 'primary'
 
 
         }
@@ -56,15 +64,18 @@ export default function InputAdornments(prop) {
     });
 
 
-    const submitUser = async () => {
+     submitUser = async () => {
         let formDataOb = formData;
 
         console.log(formData)
         let res;
-        if (formDataOb.user.role==='DRIVER'){
-            res= await SignUpService.postSignUpDriver(formDataOb);
-        }else {
-            res=await SignUpService.postSignUpCustomer(formDataOb);
+        if (formDataOb.user.role !== undefined) {
+            if (formDataOb.user.role === 'DRIVER') {
+                res = await SignUpService.postSignUpDriver(formDataOb);
+            } else {
+                res = await SignUpService.postSignUpCustomer(formDataOb);
+            }
+
         }
 
 
@@ -122,12 +133,12 @@ export default function InputAdornments(prop) {
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
-    };
+    };*/
 
     return (
         <>
             <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-                <ValidatorForm ref="form" className="pt-2" onSubmit={submitUser()}>
+              {/*  <ValidatorForm ref="form" className="pt-2" onSubmit={submitUser()}>
                     <div>
                         <TextField
                             required
@@ -151,11 +162,11 @@ export default function InputAdornments(prop) {
                             defaultValue=""
                             sx={{m: 1, width: '40ch'}}
 
-                            value={this.state.formData.user.userName}
+
                             onChange={(e) => {
-                                let formData = prop.state.formData
-                                formData.user.userName = e.target.value
-                                this.setState({formData})
+                                let formDataOb = formData
+                                formDataOb.user.userName = e.target.value
+                                setFormData(formDataOb)
                             }}
                             validators={['required']}
                         />
@@ -179,12 +190,12 @@ export default function InputAdornments(prop) {
                                 }
                                 label="Password"
 
-                                value={prop.state.formData.user.password}
+                                //value={formData.user.password}
                                 onChange={(e) => {
                                     handleChange('password')
-                                    let formData = prop.state.formData
-                                    formData.user.password = e.target.value
-                                    this.setState({formData})
+                                    let formDataOb = formData
+                                    formDataOb.user.password = e.target.value
+                                    setFormData(formDataOb)
                                 }}
                                 validators={['required']}
                             />
@@ -196,11 +207,11 @@ export default function InputAdornments(prop) {
                             label="Name"
                             defaultValue=""
                             sx={{m: 1, width: '40ch'}}
-                            value={this.state.formData.name}
+                            value={formData.name}
                             onChange={(e) => {
-                                let formData = this.state.formData
-                                formData.name = e.target.name
-                                this.setState({formData})
+                                let formDataOb = formData
+                                formDataOb.name = e.target.value
+                                setFormData(formDataOb)
                             }}
                             validators={['required']}
 
@@ -212,12 +223,12 @@ export default function InputAdornments(prop) {
                             label="Contact No"
                             defaultValue=""
                             sx={{m: 1, width: '25ch'}}
-                            value={this.state.formData.contactNo}
+                            value={formData.contactNo}
                             onChange={(e) => {
 
-                                let formData = this.state.formData
-                                formData.contactNo = e.target.value
-                                this.setState({formData})
+                                let formDataOb = formData
+                                formDataOb.contactNo = e.target.value
+                                setFormData(formDataOb)
                             }}
                             validators={['required']}
                         />
@@ -229,12 +240,12 @@ export default function InputAdornments(prop) {
                             label="Address"
                             defaultValue=""
                             sx={{m: 1, width: '67ch'}}
-                            value={this.state.formData.password}
+                            value={formData.address}
                             onChange={(e) => {
-                                handleChange('address')
-                                let formData = this.state.formData
-                                formData.address = e.target.value
-                                this.setState({formData})
+
+                                let formDataOb = formData
+                                formDataOb.address = e.target.value
+                                setFormData(formDataOb)
                             }}
                             validators={['required']}
                         />
@@ -245,12 +256,12 @@ export default function InputAdornments(prop) {
                             label="NIC No"
                             defaultValue=""
                             sx={{m: 1, width: '40ch'}}
-                            value={this.state.formData.password}
+                            value={formData.userNIC}
                             onChange={(e) => {
-                                handleChange('userNIC')
-                                let formData = this.state.formData
+
+                                let formData = formData
                                 formData.userNIC = e.target.value
-                                this.setState({formData})
+                                setFormData(formData)
                             }}
                             validators={['required']}
 
@@ -262,12 +273,12 @@ export default function InputAdornments(prop) {
                             label="Driving Lisence No"
                             defaultValue=""
                             sx={{m: 1, width: '25ch'}}
-                            value={this.state.formData.drivingLicenseNo}
+                            value={formData.drivingLicenseNo}
                             onChange={(e) => {
-                                handleChange('userNIC')
-                                let formData = this.state.formData
+
+                                let formData = formData
                                 formData.drivingLicenseNo = e.target.value
-                                this.setState({formData})
+                                setFormData(formData)
                             }}
                             validators={['required']}
                         />
@@ -275,8 +286,16 @@ export default function InputAdornments(prop) {
 
                     </div>
 
-                </ValidatorForm>
+                    <Grid marginTop={'2vh'}>
 
+                        <Button variant="contained" style={{color: "white", backgroundColor: 'black'}} type={'submit'}>
+                            Register
+                        </Button>
+
+                    </Grid>
+
+                </ValidatorForm>
+*/}
             </Box>
         </>
     );

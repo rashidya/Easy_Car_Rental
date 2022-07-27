@@ -28,6 +28,12 @@ public class DriverController {
     }
 
 
+    @GetMapping( "getAvailableDriver")
+    public ResponseUtil getAvailableDriver(){
+        return new ResponseUtil(200,"OK", driverService.getAvailableDriver());
+    }
+
+
     @GetMapping()
     public ResponseUtil getAllDrivers(){
         return new ResponseUtil(200,"OK", driverService.getAllDrivers());

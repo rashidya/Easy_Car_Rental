@@ -47,4 +47,9 @@ public class AdminController {
         adminService.deleteAdmin(id);
         return new ResponseUtil(200,"Admin Deleted Successfully",null );
     }
+
+    @GetMapping("dashBoardSummery")
+    public ResponseUtil loadDashBoardSummery(){
+        return new ResponseUtil(200,"OK", adminService.loadDashBoardSummery());
+    }
 }

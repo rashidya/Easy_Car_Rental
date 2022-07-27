@@ -34,7 +34,7 @@ export default function App() {
 
 
   return (
-       <Routes>
+       /*<Routes>
          <Route exact path='/' element={<Home/>}/>
          <Route path='browse' element={<Browse/>}/>
          <Route path='vehicleDetailsPage' element={<VehicleDetailBooking/>}/>
@@ -43,6 +43,12 @@ export default function App() {
 
 
        </Routes>
+
+*/
+
+
+      <AdminDashBoard/>
+
   );
 }
 

@@ -15,4 +15,6 @@ public interface AdminService {
     void updateAdmin(AdminDTO dto);
 
     void deleteAdmin(String id);
+
+    Object loadDashBoardSummery();
 }

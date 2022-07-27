@@ -1,6 +1,7 @@
 package lk.easy.rental.repo;
 
 import lk.easy.rental.entity.User;
+import lk.easy.rental.enums.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepo extends JpaRepository<User,Integer> {
@@ -8,5 +9,5 @@ public interface UserRepo extends JpaRepository<User,Integer> {
 
     User findByUserName(String username);
 
-    //int countByUserId();
+    int countByRole(Role Role);
 }

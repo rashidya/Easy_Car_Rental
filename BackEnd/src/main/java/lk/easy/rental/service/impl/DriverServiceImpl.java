@@ -5,6 +5,7 @@ import lk.easy.rental.dto.DriverDTO;
 import lk.easy.rental.entity.Admin;
 import lk.easy.rental.entity.Customer;
 import lk.easy.rental.entity.Driver;
+import lk.easy.rental.enums.Availability;
 import lk.easy.rental.exception.DuplicateEntryException;
 import lk.easy.rental.exception.NotFoundException;
 import lk.easy.rental.repo.CustomerRepo;
@@ -80,5 +81,12 @@ public class DriverServiceImpl implements DriverService {
         }else {
             throw new NotFoundException(id+" - Driver Not Found");
         }
+    }
+
+    @Override
+    public DriverDTO getAvailableDriver() {
+        Driver availableDriver = driverRepo.findFirstByDriverAvailability(Availability.AVAILABLE);
+
+        return mapper.map(availableDriver,DriverDTO.class);
     }
 }

@@ -19,6 +19,7 @@ import java.util.List;
 public class Booking {
     @Id
     private String bookingId;
+    private LocalDate bookingDate;
     private LocalDate pickupDate;
     private LocalTime pickupTime;
     private LocalDate returnDate;

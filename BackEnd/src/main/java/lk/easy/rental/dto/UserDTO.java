@@ -22,4 +22,11 @@ public class UserDTO {
         this.password = password;
         this.role = role;
     }
+
+
+    public UserDTO(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+
+    }
 }

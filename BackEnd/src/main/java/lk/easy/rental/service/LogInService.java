@@ -1,7 +1,8 @@
 package lk.easy.rental.service;
 
 import lk.easy.rental.dto.UserDTO;
+import lk.easy.rental.entity.User;
 
 public interface LogInService {
-    boolean logIn(String username,String password);
+    UserDTO logIn(UserDTO user);
 }

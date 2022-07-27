@@ -18,13 +18,12 @@ public class LogInController {
     @Autowired
     private LogInService logInService;
 
-    @GetMapping(params = {"username","password"})
-    public ResponseUtil logIn(@RequestParam String username,@RequestParam String password){
+    @GetMapping()
+    public ResponseUtil logIn(@RequestBody UserDTO user){
 
-        logInService.logIn(username, password);
+        UserDTO userDTO = logInService.logIn(user);
 
-
-            return new ResponseUtil(200, "OK", null);
+        return new ResponseUtil(200, "OK", userDTO);
 
 
 

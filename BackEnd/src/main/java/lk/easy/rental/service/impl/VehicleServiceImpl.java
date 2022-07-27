@@ -73,4 +73,6 @@ public class VehicleServiceImpl implements VehicleService {
             throw new NotFoundException("There is no Vehicles");
         }
     }
+
+
 }

@@ -15,4 +15,6 @@ public interface DriverService {
     void updateDriver(DriverDTO dto);
 
     void deleteDriver(String id);
+
+    DriverDTO getAvailableDriver();
 }

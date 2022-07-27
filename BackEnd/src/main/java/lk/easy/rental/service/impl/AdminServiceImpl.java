@@ -3,9 +3,11 @@ package lk.easy.rental.service.impl;
 import lk.easy.rental.dto.AdminDTO;
 import lk.easy.rental.dto.CustomerDTO;
 import lk.easy.rental.entity.Admin;
+import lk.easy.rental.enums.Role;
 import lk.easy.rental.exception.DuplicateEntryException;
 import lk.easy.rental.exception.NotFoundException;
 import lk.easy.rental.repo.AdminRepo;
+import lk.easy.rental.repo.BookingRepo;
 import lk.easy.rental.repo.UserRepo;
 import lk.easy.rental.service.AdminService;
 import org.modelmapper.ModelMapper;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -28,6 +31,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private BookingRepo bookingRepo;
 
 
     @Override
@@ -91,5 +97,13 @@ public class AdminServiceImpl implements AdminService {
         }else {
             throw new NotFoundException(id+" - Admin Not Found");
         }
+    }
+
+    @Override
+    public Object loadDashBoardSummery() {
+        int totalRegisteredUsers = userRepo.countByRole(Role.REGISTERED_USER);
+        int bookingsForDay = bookingRepo.countByPickupDate(LocalDate.now());
+
+        return null;
     }
 }

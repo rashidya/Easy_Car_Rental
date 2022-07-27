@@ -22,12 +22,12 @@ public class LogInServiceImpl implements LogInService {
     private UserRepo userRepo;
 
     @Override
-    public boolean logIn(String username,String password) {
-        User user = userRepo.findByUserName(username);
+    public UserDTO  logIn(UserDTO dto) {
+        User user = userRepo.findByUserName(dto.getUserName());
 
         if (user!=null){
-            if (user.getPassword().equals(password)){
-                return true;
+            if (user.getPassword().equals(dto.getPassword())){
+                return mapper.map(user,UserDTO.class);
             }else {
                 throw new RuntimeException("Incorrect Password");
             }
