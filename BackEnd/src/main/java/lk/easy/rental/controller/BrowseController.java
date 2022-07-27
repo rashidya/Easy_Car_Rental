@@ -52,7 +52,7 @@ public class BrowseController {
     }
 
     @GetMapping(params = {"pickupDate","returnDate"})
-    public ResponseUtil sortVehicleByFuelType(@RequestParam String pickupDate,@RequestParam String returnDate){
+    public ResponseUtil loadAvailableVehicles(@RequestParam String pickupDate,@RequestParam String returnDate){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate pickUp = LocalDate.parse(pickupDate);
         LocalDate dropOff = LocalDate.parse(returnDate, formatter);
