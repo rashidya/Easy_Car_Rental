@@ -89,24 +89,26 @@ public class BrowseServiceImpl implements BrowseService {
         }
 
 
-            L1:for (Vehicle temp : vehicleRepo.findAll()) {
-                L2: for (Vehicle notAvailableVehicle : notAvailableVehicles) {
-                    if (temp.getVehicleId().equals(notAvailableVehicle.getVehicleId())){
-                        continue L1;
-                    }else {
-                        continue L2;
-                    }
+        L1:
+        for (Vehicle temp : vehicleRepo.findAll()) {
+            L2:
+            for (Vehicle notAvailableVehicle : notAvailableVehicles) {
+                if (temp.getVehicleId().equals(notAvailableVehicle.getVehicleId())) {
+                    continue L1;
+                } else {
+                    continue L2;
                 }
-
-                availableVehicles.add(mapper.map(temp,VehicleDTO.class));
             }
 
-            System.out.println("Available"+ availableVehicles.toString());
-            System.out.println("Not Available"+ notAvailableVehicles.toString());
-            System.out.println("Not Available Book"+ notAvailableBookingList.toString());
-
-            return availableVehicles;
-
-
+            availableVehicles.add(mapper.map(temp, VehicleDTO.class));
         }
+
+        System.out.println("Available" + availableVehicles);
+        System.out.println("Not Available" + notAvailableVehicles);
+        //System.out.println("Not Available Book" + notAvailableBookingList);
+
+        return availableVehicles;
+
+
     }
+}
