@@ -29,13 +29,19 @@ import Booking from "./booking";
 import ManageBooking from "./manageBooking";
 import {Grid} from "@material-ui/core";
 import Home from "../../pages/Home";
+import {render} from "react-dom";
+import {Component} from "react";
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
- const {classes} = props;
+
+
+
+    const {classes} = props;
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [values, setValues] = React.useState();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -93,94 +99,88 @@ function ResponsiveDrawer(props) {
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
-    return (
-        <Box sx={{ display: 'flex' }}>
 
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
+return (
+    <Box sx={{ display: 'flex' }}>
+
+        <CssBaseline />
+        <AppBar
+            position="fixed"
+            sx={{
+                width: { sm: `calc(100% - ${drawerWidth}px)` },
+                ml: { sm: `${drawerWidth}px` },
+            }}
+            style={{backgroundColor:'#046e04'}}
+        >
+            <Toolbar>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    sx={{ mr: 2, display: { sm: 'none' } }}
+                >
+                    <MenuIcon />
+                </IconButton>
+                <Typography width={'100%'} variant="h5" noWrap component="div" textAlign={'end'}>
+                    Customer Dashboard
+                </Typography>
+            </Toolbar>
+        </AppBar>
+        <Box
+            component="nav"
+            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            aria-label="mailbox folders"
+        >
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Drawer
+                container={container}
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
                 }}
-                style={{backgroundColor:'black'}}
+                sx={{
+                    display: { xs: 'block', sm: 'none' },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                }}
             >
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography width={'100%'} variant="h5" noWrap component="div" textAlign={'end'}>
-                        Customer Dashboard
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <Box
-                component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-                aria-label="mailbox folders"
+                {drawer}
+            </Drawer>
+            <Drawer
+                variant="permanent"
+                sx={{
+                    display: { xs: 'none', sm: 'block' },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                }}
+                open
             >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Drawer
-                    container={container}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-                <Drawer
-                    variant="permanent"
-                    sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                    open
-                >
-                    {drawer}
-                </Drawer>
-            </Box>
+                {drawer}
+            </Drawer>
+        </Box>
 
-            <Box
-                component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-            >
-                <Toolbar />
-                <Box >
-                    <Routes>
-                        <Route exact path="/" element={<Profile/>}/>
-                        <Route  path="/booking" element={<Booking/>}/>
-                        <Route  path="/manageBooking" element={<ManageBooking/>}/>
-                     {/*   <Route exact path="/logout" element={<LogOut/>}/>*/}
-                    </Routes>
-                </Box>
-
+        <Box
+            component="main"
+            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        >
+            <Toolbar />
+            <Box >
+                <Routes>
+                    <Route exact path="/" element={<Profile loginUser={props.loginUser}/>}/>
+                    <Route  path="/booking" element={<Booking/>}/>
+                    <Route  path="/manageBooking" element={<ManageBooking/>}/>
+                    {/*   <Route exact path="/logout" element={<LogOut/>}/>*/}
+                </Routes>
             </Box>
 
         </Box>
 
+    </Box>
 
-    );
+
+);
 }
 
-ResponsiveDrawer.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window: PropTypes.func,
-};
 
 export default  ResponsiveDrawer;

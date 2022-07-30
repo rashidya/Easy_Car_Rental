@@ -23,7 +23,7 @@ export function BrowseGrid() {
             <Grid style={{
                 width: '40%',
                 height: '100%',
-                backgroundColor: '#c4c4c4',
+                backgroundColor: '#f6f6f6',
                 display: 'flex',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
@@ -47,7 +47,7 @@ export function BrowseGrid() {
 
                         <Button variant="contained" href="#contained-buttons"
                                 style={{
-                                    width: '20%',
+                                    width: '30%',
                                     margin: '2%',
                                     backgroundColor: '#595959',
 

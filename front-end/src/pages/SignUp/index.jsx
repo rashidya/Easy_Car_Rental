@@ -14,7 +14,7 @@ import {
     Typography, Avatar, Autocomplete
 } from "@mui/material";
 import * as React from "react";
-import IconButton from '../../components/UploadButton';
+
 
 import loginBg from "../../assets/contact.jpg";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
@@ -27,6 +27,12 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import FormDetails from "../../components/UserDetailsForm";
 import GDSESnackBar from "../../components/common/snackBar";
+import MyButton from "../../components/common/Button";
+import AdminDashBoard from "../../components/AdminDashBoard";
+import DriverDashBoard from "../../components/DriverDashBoard";
+import CustomerDashBoard from "../../pages/Customer";
+import IconButton from "@mui/material/IconButton";
+import UploadButton from "../../components/UploadButton";
 
 
 class SignUp extends Component {
@@ -66,14 +72,15 @@ class SignUp extends Component {
                 }
             ]
             ,
+            LoginRole:'',
             alert: false,
             message: '',
             severity: '',
 
             data: [],
             btnLabel: 'register',
-            btnColor: 'primary'
-
+            btnColor: 'primary',
+            btnHref:''
         }
     }
 
@@ -85,13 +92,12 @@ class SignUp extends Component {
 
         if (formData.user.role == 'DRIVER') {
            let res = await SignUpService.postSignUpDriver(formData);
-            if (res.status === 201) {
+            if (res.status === 200) {
+
                 this.setState({
-                    alert: true,
-                    message: res.data.message,
-                    severity: 'success'
+                    LoginRole:formData.LoginRole,
                 });
-                //this.clearFields();
+
 
             } else {
                 this.setState({
@@ -103,12 +109,11 @@ class SignUp extends Component {
         } else {
             let res = await SignUpService.postSignUpCustomer(formData);
             if (res.status === 200) {
-                this.setState({
-                    alert: true,
-                    message: res.data.message,
-                    severity: 'success'
-                });
                 //this.clearFields();
+                this.setState({
+                    LoginRole:formData.LoginRole,
+                });
+
 
             } else {
                 this.setState({
@@ -124,6 +129,8 @@ class SignUp extends Component {
 
     };
 
+
+
     /*handleClickShowPassword(event){
         this.setState({value: event.target.value})
     }
@@ -136,10 +143,12 @@ class SignUp extends Component {
     }
 */
 
+
     render() {
         const {classes} = this.props;
         return (
 
+            (this.state.LoginRole == "") ?
             <>
 
 
@@ -168,14 +177,14 @@ class SignUp extends Component {
                                         justifyContent: 'center',
                                         alignItems: 'center'
                                     }}>
-                                        <IconButton/>
+                                        <UploadButton/>
                                     </div>
 
                                 </Grid>
 
-                                <Grid>
+                                <Grid >
                                     <ValidatorForm ref="form" className="pt-2" onSubmit={this.submitUser}>
-                                        <div>
+                                        <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
 
                                             <TextField
                                                 required
@@ -209,7 +218,7 @@ class SignUp extends Component {
                                                 }
                                                 id="controllable-states-demo"
                                                 options={this.state.role}
-                                                sx={{ width: '28ch' }}
+                                                sx={{ width: '28ch',m:1 }}
                                                 renderInput={(params) => <TextField {...params} label="Role" />}
                                             />
 
@@ -221,7 +230,7 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="Email"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '28ch'}}
+                                                sx={{m: 1, width: '30ch'}}
 
 
                                                 value={this.state.formData.user.userName}
@@ -233,23 +242,29 @@ class SignUp extends Component {
                                                 validators={['required']}
                                             />
 
-                                            <FormControl sx={{m: 1, width: '30ch'}} variant="outlined">
+                                            <FormControl sx={{m: 1, width: '28ch'}} variant="outlined">
                                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                                 <OutlinedInput
                                                     id="outlined-adornment-password"
-                                                    //type={values.showPassword ? 'text' : 'password'}
-                                                    /* endAdornment={
-                                                         <InputAdornment position="end">
-                                                             <IconButton
-                                                                 aria-label="toggle password visibility"
-                                                                // onClick={this.handleClickShowPassword}
-                                                                 //onMouseDown={handleMouseDownPassword}
-                                                                 edge="end"
-                                                             >
-                                                                //values.showPassword ? <VisibilityOff/> : <Visibility/>
-                                                             </IconButton>
-                                                         </InputAdornment>
-                                                     }*/
+                                                    type={this.state.showPassword ? 'text' : 'password'}
+                                                    endAdornment={
+                                                        <InputAdornment position="end">
+                                                            <IconButton
+                                                                aria-label="toggle password visibility"
+                                                                onClick={(e) => {
+                                                                    let formDataOb = this.state.formData
+                                                                    formDataOb.showPassword = !formDataOb.showPassword
+                                                                    this.setState(formDataOb)
+                                                                }}
+                                                                onMouseDown={(event) => {
+                                                                    event.preventDefault();
+                                                                }}
+                                                                edge="end"
+                                                            >
+                                                                {this.state.showPassword ? <VisibilityOff/> : <Visibility/>}
+                                                            </IconButton>
+                                                        </InputAdornment>
+                                                    }
                                                     label="Password"
 
                                                     value={this.state.formData.user.password}
@@ -267,11 +282,11 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="Name"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '28ch'}}
+                                                sx={{m: 1, width: '30ch'}}
                                                 value={this.state.formData.name.firstName}
                                                 onChange={(e) => {
                                                     let formDataOb = this.state.formData
-                                                    this.state.formData.name.firstName = e.target.value
+                                                    formDataOb.name.firstName = e.target.value
                                                     this.setState(formDataOb)
                                                 }}
                                                 validators={['required']}
@@ -281,13 +296,13 @@ class SignUp extends Component {
                                             <TextField
                                                 required
                                                 id="outlined-required"
-                                                label="Name"
+                                                label="Last Name"
                                                 defaultValue=""
                                                 sx={{m: 1, width: '28ch'}}
                                                 value={this.state.formData.name.lastName}
                                                 onChange={(e) => {
                                                     let formDataOb = this.state.formData
-                                                    this.state.formData.name.lastName = e.target.value
+                                                    formDataOb.name.lastName = e.target.value
                                                     this.setState(formDataOb)
                                                 }}
                                                 validators={['required']}
@@ -359,12 +374,13 @@ class SignUp extends Component {
 
                                         </div>
 
-                                        <Grid marginTop={'2vh'}>
+                                        <Grid display={'flex'} justifyContent={'center'}>
 
-                                            <Button variant="contained"
-                                                    style={{color: "white", backgroundColor: 'black'}} type={'submit'}>
-                                                Register
-                                            </Button>
+                                            <MyButton  color={'primary'}  label={"Register"} variant={'contained'} type={"submit"}/>
+
+
+
+
 
                                         </Grid>
 
@@ -427,11 +443,13 @@ class SignUp extends Component {
                     variant="filled"
                 />
 
-            </>
+            </>: (this.state.LoginRole == "ADMIN") ? <AdminDashBoard/> :
+            (this.state.LoginRole == "DRIVER") ? <DriverDashBoard/> : <CustomerDashBoard loginUser={this.state.formData.user.userName}/>
 
 
         );
     }
+
 
 
 }

@@ -1,9 +1,8 @@
 package lk.easy.rental.service.impl;
 
-import lk.easy.rental.advisor.AppWideExceptionHandler;
 import lk.easy.rental.dto.CustomerDTO;
 import lk.easy.rental.entity.Customer;
-import lk.easy.rental.entity.Driver;
+import lk.easy.rental.entity.User;
 import lk.easy.rental.exception.DuplicateEntryException;
 import lk.easy.rental.exception.NotFoundException;
 import lk.easy.rental.repo.CustomerRepo;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -46,12 +44,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO searchCustomer(String id) {
-        if (customerRepo.existsById(id)) {
-
-           return mapper.map(customerRepo.findById(id), CustomerDTO.class);
+    public CustomerDTO searchCustomerByUserName(String userName) {
+        if (userRepo.existsByUserName(userName)) {
+            User byId = userRepo.findByUserName(userName);
+            return mapper.map(customerRepo.findByUser(byId), CustomerDTO.class);
         }else {
-            throw new NotFoundException(id+" - Customer Not Found");
+            throw new NotFoundException("Customer Not Found");
         }
     }
 

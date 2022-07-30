@@ -1,11 +1,11 @@
 import axios from "../axios";
 
 class SignInService{
-    fetchUser = async (data) => {
+    fetchUser = async (params) => {
         const promise = new Promise((resolve, reject) => {
 
 
-            axios.get('logIn',data)    // 20s
+            axios.get('logIn',{params:params})    // 20s
                 .then((res) => {
                     return resolve(res)
                 })

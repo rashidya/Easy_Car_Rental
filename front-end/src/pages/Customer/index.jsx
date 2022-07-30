@@ -4,10 +4,16 @@ import {Grid} from "@material-ui/core";
 
 class CustomerDashBoard extends Component{
 
+    constructor(props) {
+        super(props);
+
+
+    }
+
     render() {
         return(
             <Grid>
-                <Drawer/>
+                <Drawer loginUser={this.props.loginUser}/>
             </Grid>
         )
     }

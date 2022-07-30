@@ -7,7 +7,7 @@ import java.util.List;
 public interface CustomerService {
     void saveCustomer(CustomerDTO dto);
 
-    CustomerDTO searchCustomer(String id);
+    CustomerDTO searchCustomerByUserName(String id);
 
     List<CustomerDTO> getAllCustomers();
 

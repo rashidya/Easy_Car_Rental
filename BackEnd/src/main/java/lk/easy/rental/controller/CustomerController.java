@@ -21,9 +21,10 @@ public class CustomerController {
         return new ResponseUtil(200,"Customer added Successfully",null);
     }
 
-    @GetMapping(path = "/{id}")
-    public ResponseUtil searchCustomer(@PathVariable String id){
-        return new ResponseUtil(200,"OK", customerService.searchCustomer(id));
+    @GetMapping(params = {"userName"})
+    public ResponseUtil searchCustomer(@RequestParam String userName){
+
+        return new ResponseUtil(200,"OK", customerService.searchCustomerByUserName(userName));
     }
 
 
