@@ -27,6 +27,7 @@ import CustomerDashBoard from "../../pages/Customer";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
+import {Route} from "react-router-dom";
 
 
 class SignInPage extends Component {
@@ -193,8 +194,10 @@ class SignInPage extends Component {
                         variant="filled"
                     />
                 </> :
-                (this.state.loginUser.role == "ADMIN") ? <AdminDashBoard /> :
-                    (this.state.loginUser.role == "DRIVER") ? <DriverDashBoard/> : <CustomerDashBoard loginUser={this.state.loginUser.userName}/>
+                (this.state.loginUser.role == "ADMIN") ?<Route path='admin' element={<AdminDashBoard/>}/>:
+                    (this.state.loginUser.role == "DRIVER") ? <DriverDashBoard/> : <Route path='customer' element={<CustomerDashBoard loginUser={this.state.loginUser.userName}/>}/>
+
+
 
 
         )

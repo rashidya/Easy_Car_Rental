@@ -24,4 +24,6 @@ public interface BookingRepo extends JpaRepository<Booking,String> {
     //No of Active Bookings
 
     int countByPickupDateAndPickupTimeOrReturnDateIsAfter(LocalDate date, LocalTime time,LocalDate d);
+
+    int countByPickupTime(LocalTime now);
 }

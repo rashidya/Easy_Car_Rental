@@ -2,6 +2,7 @@ package lk.easy.rental.repo;
 
 import lk.easy.rental.embeded.PriceRate;
 import lk.easy.rental.entity.Vehicle;
+import lk.easy.rental.enums.Availability;
 import lk.easy.rental.enums.FuelType;
 import lk.easy.rental.enums.TransmissionType;
 import lk.easy.rental.enums.VehicleType;
@@ -17,6 +18,8 @@ public interface VehicleRepo extends JpaRepository<Vehicle,String> {
     List<Vehicle> findAllByFuelType(FuelType fuelType);
     List<Vehicle> findAllByPriceRate(PriceRate priceRate);
     List<Vehicle> findAllByVehicleType(VehicleType type);
+
+    int countByVehicleAvailability(Availability availability);
 
 
 

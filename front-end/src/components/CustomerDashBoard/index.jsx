@@ -48,7 +48,7 @@ function ResponsiveDrawer(props) {
     };
 
     const listItemData = [
-        {label: "Profile", link: "/", icon: <AccountBoxIcon color={'primary'} /> },
+        {label: "Profile", link: "customer/profile", icon: <AccountBoxIcon color={'primary'} /> },
         {label: "Place Booking", link: "/booking", icon: <BookIcon color={'success'} />},
         {label: "Bookings", link: "/manageBooking", icon: <CollectionsBookmarkIcon color={'warning'}/> },
 
@@ -167,7 +167,7 @@ return (
             <Toolbar />
             <Box >
                 <Routes>
-                    <Route exact path="/" element={<Profile loginUser={props.loginUser}/>}/>
+                    <Route exact path="customer/profile" element={<Profile loginUser={props.loginUser}/>}/>
                     <Route  path="/booking" element={<Booking/>}/>
                     <Route  path="/manageBooking" element={<ManageBooking/>}/>
                     {/*   <Route exact path="/logout" element={<LogOut/>}/>*/}

@@ -21,6 +21,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
 import Paper from '@mui/material/Paper';
+import MyButton from "../common/Button";
 
 class ManageVehicle extends Component{
 
@@ -244,14 +245,15 @@ class ManageVehicle extends Component{
 
                 <ValidatorForm ref="form" className="pt-2" onSubmit={this.submitVehicle}>
 
-                    <Grid display={"flex"} height={'75vh'} marginTop={'8vh'}>
-                        <Grid width={'60%'} display={"flex"} flexWrap={'wrap'}>
+                    <Grid display={"flex"} height={'75vh'} marginTop={'5vh'} marginBottom={'8vh'}>
+                        <Grid width={'60%'} display={"flex"} flexWrap={'wrap'} justifyContent={"space-evenly"}>
 
                             <TextField
                                 required
+                                size={'small'}
                                 id="outlined-required"
                                 label="vehicleId"
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{width: '35ch' }}
                                 value={this.state.formData.vehicleId}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -263,9 +265,10 @@ class ManageVehicle extends Component{
 
                             <TextField
                                 required
+                                size={'small'}
                                 id="outlined-required"
                                 label="Registration number"
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{width: '35ch' }}
                                 value={this.state.formData.registrationNo}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -276,10 +279,11 @@ class ManageVehicle extends Component{
                             />
 
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Brand "
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{ width: '35ch' }}
                                 value={this.state.formData.brand}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -291,9 +295,10 @@ class ManageVehicle extends Component{
 
                             <TextField
                                 required
+                                size={'small'}
                                 id="outlined-required"
                                 label="Color"
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{ width: '35ch' }}
                                 value={this.state.formData.color}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -305,9 +310,10 @@ class ManageVehicle extends Component{
 
                             <TextField
                                 required
+                                size={'small'}
                                 id="outlined-required"
                                 label="No Of Passengers"
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{width: '35ch' }}
                                 value={this.state.formData.noOfPassengers}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -318,10 +324,11 @@ class ManageVehicle extends Component{
                             />
 
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Mileage"
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{width: '35ch' }}
                                 value={this.state.formData.mileage}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -332,10 +339,11 @@ class ManageVehicle extends Component{
                             />
 
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Last Service Mileage"
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{width: '35ch' }}
                                 value={this.state.formData.lastServiceMileage}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -346,10 +354,11 @@ class ManageVehicle extends Component{
                             />
 
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Price Per Extra KM "
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{width: '35ch' }}
                                 value={this.state.formData.pricePerExtraKM}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -360,10 +369,11 @@ class ManageVehicle extends Component{
                             />
 
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Damage Fee "
-                                sx={{ m: 1, width: '22.7ch' }}
+                                sx={{ width: '35ch' }}
                                 value={this.state.formData.refundableDamageFee}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -375,10 +385,11 @@ class ManageVehicle extends Component{
 
 
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Daily Price"
-                                sx={{ m: 1, width: '35ch' }}
+                                sx={{ width: '35ch' }}
                                 value={this.state.formData.priceRate.dailyRate}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -388,11 +399,12 @@ class ManageVehicle extends Component{
                                 validators={['required']}
                             />
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Monthly Price"
                                 defaultValue=""
-                                sx={{ m: 1, width: '35ch' }}
+                                sx={{width: '35ch' }}
                                 value={this.state.formData.priceRate.monthlyRate}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -402,10 +414,11 @@ class ManageVehicle extends Component{
                                 validators={['required']}
                             />
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Daily Free Milage "
-                                sx={{ m: 1, width: '35ch' }}
+                                sx={{ width: '35ch' }}
                                 value={this.state.formData.freeMileage.dailyFreeMileage}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -415,10 +428,11 @@ class ManageVehicle extends Component{
                                 validators={['required']}
                             />
                             <TextField
+                                size={'small'}
                                 required
                                 id="outlined-required"
                                 label="Monthly Free Milage "
-                                sx={{ m: 1, width: '35ch' }}
+                                sx={{width: '35ch' }}
                                 value={this.state.formData.freeMileage.monthlyFreeMileage}
                                 onChange={(e) => {
                                     let formDataOb =this.state.formData
@@ -437,9 +451,6 @@ class ManageVehicle extends Component{
 
                                     formData.vehicleType = value.type
 
-                                    if(value.type=='GENERAL'){
-
-                                    }
 
                                     this.setState({ formData })
 
@@ -449,8 +460,8 @@ class ManageVehicle extends Component{
                                 }
                                 id="controllable-states"
                                 options={this.state.vehicleCategory}
-                                sx={{m: 1, width: '35ch' }}
-                                renderInput={(params) => <TextField {...params} label="Vehicle Type" />}
+                                sx={{width: '35ch' }}
+                                renderInput={(params) => <TextField {...params} label="Vehicle Type"  size={'small'} />}
                             />
 
 
@@ -468,10 +479,11 @@ class ManageVehicle extends Component{
                                 getOptionLabel={
                                     (option) => option.type
                                 }
+                                //value={this.state.formData.transmissionType}
                                 id="controllable-demo"
                                 options={this.state.transmission}
-                                sx={{ m: 1,width: '35ch' }}
-                                renderInput={(params) => <TextField {...params} label="Transmission Type" />}
+                                sx={{width: '35ch' }}
+                                renderInput={(params) => <TextField {...params} label="Transmission Type"  size={'small'} />}
                             />
 
                             <Autocomplete
@@ -490,8 +502,8 @@ class ManageVehicle extends Component{
                                 }
                                 id="controllable"
                                 options={this.state.fuel}
-                                sx={{ m:1, width: '35ch' }}
-                                renderInput={(params) => <TextField {...params} label="Fuel Type" />}
+                                sx={{width: '35ch' }}
+                                renderInput={(params) => <TextField {...params} label="Fuel Type"  size={'small'}/>}
                             />
 
 
@@ -511,8 +523,8 @@ class ManageVehicle extends Component{
                                 }
                                 id="controllable"
                                 options={this.state.availability}
-                                sx={{ m:1, width: '35ch' }}
-                                renderInput={(params) => <TextField {...params} label="Availability" />}
+                                sx={{width: '35ch' }}
+                                renderInput={(params) => <TextField {...params} label="Availability"  size={'small'}/>}
                             />
 
 
@@ -555,11 +567,13 @@ class ManageVehicle extends Component{
                                    Cancel
                                </Button>
 
-                                   <Button  sx={{m:0.5,mt:4,width:'12ch',height:'5ch'}}
+                                   <MyButton
                                            style={{color: "white"}} variant="contained"
                                            label={this.state.btnLabel}
-                                           type="submit" size="small"
-                                           color={this.state.btnColor}>Add</Button>
+                                           type="submit"
+                                           color={this.state.btnColor}
+                                           size='small'
+                                   />
 
 
 

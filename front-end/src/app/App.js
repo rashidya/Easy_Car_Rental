@@ -25,6 +25,7 @@ import SignUp from "../pages/SignUp";
 import SignInPage from "../pages/SignIn";
 import Booking from "../components/CustomerDashBoard/booking";
 import {AbcSharp} from "@mui/icons-material";
+import DriverProfile from "../components/DriverDashBoard/profile";
 
 
 
@@ -35,19 +36,19 @@ export default function App() {
 
 
   return (
-       <Routes>
+
+       /*<Routes>
          <Route exact path='/' element={<Home/>}/>
          <Route path='browse' element={<Browse/>}/>
          <Route path='vehicleDetailsPage' element={<VehicleDetailBooking/>}/>
          <Route path='sighUpPage' element={<SignUp/>}/>
-         <Route path='signInPage/*' element={<SignInPage/>}/>
-         <Route path='customer/!*' element={<CustomerDashBoard/>}/>
+         <Route path='signInPage' element={<SignInPage/>}/>
+         <Route path='customer' element={<CustomerDashBoard/>}/>
          <Route path='admin' element={<AdminDashBoard/>}/>
          <Route path='driver' element={<DriverDashBoard/>}/>
+       </Routes>*/
 
-
-
-       </Routes>
+      <DriverDashBoard/>
 
 
 
