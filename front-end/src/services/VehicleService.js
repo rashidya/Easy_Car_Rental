@@ -61,6 +61,63 @@ class VehicleService{
     };
 
 
+    addCarImage = async (data,vehicleId) => {
+        const promise = new Promise((resolve, reject) => {
+            axios.post('vehicle/addCarImage?vehicleId='+vehicleId,data)
+
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise;
+    }
+
+    getCarImage = async (vehicleId,view) =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.get('vehicle/getCarImage?vehicleId='+vehicleId+'&view='+view, {
+                responseType: 'blob',
+            })
+
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise;
+    }
+
+    updateCarImage =async (data,vehicleId,view) =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.post('vehicle/updateCarImage?vehicleId='+vehicleId+'&view='+view,data)
+
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise;
+    }
+
+    deleteCarImages =async (vehicleId) =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.delete('vehicle/deleteCarImage?vehicleId='+vehicleId)
+
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise;
+    }
 
 
 

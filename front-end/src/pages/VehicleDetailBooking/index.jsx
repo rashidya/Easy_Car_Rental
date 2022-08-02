@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {Grid} from "@material-ui/core";
 import {Avatar, Button, Tab, Tabs} from "@mui/material";
-import DatePicker from "../../components/DatePicker";
-import TimePicker from "../../components/TimePicker";
+import DatePicker from "../../components/common/DatePicker";
+import TimePicker from "../../components/common/TimePicker";
 import RadioButtonList from "../../components/RadioButtonList";
 import ImageList from "../../components/ImageList";
 import {withStyles} from "@mui/styles";
@@ -100,7 +100,9 @@ class VehicleDetailBooking extends Component{
                                         backgroundColor:'#949292'
                                     }}>Back</Button>
 
-                                    <Button variant="contained" color={'success'} style={{
+                                    <Button
+                                        href={'/booking'}
+                                        variant="contained" color={'success'} style={{
                                         height: '35px',
                                         borderRadius: 10,
                                         margin:'2px'

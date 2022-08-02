@@ -15,7 +15,7 @@ import {withStyles} from "@mui/styles";
 
 import SignIn from "../pages/SignUp";
 import Browse from "../pages/Browse";
-import BasicDatePicker from "../components/DatePicker";
+import BasicDatePicker from "../components/common/DatePicker";
 import VehicleDetailBooking from "../pages/VehicleDetailBooking";
 import CustomerDashBoard from "../pages/Customer";
 import AdminDashBoard from "../pages/Admin";
@@ -37,7 +37,7 @@ export default function App() {
 
   return (
 
-       /*<Routes>
+     /*  <Routes>
          <Route exact path='/' element={<Home/>}/>
          <Route path='browse' element={<Browse/>}/>
          <Route path='vehicleDetailsPage' element={<VehicleDetailBooking/>}/>
@@ -48,7 +48,8 @@ export default function App() {
          <Route path='driver' element={<DriverDashBoard/>}/>
        </Routes>*/
 
-      <DriverDashBoard/>
+<AdminDashBoard/>
+
 
 
 

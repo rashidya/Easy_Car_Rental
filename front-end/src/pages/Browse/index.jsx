@@ -4,14 +4,15 @@ import {Avatar, Button, Tab, Tabs} from "@mui/material";
 import React from "react";
 import {withStyles} from "@mui/styles";
 import {styleSheet} from "./style";
-import DatePicker from "../../components/DatePicker";
-import TimePicker from "../../components/TimePicker";
+import DatePicker from "../../components/common/DatePicker";
+import TimePicker from "../../components/common/TimePicker";
 import RadioButtonList from "../../components/RadioButtonList";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
 import ImageList from "../../components/ImageList";
-import {BrowseGrid} from '../../components/BrowsePage'
+import BrowseGrid from "../../components/BrowsePage";
+
 
 
 class Browse extends Component {
