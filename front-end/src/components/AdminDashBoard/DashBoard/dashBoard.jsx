@@ -1,7 +1,7 @@
 import {Component} from "react";
 import {Grid} from "@mui/joy";
 import Typography from "@mui/joy/Typography";
-import AdminDashBoardService from "../../../services/AdminDashBoardService";
+import AdminDashBoardService from "../../../services/AdminDashBoardService/DashBoardService";
 
 class DashBoard extends Component {
 

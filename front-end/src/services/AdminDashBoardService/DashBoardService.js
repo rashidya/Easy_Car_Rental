@@ -1,8 +1,8 @@
-import axios from "../axios";
+import axios from "../../axios";
 
 
 
-class AdminDashBoardService {
+class DashBoardService {
     fetchData = async () => {
         const promise = new Promise((resolve, reject) => {
             axios.get('admin/dashBoardSummery')
@@ -18,4 +18,4 @@ class AdminDashBoardService {
 
 }
 
-export default new AdminDashBoardService();
+export default new DashBoardService();

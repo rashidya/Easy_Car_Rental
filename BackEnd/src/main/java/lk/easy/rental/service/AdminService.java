@@ -17,4 +17,10 @@ public interface AdminService {
     void deleteAdmin(String id);
 
     Object loadDashBoardSummery();
+
+    void acceptCustomer(CustomerDTO dto);
+
+    void denyCustomer(String denyCustomer);
+
+    List<CustomerDTO> loadUserRequests();
 }

@@ -52,4 +52,27 @@ public class AdminController {
     public ResponseUtil loadDashBoardSummery(){
         return new ResponseUtil(200,"OK", adminService.loadDashBoardSummery());
     }
+
+    @PostMapping("acceptCustomer")
+    public ResponseUtil acceptCustomer(@RequestBody CustomerDTO dto){
+
+        adminService.acceptCustomer(dto);
+        return new ResponseUtil(200,"Admin added Successfully",null);
+    }
+
+    @DeleteMapping( params = {"denyCustomerId"})
+    public ResponseUtil denyCustomer(@RequestParam String denyCustomerId){
+
+        adminService.denyCustomer(denyCustomerId);
+        return new ResponseUtil(200,"Admin added Successfully",null);
+    }
+
+
+    @GetMapping("loadUserRequests")
+    public ResponseUtil loadUserRequests(){
+        return new ResponseUtil(200,"OK", adminService.loadUserRequests());
+    }
+
+
+
 }

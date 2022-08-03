@@ -4,10 +4,12 @@ import lk.easy.rental.dto.CustomerDTO;
 import lk.easy.rental.dto.DriverDTO;
 import lk.easy.rental.entity.Customer;
 import lk.easy.rental.entity.Driver;
+import lk.easy.rental.entity.UserRequest;
 import lk.easy.rental.exception.DuplicateEntryException;
 import lk.easy.rental.repo.CustomerRepo;
 import lk.easy.rental.repo.DriverRepo;
 import lk.easy.rental.repo.UserRepo;
+import lk.easy.rental.repo.UserRequestRepo;
 import lk.easy.rental.service.SignupService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,13 @@ public class SignUpServiceImpl implements SignupService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private UserRequestRepo userRequestRepo;
+
+
+
+
+
 
     @Override
     public void saveDriver(DriverDTO dto) {
@@ -49,7 +58,7 @@ public class SignUpServiceImpl implements SignupService {
 
         if (!customerRepo.existsById(dto.getId())) {
             if(!userRepo.existsByUserName(dto.getUser().getUserName())){
-                customerRepo.save(mapper.map(dto, Customer.class));
+                userRequestRepo.save(mapper.map(dto, UserRequest.class));
             }else{
                 throw new DuplicateEntryException("User already exists with this Username");
             }

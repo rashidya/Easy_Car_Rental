@@ -4,6 +4,9 @@ import lk.easy.rental.dto.AdminDTO;
 import lk.easy.rental.dto.CustomerDTO;
 import lk.easy.rental.dto.DashBoardSummeryDTO;
 import lk.easy.rental.entity.Admin;
+import lk.easy.rental.entity.Customer;
+import lk.easy.rental.entity.User;
+import lk.easy.rental.entity.UserRequest;
 import lk.easy.rental.enums.Availability;
 import lk.easy.rental.enums.Role;
 import lk.easy.rental.exception.DuplicateEntryException;
@@ -20,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -42,6 +46,13 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private DriverRepo driverRepo;
+
+
+    @Autowired
+    private CustomerRepo customerRepo;
+
+    @Autowired
+    private UserRequestRepo userRequestRepo;
 
 
     @Override
@@ -120,5 +131,30 @@ public class AdminServiceImpl implements AdminService {
         int noOfCarsNeedToBeRepaired=0;
 
         return new DashBoardSummeryDTO(totalRegisteredUsers, bookingsForDay, noOfAvailableCars, noOfReservedCars,noOfActiveBookings,noOfAvailableDrivers,noOfOccupiedDrivers,noOfCarsNeedMaintenance,noOfCarsNeedToBeRepaired);
+    }
+
+    @Override
+    public void acceptCustomer(CustomerDTO dto) {
+
+        UserRequest userRequest = userRequestRepo.findById(dto.getId()).get();
+        User user = mapper.map(userRequest.getUser(), User.class);
+        Customer customer = mapper.map(dto, Customer.class);
+        customer.setUser(user);
+
+        customerRepo.save(customer);
+        userRequestRepo.deleteById(dto.getId());
+
+    }
+
+    @Override
+    public void denyCustomer(String denyCustomer) {
+        userRequestRepo.deleteById(denyCustomer);
+
+    }
+
+    @Override
+    public List<CustomerDTO> loadUserRequests() {
+        return mapper.map(userRequestRepo.findAll(),new TypeToken<List<CustomerDTO>>() {
+        }.getType());
     }
 }

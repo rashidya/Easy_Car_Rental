@@ -27,6 +27,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import {Button} from "@mui/material";
 import Box from "@mui/material/Box";
+import ManageCustomerService from "../../../services/AdminDashBoardService/ManageCustomerService";
 
 class ManageCustomer extends Component {
 
@@ -68,7 +69,7 @@ class ManageCustomer extends Component {
     };
 
     loadCustomers = async () => {
-        let res = await CustomerService.fetchCustomers();
+        let res = await ManageCustomerService.loadUserRequests();
 
         if (res.status === 200) {
             this.setState({
@@ -78,6 +79,41 @@ class ManageCustomer extends Component {
         console.log(this.state.data)    // print customers array
 
     };
+
+    acceptCustomer = async () => {
+
+        let cutomer =this.state.customer;
+        let res = await ManageCustomerService.acceptCustomer(cutomer);
+
+        if (res.status === 200) {
+            this.setState({
+                customers: res.data.data
+            });
+        }
+        console.log(this.state.data)    // print customers array
+
+    };
+
+
+    denyCustomer = async () => {
+        let params={
+            denyCustomerId:this.state.customer.id
+        }
+        let res = await ManageCustomerService.denyCustomer(params);
+
+        if (res.status === 200) {
+            this.setState({
+                customers: res.data.data
+            });
+        }
+        console.log(this.state.data)    // print customers array
+
+    };
+
+
+
+
+
 
 
     componentDidMount() {
@@ -187,10 +223,10 @@ class ManageCustomer extends Component {
 
 
                                     <Grid display={'flex'} justifyContent={'center'} marginTop={'2vh'}>
-                                        <Button variant="contained" color="error" style={{margin: "1vh"}}>
+                                        <Button variant="contained" color="error" style={{margin: "1vh"}} onClick={this.denyCustomer}>
                                             Deny
                                         </Button>
-                                        <Button variant="contained" color="success" style={{margin: "1vh"}} type={'submit'}>
+                                        <Button variant="contained" color="success" style={{margin: "1vh"}} onClick={this.acceptCustomer}>
                                             Accept
                                         </Button>
                                     </Grid>
@@ -253,18 +289,20 @@ class ManageCustomer extends Component {
                                             <TableCell align="left">
                                                 <Tooltip title="Accept">
                                                     <IconButton
-                                                        onClick={() => {
-                                                            this.loadCustomerData(row);
-                                                        }}
+                                                        onClick={
+
+                                                            this.acceptCustomer
+
+                                                        }
                                                     >
                                                         <CheckIcon color="success"/>
                                                     </IconButton>
                                                 </Tooltip>
                                                 <Tooltip title="Deny">
                                                     <IconButton
-                                                        onClick={() => {
-                                                            this.deleteVehicle(row.vehicleId)
-                                                        }}
+                                                        onClick={
+                                                            this.denyCustomer
+                                                        }
                                                     >
                                                         <ClearIcon color="error"/>
                                                     </IconButton>

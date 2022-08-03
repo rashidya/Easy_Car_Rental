@@ -22,4 +22,13 @@ public class CustomerDTO {
     private String address;
     private String contactNo;
     private UserDTO user;
+
+    public CustomerDTO(String id, String userNIC, Name name, String drivingLicenseNo, String address, String contactNo) {
+        this.id = id;
+        this.userNIC = userNIC;
+        this.name = name;
+        this.drivingLicenseNo = drivingLicenseNo;
+        this.address = address;
+        this.contactNo = contactNo;
+    }
 }
