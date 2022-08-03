@@ -52,4 +52,13 @@ public class DriverController {
         driverService.deleteDriver(id);
         return new ResponseUtil(200,"Driver Deleted Successfully",null );
     }
+
+    @GetMapping(params = {"userName"})
+    public ResponseUtil searchCustomer(@RequestParam String userName){
+
+        return new ResponseUtil(200,"OK", driverService.searchDriverByUserName(userName));
+    }
+
+
+
 }

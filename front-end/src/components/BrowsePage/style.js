@@ -28,6 +28,74 @@ export const styleSheet={
 
     },
 
+
+
+    vehicle: {
+        height: '39vh',
+        width: '83.3vw',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        border: '2px solid #eeeff1',
+        //backgroundColor:'white',
+    },
+    vehicleImg: {
+        width: '25vw',
+        height: '39vh',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft:'15px',
+        //border:'1px solid red'
+    },
+    vehicleDetails: {
+        width: '40vw',
+        height: '39vh',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        alignItems: 'top',
+        justifyContent: 'left',
+        paddingLeft: '15px',
+        //border:'1px solid red'
+    },
+    vehicleBookingBtn: {
+        width: '17vw',
+        height: '39vh',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        //border:'1px solid red'
+    },
+
+    vehicleCart: {
+        //height: '78vh',
+        width: '83.3vw',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        alignItems: 'center',
+        //border:'3px solid #eeeff1',
+    },
+    vehicleDetailsCard: {
+        width: '37vw',
+        height: '25vh',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        //border:'1px solid red'
+    },
+    vehicleSubDetailsCard: {
+        width: '18.5vw',
+        height: '23vh',
+        marginTop: '10px',
+        //border:'1px solid red'
+    },
+
     sideBar:{
         width: '30%',
         height: '90vh',

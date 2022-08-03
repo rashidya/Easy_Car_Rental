@@ -172,17 +172,34 @@ class BrowseGrid extends Component {
                     alignItems: 'center'
                 }}>
 
-                    {
-                        this.state.vehicleList.map((vehicle) => (
 
-                            <Grid style={{width:'90%', height:'30vh',backgroundColor:'#c4c4c4',margin:'1vh'}}>
+                        {
+                            this.state.vehicleList.map((vehicle) => (
+
+                                <Card style={{width:'20vw',margin:'1vh'} }>
+                                    <CardMedia
+                                        component="img"
+                                        alt="img"
+                                        height="130"
+                                        image={carImage}
+
+                                    />
+                                    <CardContent>
+                                        <Typography  variant="h6" textAlign={'center'}>
+                                            {vehicle.vehicleId}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions style={{display:'flex',justifyContent:'center'}}>
+
+                                        <Button size="small"  style={{backgroundColor:'green',color:'white'}}>Book Now</Button>
+                                    </CardActions>
+                                </Card>
 
 
-                            </Grid>
+                            ))
+                        }
 
 
-                        ))
-                    }
 
                 </Grid>
 

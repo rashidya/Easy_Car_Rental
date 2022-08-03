@@ -215,7 +215,7 @@ class ManageVehicle extends Component{
 
     };
 
-    updateVehicle = (data) => {
+    loadVehicleData = (data) => {
         console.log(data)
 
         this.setState({
@@ -763,7 +763,9 @@ class ManageVehicle extends Component{
                             <TableBody>
                                 {
                                     this.state.data.map((row) => (
-                                        <TableRow>
+                                        <TableRow onClick={() => {
+                                            this.loadVehicleData(row);
+                                        }}>
                                             <TableCell align="left">{row.vehicleId}</TableCell>
                                             <TableCell align="left">{row.registrationNo}</TableCell>
                                             <TableCell align="left">{row.color}</TableCell>
@@ -790,7 +792,7 @@ class ManageVehicle extends Component{
                                                 <Tooltip title="Edit">
                                                     <IconButton
                                                         onClick={() => {
-                                                            this.updateVehicle(row);
+                                                            //this.updateVehicle(row);
                                                         }}
                                                     >
                                                         <EditIcon color="primary" />

@@ -85,7 +85,7 @@ class DriverProfile extends Component{
 
     loadData = async () => {
         let params = {
-            userName: this.props.loginUser
+            userName:localStorage.getItem("userName")
         }
         let res = await DriverServices.fetchDriver(params);
         let resData = res.data.data;

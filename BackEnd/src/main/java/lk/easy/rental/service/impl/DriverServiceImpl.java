@@ -89,4 +89,9 @@ public class DriverServiceImpl implements DriverService {
 
         return mapper.map(availableDriver,DriverDTO.class);
     }
+
+    @Override
+    public DriverDTO searchDriverByUserName(String userName) {
+        return mapper.map(driverRepo.findByUser(userRepo.findByUserName(userName)),DriverDTO.class);
+    }
 }

@@ -26,7 +26,7 @@ class Profile extends Component{
                     </Grid>
 
                     <Grid>
-                            <FormDetails loginUser={this.props.loginUser}/>
+                            <FormDetails />
                     </Grid>
 
 

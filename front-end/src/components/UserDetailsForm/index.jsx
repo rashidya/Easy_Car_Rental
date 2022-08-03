@@ -84,12 +84,13 @@ class FormDetails extends Component {
 
     loadData = async () => {
         let params = {
-            userName: this.props.loginUser
+            userName: localStorage.getItem("userName")
         }
         let res = await CustomerService.fetchCustomer(params);
         let resData = res.data.data;
         console.log(resData)
         if (res.status === 200) {
+
 
             this.setState({
                 formData: {

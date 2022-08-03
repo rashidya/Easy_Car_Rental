@@ -71,6 +71,7 @@ class SignInPage extends Component {
         let res = await SignInService.fetchUser(params);
         if (res.status === 200) {
 
+            localStorage.setItem("userName",res.data.data.userName);
 
             if (res.data.data.role == 'ADMIN'){  this.setState({
                 link:'/adminDashBoard'
