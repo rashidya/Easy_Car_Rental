@@ -13,8 +13,8 @@ import {
 import loginBg from "../../assets/contact.jpg";
 import SignInService from "../../services/signInService";
 
-import AdminDashBoard from "../../components/AdminDashBoard";
-import DriverDashBoard from "../../components/DriverDashBoard";
+
+
 
 
 import MyButton from "../../components/common/Button";
@@ -23,11 +23,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
-import CustomerDashBoard from "../../pages/Customer";
+
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
-import {Route} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
+
 
 
 class SignInPage extends Component {
@@ -51,6 +52,8 @@ class SignInPage extends Component {
             severity: '',
 
 
+            link:'',
+
             btnLabel: 'Login',
             btnColor: 'primary'
 
@@ -69,17 +72,18 @@ class SignInPage extends Component {
         if (res.status === 200) {
 
 
-            this.setState({
-                loginUser: {
-                    userName:res.data.data.userName,
-                    role: res.data.data.role
+            if (res.data.data.role == 'ADMIN'){  this.setState({
+                link:'/adminDashBoard'
+            });}
 
-                },
+            if (res.data.data.role == 'DRIVER'){  this.setState({
+                link:'/driverDashBoard'
+            });}
 
-                alert: true,
-                message: res.data.message,
-                severity: 'success'
-            });
+            if (res.data.data.role == 'REGISTERED_USER'){  this.setState({
+                link:'/customerDashBoard'
+            });}
+
 
 
             //this.clearFields();
@@ -100,7 +104,7 @@ class SignInPage extends Component {
 
         return (
 
-            (this.state.loginUser.role == "") ?
+
                 <>
 
                     <ValidatorForm ref="form" className="pt-2" onSubmit={this.Login}>
@@ -176,7 +180,10 @@ class SignInPage extends Component {
 
                                 </Grid>
                                 <Grid className={classes.btn_container}>
-                                    <MyButton label={'LogIn'} type={'submit'} variant={'contained'}/>
+                                   <MyButton href={this.state.link} label={'LogIn'} type={'submit'} variant={'contained'}
+
+                                   />
+
                                 </Grid>
                             </Grid>
 
@@ -193,10 +200,7 @@ class SignInPage extends Component {
                         severity={this.state.severity}
                         variant="filled"
                     />
-                </> :
-                (this.state.loginUser.role == "ADMIN") ?<Route path='admin' element={<AdminDashBoard/>}/>:
-                    (this.state.loginUser.role == "DRIVER") ? <DriverDashBoard/> : <Route path='customer' element={<CustomerDashBoard loginUser={this.state.loginUser.userName}/>}/>
-
+                </>
 
 
 

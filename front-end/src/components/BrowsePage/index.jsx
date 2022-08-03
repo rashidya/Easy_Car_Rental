@@ -22,6 +22,8 @@ import carImage from '../../assets/contact.jpg'
 
 import BrowseService from "../../services/BrowseService";
 import {format} from "date-fns";
+import VehicleDetailBooking from "../../pages/VehicleDetailBooking";
+import {Route} from "react-router-dom";
 
 class BrowseGrid extends Component {
 
@@ -32,8 +34,8 @@ class BrowseGrid extends Component {
 
             vehicleList: [],
 
-            pickupDate: '2022-07-09',
-            returnDate: '2022-07-10',
+            pickupDate: '2022-07-06',
+            returnDate: '2022-07-07',
 
         }
     }
@@ -173,27 +175,12 @@ class BrowseGrid extends Component {
                     {
                         this.state.vehicleList.map((vehicle) => (
 
-                            <Card style={{width: '20vw', marginTop: '1vh'}}>
-                                <CardMedia
-                                    component="img"
-                                    alt="img"
-                                    height="130"
-                                    image={carImage}
-
-                                />
-                                <CardContent>
-                                    <Typography variant="h6" textAlign={'center'}>
-                                        {vehicle.vehicleId}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions style={{display: 'flex', justifyContent: 'center'}}>
+                            <Grid style={{width:'90%', height:'30vh',backgroundColor:'#c4c4c4',margin:'1vh'}}>
 
 
+                            </Grid>
 
-                                    <Button href="/vehicleDetailsPage" size="small" style={{backgroundColor: 'green', color: 'white'}} >View More
-                                    </Button>
-                                </CardActions>
-                            </Card>
+
                         ))
                     }
 

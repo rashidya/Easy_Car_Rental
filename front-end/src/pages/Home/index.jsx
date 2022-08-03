@@ -3,14 +3,10 @@ import {Component} from "react";
 import {withStyles} from "@mui/styles";
 import {styleSheet} from "./style";
 import carImage from '../../assets/car.png'
-import aboutImage from '../../assets/About.jpg'
-import contactImage from '../../assets/contact.jpg'
 import * as React from 'react';
-import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
-import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
-import {TimePicker} from '@mui/x-date-pickers/TimePicker';
-import {DatePicker} from '@mui/x-date-pickers/DatePicker';
-import EmailIcon from '@mui/icons-material/Email';
+
+import TimePicker from '../../components/common/TimePicker';
+import DatePicker from '../../components/common/DatePicker';
 
 
 class Home extends Component {
@@ -48,58 +44,22 @@ class Home extends Component {
 
                         <Grid>
 
-                            <Grid display='flex' padding={'2vh'}>
-                                <Grid paddingRight={'1vh'}>
-                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                        <DatePicker
+                            <Grid display='flex' padding={'2vh'}  height={'25vh'} width={'37vw'} flexWrap={"wrap"} >
+                                <Grid style={{display: 'flex', width: '100%'}}>
+                                    <DatePicker
+                                        label={"PickUp-Date"}
 
-                                            label="Pick-up Date"
-                                            //value={new Date()}
-                                            //onChange={}
-                                            renderInput={(params) => <TextField {...params} />}
-
-                                        />
-                                    </LocalizationProvider>
+                                    />
+                                    <TimePicker label={"PickUp-Time"}/>
                                 </Grid>
 
-                                <Grid>
-                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                        <TimePicker
-                                            label="Pick-up Time"
-                                            value={new Date()}
-                                            onChange={null}
-                                            renderInput={(params) => <TextField {...params} />}
-
-                                        />
-                                    </LocalizationProvider>
+                                <Grid style={{display: 'flex', width: '100%'}}> <DatePicker label={"Return-Date"}/>
+                                    <TimePicker label={"Return-Time"}/>
                                 </Grid>
 
                             </Grid>
 
-                            <Grid display='flex' padding={'2vh'}>
-                                <Grid paddingRight={'1vh'}>
-                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                        <DatePicker
-                                            label="Drop-off date"
-                                            value={new Date()}
-                                            onChange={new Date()}
-                                            renderInput={(params) => <TextField {...params} />}
-                                        />
-                                    </LocalizationProvider>
-                                </Grid>
 
-                                <Grid>
-                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                        <TimePicker
-                                            label="Drop-off Time"
-                                            value={new Date()}
-                                            onChange={new Date()}
-                                            renderInput={(params) => <TextField {...params} />}
-                                        />
-                                    </LocalizationProvider>
-                                </Grid>
-
-                            </Grid>
 
                             <Grid display={'flex'} justifyContent={'center'} paddingTop={'2vh'}>
                                 <Button variant="contained" href="browse"

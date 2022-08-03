@@ -10,6 +10,42 @@ import {styleSheet} from "./style";
 import carImage from "../../assets/carDetail.jpg";
 
 class VehicleDetailBooking extends Component{
+    constructor(props) {
+        super(props);
+
+
+        this.state={
+           // vehicle:this.props.vehicle,
+
+            vehicle:{
+                vehicleId: 'V-001',
+                registrationNo: '1234',
+                color: 'Black',
+                brand: 'Honda Grace',
+                noOfPassengers: '10',
+                fuelType: 'PETROL',
+                vehicleType: 'PREMIUM',
+                transmissionType: 'AUTO',
+                pricePerExtraKM: '300',
+                vehicleAvailability: 'AVAILABLE',
+                refundableDamageFee: '15000',
+                mileage: '1209',
+                lastServiceMileage: '12',
+                priceRate: {
+                    dailyRate: '12',
+                    monthlyRate: '12',
+                },
+                freeMileage: {
+                    dailyFreeMileage: '12',
+                    monthlyFreeMileage: '12',
+                }
+
+
+            }
+        }
+    }
+
+
     render() {
 
 
@@ -72,43 +108,26 @@ class VehicleDetailBooking extends Component{
                             <Grid className={classes.details}>
                                 <Grid style={{display:'flex', justifyContent:'space-between'}}>
                                     <Grid style={{fontSize:'20px'}}>
-                                        Color - Black<br/><br/>
-                                        Type - Luxury<br/><br/>
-                                        No of passengers - 5<br/><br/>
-                                        Transmission type - Manual<br/><br/>
-                                        Fuel Type - Diesel<br/><br/>
-                                        Registration number - 4506584798463
+                                        Color - {this.state.vehicle.color}<br/><br/>
+                                        Type - {this.state.vehicle.vehicleType}<br/><br/>
+                                        No of passengers - {this.state.vehicle.noOfPassengers}<br/><br/>
+                                        Transmission type - {this.state.vehicle.transmissionType}<br/><br/>
+                                        Fuel Type - {this.state.vehicle.fuelType}<br/><br/>
+                                        Registration number - {this.state.vehicle.registrationNo}
 
                                     </Grid>
                                     <Grid style={{display:'flex',alignItems:'start', height:'64.5%',fontSize:'20px'}}>
                                         Prices for the rent durations.<br/>
-                                        - Daily rate (Rs) - 18,000<br/>
-                                        - Monthly rate (Rs) - 300,000.00<br/><br/>
+                                        - Daily rate (Rs) - {this.state.vehicle.priceRate.dailyRate}<br/>
+                                        - Monthly rate (Rs) - {this.state.vehicle.priceRate.monthlyRate}<br/><br/>
                                         Free mileage for the price and duration<br/>
-                                        - Free Km for a Day - 100<br/>
-                                        - Free Km for a month - 2400<br/><br/>
+                                        - Free Km for a Day - {this.state.vehicle.freeMileage.dailyFreeMileage}<br/>
+                                        - Free Km for a month - {this.state.vehicle.freeMileage.monthlyFreeMileage}<br/><br/>
                                     </Grid>
 
                                 </Grid>
 
-                                <Grid style={{display:'flex',justifyContent:'end',width:'100%'}}>
 
-                                    <Button variant="contained"  style={{
-                                        height: '35px',
-                                        borderRadius: 10,
-                                        margin:'2px',
-                                        backgroundColor:'#949292'
-                                    }}>Back</Button>
-
-                                    <Button
-                                        href={'/booking'}
-                                        variant="contained" color={'success'} style={{
-                                        height: '35px',
-                                        borderRadius: 10,
-                                        margin:'2px'
-                                    }}>Book Now</Button>
-
-                                </Grid>
                             </Grid>
 
 

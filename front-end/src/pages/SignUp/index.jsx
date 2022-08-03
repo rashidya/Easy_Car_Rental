@@ -28,11 +28,12 @@ import Visibility from "@mui/icons-material/Visibility";
 import FormDetails from "../../components/UserDetailsForm";
 import GDSESnackBar from "../../components/common/snackBar";
 import MyButton from "../../components/common/Button";
-import AdminDashBoard from "../../components/AdminDashBoard";
-import DriverDashBoard from "../../components/DriverDashBoard";
-import CustomerDashBoard from "../../pages/Customer";
+
+
+
 import IconButton from "@mui/material/IconButton";
 import UploadButton from "../../components/UploadButton";
+
 
 
 class SignUp extends Component {
@@ -72,7 +73,8 @@ class SignUp extends Component {
                 }
             ]
             ,
-            LoginRole:'',
+
+            link:'',
             alert: false,
             message: '',
             severity: '',
@@ -95,7 +97,7 @@ class SignUp extends Component {
             if (res.status === 200) {
 
                 this.setState({
-                    LoginRole:formData.LoginRole,
+                    link:'/driverDashBoard',
                 });
 
 
@@ -111,7 +113,7 @@ class SignUp extends Component {
             if (res.status === 200) {
                 //this.clearFields();
                 this.setState({
-                    LoginRole:formData.LoginRole,
+                    link:'/customerDashBoard',
                 });
 
 
@@ -148,7 +150,7 @@ class SignUp extends Component {
         const {classes} = this.props;
         return (
 
-            (this.state.LoginRole == "") ?
+
             <>
 
 
@@ -376,7 +378,7 @@ class SignUp extends Component {
 
                                         <Grid display={'flex'} justifyContent={'center'}>
 
-                                            <MyButton  color={'primary'}  label={"Register"} variant={'contained'} type={"submit"}/>
+                                            <MyButton href={this.state.link}  color={'primary'}  label={"Register"} variant={'contained'} type={"submit"}/>
 
 
 
@@ -443,9 +445,7 @@ class SignUp extends Component {
                     variant="filled"
                 />
 
-            </>: (this.state.LoginRole == "ADMIN") ? <AdminDashBoard/> :
-            (this.state.LoginRole == "DRIVER") ? <DriverDashBoard/> : <CustomerDashBoard loginUser={this.state.formData.user.userName}/>
-
+            </>
 
         );
     }
