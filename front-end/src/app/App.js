@@ -38,6 +38,7 @@ import Bookings from "../components/CustomerDashBoard/Bookings/manageBooking";
 import DriverProfile from "../components/DriverDashBoard/Profile/profile";
 import DriverSchedule from "../components/DriverDashBoard/DriverSchedule/schedule";
 import DriverDashBoard from "../components/DriverDashBoard/Drawer";
+import RentPage from "../components/CustomerDashBoard/Rent/BookingPage";
 
 
 export default function App() {
@@ -66,6 +67,7 @@ export default function App() {
                 <Route index element={<Profile />}/>
                 <Route path="rentCar" element={<RentCar/>}/>
                 <Route path="bookings" element={<Bookings/>}/>
+                <Route path="rent" element={<RentPage/>}/>
 
             </Route>
 

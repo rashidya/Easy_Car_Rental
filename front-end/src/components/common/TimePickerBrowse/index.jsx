@@ -14,7 +14,8 @@ export default function BasicTimePicker(props) {
             < LocalizationProvider dateAdapter={AdapterDateFns}>
                 <TimePicker
                     label={props.label}
-                    value={value}
+                    value={(props.label ==="PickUp-Time")?localStorage.getItem("pickUpTime"):localStorage.getItem("returnTime")
+                    }
                     onChange={(newValue) => {
                         (props.label ==="PickUp-Time")?localStorage.setItem("pickUpTime",newValue):localStorage.setItem("returnTime",newValue)
 

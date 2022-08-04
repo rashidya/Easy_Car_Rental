@@ -81,7 +81,12 @@ class SignInPage extends Component {
                 link:'/driverDashBoard'
             });}
 
-            if (res.data.data.role == 'REGISTERED_USER'){  this.setState({
+            if (res.data.data.role == 'REGISTERED_USER'){
+
+                localStorage.setItem("pickUpDate",null);
+                localStorage.setItem("returnDate",null);
+                this.setState({
+
                 link:'/customerDashBoard'
             });}
 

@@ -10,11 +10,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import {Button} from "@mui/material";
 import * as React from "react";
-import BookingService from "../../services/bookingService";
-import GDSESnackBar from "../common/snackBar";
+import BookingService from "../../../services/bookingService";
+import GDSESnackBar from "../../common/snackBar";
 
 
-class BookingPage extends Component{
+class RentPage extends Component{
 
     constructor(props) {
         super(props);
@@ -337,4 +337,4 @@ class BookingPage extends Component{
 
 }
 
-export default BookingPage
+export default RentPage

@@ -8,7 +8,7 @@ import {logDOM} from "@testing-library/react";
 
 
 
-export default function BasicDatePicker(props) {
+export default function BrowseDatePicker(props) {
     const [value, setValue] = React.useState(null);
 
 
@@ -19,7 +19,8 @@ export default function BasicDatePicker(props) {
                 <DatePicker
 
                     label={props.label}
-                    value={value}
+                    value={ (props.label ==="PickUp-Date")?localStorage.getItem("pickUpDate"):localStorage.getItem("returnDate")
+                    }
                     onChange={
                         (newValue)=>{
 

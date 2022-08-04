@@ -2,6 +2,7 @@ import {Grid, TableCell} from "@material-ui/core";
 import {Avatar, Button, Tab, Tabs} from "@mui/material";
 import DatePicker from "../common/DatePicker";
 import TimePicker from "../common/TimePicker";
+import BrowseDatePicker from "../common/DatePickerBrowse";
 import RadioButtonList from "../RadioButtonList";
 import ImageList from "../ImageList";
 import FilterList from "../RadioButtonList";
@@ -21,21 +22,21 @@ import CardActions from "@mui/material/CardActions";
 import carImage from '../../assets/contact.jpg'
 
 import BrowseService from "../../services/BrowseService";
+import DatePickerBrowse from "../common/DatePickerBrowse";
+import TimePickerBrowse from "../common/TimePickerBrowse";
 import {format} from "date-fns";
-import VehicleDetailBooking from "../../pages/VehicleDetailBooking";
-import {Route} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class BrowseGrid extends Component {
 
     constructor(props) {
         super(props);
 
+
+
         this.state = {
 
             vehicleList: [],
-
-            pickupDate: '2022-07-06',
-            returnDate: '2022-07-07',
 
         }
     }
@@ -43,8 +44,8 @@ class BrowseGrid extends Component {
 
     loadAvailableVehicles = async () => {
         let params = {
-            pickupDate: this.state.pickupDate,
-            returnDate: this.state.returnDate
+            pickupDate: format(new Date(localStorage.getItem("pickUpDate")),'yyyy-MM-dd') ,
+            returnDate: format(new Date(localStorage.getItem("returnDate")),'yyyy-MM-dd')
         }
         let res = await BrowseService.fetchAvailableVehicles(params);
 
@@ -71,7 +72,9 @@ class BrowseGrid extends Component {
 
 
     componentDidMount() {
-        this.loadAllVehicles();
+
+
+        this.loadAvailableVehicles();
     }
 
 
@@ -109,32 +112,21 @@ class BrowseGrid extends Component {
                         alignItems: 'center'
                     }}>
                         <Grid style={{display: 'flex', width: '100%'}}>
-                            <DatePicker
-                                label={"PickUp-Date"}
-                                value={this.state.pickupDate}
-                                onChange={
-                                    (newValue) => {
-                                        this.setState(
-                                            {
-                                                pickUpDate: newValue
-                                            }
-                                        )
 
-                                    }
-                                }
+                            <DatePickerBrowse label={"PickUp-Date"}/>
 
-                            />
-                            <TimePicker label={"PickUp-Time"}/>
+
+                            <TimePickerBrowse label={"PickUp-Time"}/>
                         </Grid>
 
-                        <Grid style={{display: 'flex', width: '100%'}}> <DatePicker label={"Return-Date"}/>
-                            <TimePicker label={"Return-Time"}/>
+                        <Grid style={{display: 'flex', width: '100%'}}> <DatePickerBrowse label={"Return-Date"}/>
+                            <TimePickerBrowse label={"Return-Time"}/>
                         </Grid>
 
                         <Grid style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
 
 
-                            <Button variant="contained" href="#contained-buttons"
+                            <Button variant="contained"
                                     onClick={this.loadAvailableVehicles}
                                     style={{
                                         width: '30%',
@@ -191,7 +183,11 @@ class BrowseGrid extends Component {
                                     </CardContent>
                                     <CardActions style={{display:'flex',justifyContent:'center'}}>
 
-                                        <Button size="small"  style={{backgroundColor:'green',color:'white'}}>Book Now</Button>
+
+                                        <Link to="rent" style={{ textDecoration: 'none', color: 'black' }}>
+                                            <Typography textAlign="center">BOOK NOW</Typography>
+                                        </Link>
+                                        {/*<Button size="small"  style={{backgroundColor:'green',color:'white'}}>Book Now</Button>*/}
                                     </CardActions>
                                 </Card>
 

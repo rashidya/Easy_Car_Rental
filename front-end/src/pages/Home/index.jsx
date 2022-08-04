@@ -11,6 +11,19 @@ import DatePicker from '../../components/common/DatePicker';
 
 class Home extends Component {
 
+
+    constructor(props) {
+        super(props);
+
+
+        this.state={
+            pickUpDate:'',
+            pickUpTime:'',
+            returnDate:'',
+            returnTime:''
+        }
+    }
+
     myRenderPoint(point) {
         return <circle cx={point[0]} cy={point[1]} r={5}/>;
     }
@@ -48,7 +61,6 @@ class Home extends Component {
                                 <Grid style={{display: 'flex', width: '100%'}}>
                                     <DatePicker
                                         label={"PickUp-Date"}
-
                                     />
                                     <TimePicker label={"PickUp-Time"}/>
                                 </Grid>
