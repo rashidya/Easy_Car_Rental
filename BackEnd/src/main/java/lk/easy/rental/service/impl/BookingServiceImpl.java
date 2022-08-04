@@ -5,6 +5,7 @@ import lk.easy.rental.dto.CustomerDTO;
 import lk.easy.rental.dto.VehicleBookingDetailDTO;
 import lk.easy.rental.entity.Booking;
 import lk.easy.rental.entity.Customer;
+import lk.easy.rental.enums.RequestType;
 import lk.easy.rental.exception.DuplicateEntryException;
 import lk.easy.rental.exception.NotFoundException;
 import lk.easy.rental.repo.*;
@@ -41,20 +42,19 @@ public class BookingServiceImpl implements BookingService {
         if (!bookingRepo.existsById(dto.getBookingId())) {
             if(customerRepo.existsById(dto.getCustomer().getId())){
                 if (!dto.getBookedVehicleList().isEmpty()){
-                    if (isVehicleAvailable(dto)){
-                        if (dto.getNeedDriver().equals("YES")){
+                    System.out.println(dto.getNeedDriver());
+                        if (dto.getNeedDriver() == RequestType.YES){
                             //Driver is needed
-                            System.out.println("Entity: "+mapper.map(dto, Booking.class).toString());
-                            if (!dto.getDriverScheduleList().isEmpty()) bookingRepo.save(mapper.map(dto, Booking.class));
+
+                            if (!dto.getDriverScheduleList().isEmpty()) {
+                                System.out.println("Here");
+                                bookingRepo.save(mapper.map(dto, Booking.class));
+                            }
                         }else {
                             //No driver Is needed
-                            if (dto.getDriverScheduleList().isEmpty()) bookingRepo.save(mapper.map(dto, Booking.class));
+
+                            bookingRepo.save(mapper.map(dto, Booking.class));
                         }
-                    }else{
-                        throw new RuntimeException("Bookings Already available.");
-                    }
-
-
 
                 }else {
                     throw new RuntimeException("No vehicles added for the booking..!");
@@ -117,37 +117,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
 
-    public boolean isVehicleAvailable(BookingDTO dto){
-        LocalDate pickUpDate = dto.getPickupDate().minusDays(1);
-        LocalDate returnDate = dto.getReturnDate().plusDays(1);
 
-        List<Booking> allByPickupDateAndReturnDate = bookingRepo.findAllByPickupDateAndReturnDate(pickUpDate, returnDate);
-
-
-        //No Bookings For Any Vehicle
-        if (allByPickupDateAndReturnDate.isEmpty()){
-            return true;
-
-        }else {
-
-            //If not
-
-            for (Booking booking : allByPickupDateAndReturnDate) {
-                for (VehicleBookingDetailDTO tempBookingDetail : dto.getBookedVehicleList()) {
-                    if (vehicleBookingDetailRepo.existsByVehicleIdAndBookingId(booking.getBookingId(),tempBookingDetail.getVehicleId())){
-                        return false;
-                    }
-
-                }
-
-            }
-
-            return true;
-
-        }
-
-
-    }
 
 
     //Filter

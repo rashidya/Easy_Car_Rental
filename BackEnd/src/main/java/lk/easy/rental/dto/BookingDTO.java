@@ -1,9 +1,6 @@
 package lk.easy.rental.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lk.easy.rental.entity.Customer;
-import lk.easy.rental.entity.DriverSchedule;
-import lk.easy.rental.entity.VehicleBookingDetails;
 import lk.easy.rental.enums.RequestType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,5 +42,18 @@ public class BookingDTO {
         this.needDriver = needDriver;
         this.customer = customer;
         this.driverScheduleList = driverScheduleList;
+    }
+
+
+    public BookingDTO(String bookingId, LocalDate bookingDate, LocalDate pickupDate, LocalTime pickupTime, LocalDate returnDate, LocalTime returnTime, RequestType needDriver, CustomerDTO customer, List<VehicleBookingDetailDTO> bookedVehicleList) {
+        this.bookingId = bookingId;
+        this.bookingDate = bookingDate;
+        this.pickupDate = pickupDate;
+        this.pickupTime = pickupTime;
+        this.returnDate = returnDate;
+        this.returnTime = returnTime;
+        this.needDriver = needDriver;
+        this.customer = customer;
+        this.bookedVehicleList = bookedVehicleList;
     }
 }

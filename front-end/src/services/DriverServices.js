@@ -3,6 +3,21 @@ import axios from "../axios";
 class DriverService{
 
 
+
+    fetchAvailableDriver = async () => {
+        const promise = new Promise((resolve, reject) => {
+            axios.get('driver/getAvailableDriver')
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise;
+    }
+
+
     fetchDriver = async (params) => {
         const promise = new Promise((resolve, reject) => {
             axios.get('driver',{params:params})

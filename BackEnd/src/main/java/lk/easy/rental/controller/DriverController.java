@@ -54,7 +54,7 @@ public class DriverController {
     }
 
     @GetMapping(params = {"userName"})
-    public ResponseUtil searchCustomer(@RequestParam String userName){
+    public ResponseUtil searchDriverByUserName(@RequestParam String userName){
 
         return new ResponseUtil(200,"OK", driverService.searchDriverByUserName(userName));
     }
