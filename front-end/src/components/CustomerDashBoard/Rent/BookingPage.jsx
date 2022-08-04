@@ -12,6 +12,9 @@ import {Button} from "@mui/material";
 import * as React from "react";
 import BookingService from "../../../services/bookingService";
 import GDSESnackBar from "../../common/snackBar";
+import CustomerService from "../../../services/CustomerService";
+import {format} from "date-fns";
+import VehicleService from "../../../services/VehicleService";
 
 
 class RentPage extends Component{
@@ -21,7 +24,46 @@ class RentPage extends Component{
 
         this.state={
 
-            booking:{
+            customerBooking: {
+                id: '',
+                userNIC:'',
+                name: {
+                    firstName:'',
+                    lastName: ''
+                },
+                drivingLicenseNo: '',
+                address: '',
+                contactNo: '',
+                user: {
+                    userId: '',
+                    userName: '',
+                    password: '',
+                    role: ''
+                }
+
+            },
+
+            vehicleBooking:{},
+
+            /*vehicleBooking: {
+                vehicleId: "",
+                registrationNo: "",
+                color: "",
+                brand: "",
+                noOfPassengers: '',
+                fuelType: "",
+                vehicleType: "",
+                transmissionType: "",
+                pricePerExtraKM: "",
+                priceRate: {dailyRate: '', monthlyRate: ''},
+                freeMileage: {dailyFreeMileage: 100, monthlyFreeMileage": 2400},
+                vehicleAvailability: "AVAILABLE",
+                refundableDamageFee: 15000,
+                mileage: 10000,
+                lastServiceMileage: 8000
+            }*/
+
+         /*   booking:{
                 bookingId:'B-001',
                 bookingDate:'2022-08-03',
                 pickupDate:'2022-08-04',
@@ -30,17 +72,17 @@ class RentPage extends Component{
                 returnTime:"08:11:11",
                 needDriver:'NO',
                 customer:{
-                    id:"C-001",
-                    userNIC:"200058602324",
-                    name:{"firstName":"Lasan","lastName":"Kariyawasam"},
-                    drivingLicenseNo:"123456778",
-                    address:"Colombo",
-                    contactNo:"07777777777",
-                    email:"rashi@gmail.com",
+                    id:customerBooking.id,
+                    userNIC:this.state.customer.userNIC,
+                    name:{firstName:this.state.customer.name.firstName,lastName:this.state.customer.name.lastName},
+                    drivingLicenseNo:this.state.customer.drivingLicenseNo,
+                    address:this.state.customer.address,
+                    contactNo:this.state.customer.contactNo,
+                    email:this.state.customer.email,
                     user:{
-                        userName:"Rashi",
-                        password:"1234",
-                        role:"REGISTERED_USER"}
+                        userName:this.state.customer.user.userName,
+                        password:this.state.customer.user.password,
+                        role:this.state.customer.user.role}
 
                 },
                 driverScheduleList:[],
@@ -69,28 +111,87 @@ class RentPage extends Component{
                             returnDate: "2022-07-07",
                             returnTime: "08:11:11",
                             needDriver: "NO",
-                            customer: {
-                                id: "C-001",
-                                userNIC: "200058602324",
-                                name: {firstName: "Lasan", lastName: "Kariyawasam"},
-                                drivingLicenseNo: "123456778",
-                                address: "Colombo",
-                                contactNo: "07777777777",
-                                email: "rashi@gmail.com",
-                                user: {
-                                    userName: "Rashi",
-                                    password: "1234",
-                                    role: "REGISTERED_USER"
-                                }
+                            customer:{
+                                id:this.state.customer.id,
+                                userNIC:this.state.customer.userNIC,
+                                name:{firstName:this.state.customer.name.firstName,lastName:this.state.customer.name.lastName},
+                                drivingLicenseNo:this.state.customer.drivingLicenseNo,
+                                address:this.state.customer.address,
+                                contactNo:this.state.customer.contactNo,
+                                email:this.state.customer.email,
+                                user:{
+                                    userName:this.state.customer.user.userName,
+                                    password:this.state.customer.user.password,
+                                    role:this.state.customer.user.role}
 
                             }
                         }
                     }
                 ],
-            }
+            }*/
         }
     }
 
+
+    loadData = async () => {
+
+
+        //Load Customer Data
+        let params = {
+            userName: localStorage.getItem("userName")
+        }
+
+        let res = await CustomerService.fetchCustomer(params);
+
+        let resData = res.data.data;
+
+        if (res.status === 200) {
+
+
+            this.setState({
+                customerBooking: {
+                    id: resData.id,
+                    userNIC: resData.userNIC,
+                    name: {
+                        firstName: resData.name.firstName,
+                        lastName: resData.name.lastName
+                    },
+                    drivingLicenseNo: resData.drivingLicenseNo,
+                    address: resData.address,
+                    contactNo: resData.contactNo,
+                    user: {
+                        userId: resData.user.userId,
+                        userName: resData.user.userName,
+                        password: resData.user.password,
+                        role: resData.user.role
+                    }
+
+                }
+            });
+
+        }
+
+
+
+        //Load Vehicle Dta
+
+        let paramsVehicle={
+            id:localStorage.getItem("vehicleId")
+        }
+
+        let res1 = await VehicleService.fetchVehicleData(paramsVehicle);
+
+        if (res1.status === 200) {
+            this.setState({
+                vehicleBooking:res1.data.data
+            });
+            console.log(res1.data.data)
+        }
+    };
+
+    componentDidMount() {
+        this.loadData();
+    }
 
     submitBooking = async () => {
         let booking = this.state.booking;
@@ -135,27 +236,30 @@ class RentPage extends Component{
                             <Grid >
                                 <Typography variant={'h5'}>Customer Details</Typography>
                                 <Grid>
+
+
                                     <TextField
                                         required
                                         id="outlined-required"
-                                        label="Email"
-                                        defaultValue=""
+                                        label="First Name"
+                                        value={this.state.customerBooking.name.firstName}
                                         sx={{ m: 1, width: '40ch' }}
                                     />
 
                                     <TextField
                                         required
                                         id="outlined-required"
-                                        label="Name"
-                                        defaultValue=""
+                                        label="Last Name"
+                                        value={this.state.customerBooking.name.lastName}
                                         sx={{ m: 1, width: '40ch' }}
                                     />
+
 
                                     <TextField
                                         required
                                         id="outlined-required"
                                         label="Contact No"
-                                        defaultValue=""
+                                        value={this.state.customerBooking.contactNo}
                                         sx={{ m: 1, width: '25ch' }}
                                     />
 
@@ -164,7 +268,7 @@ class RentPage extends Component{
                                         required
                                         id="outlined-required"
                                         label="Address"
-                                        defaultValue=""
+                                        value={this.state.customerBooking.address}
                                         sx={{ m: 1, width: '55ch' }}
                                     />
 
@@ -179,7 +283,7 @@ class RentPage extends Component{
                                         required
                                         id="outlined-required"
                                         label="Registration number"
-                                        defaultValue=""
+                                        value={this.state.vehicleBooking.registrationNo}
                                         sx={{ m: 1, width: '40ch' }}
                                     />
 
@@ -248,7 +352,7 @@ class RentPage extends Component{
                                         required
                                         id="outlined-required"
                                         label="Pick-Up Date"
-                                        defaultValue=""
+                                        value={format(new Date(localStorage.getItem("pickUpDate")),"yyyy-MM-dd")}
                                         sx={{ m: 1, width: '30ch' }}
                                     />
 
@@ -256,7 +360,8 @@ class RentPage extends Component{
                                         required
                                         id="outlined-required"
                                         label="PickUp Time "
-                                        defaultValue=""
+                                        value={format(new Date(localStorage.getItem("pickUpTime")),"HH:mm a")}
+
                                         sx={{ m: 1, width: '30ch' }}
                                     />
 
@@ -264,7 +369,8 @@ class RentPage extends Component{
                                         required
                                         id="outlined-required"
                                         label="Drop-off Date"
-                                        defaultValue=""
+                                        value={format(new Date(localStorage.getItem("returnDate")),"yyyy-MM-dd")}
+
                                         sx={{ m: 1, width: '30ch' }}
                                     />
 
@@ -273,7 +379,8 @@ class RentPage extends Component{
                                         required
                                         id="outlined-required"
                                         label="Drop-off Time"
-                                        defaultValue=""
+                                        value={format(new Date(localStorage.getItem("returnTime")),"HH:mm a")}
+
                                         sx={{ m: 1, width: '30ch' }}
                                     />
 

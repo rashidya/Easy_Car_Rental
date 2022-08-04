@@ -166,7 +166,8 @@ class BrowseGrid extends Component {
 
 
                         {
-                            this.state.vehicleList.map((vehicle) => (
+                            this.state.vehicleList.map((vehicle) =>
+
 
                                 <Card style={{width:'20vw',margin:'1vh'} }>
                                     <CardMedia
@@ -184,7 +185,7 @@ class BrowseGrid extends Component {
                                     <CardActions style={{display:'flex',justifyContent:'center'}}>
 
 
-                                        <Link to="rent" style={{ textDecoration: 'none', color: 'black' }}>
+                                        <Link  to="rent" onClick={ ()=>{localStorage.setItem("vehicleId",vehicle.vehicleId)}} style={{ textDecoration: 'none', color: 'black' }}>
                                             <Typography textAlign="center">BOOK NOW</Typography>
                                         </Link>
                                         {/*<Button size="small"  style={{backgroundColor:'green',color:'white'}}>Book Now</Button>*/}
@@ -192,7 +193,7 @@ class BrowseGrid extends Component {
                                 </Card>
 
 
-                            ))
+                            )
                         }
 
 

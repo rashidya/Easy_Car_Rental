@@ -46,8 +46,8 @@ public class VehicleController {
         return new ResponseUtil(200,"Vehicle added Successfully",null);
     }
 
-    @GetMapping(path = "/{id}")
-    public ResponseUtil searchVehicle(@PathVariable String id){
+    @GetMapping(params = {"id"})
+    public ResponseUtil searchVehicle(@RequestParam String id){
         return new ResponseUtil(200,"OK", vehicleService.searchVehicle(id));
     }
 
