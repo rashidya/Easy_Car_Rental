@@ -89,6 +89,7 @@ class ManageCustomer extends Component {
             this.setState({
                 customers: res.data.data
             });
+            await this.loadCustomers();
         }
         console.log(this.state.data)    // print customers array
 
@@ -269,7 +270,7 @@ class ManageCustomer extends Component {
                                     <TableCell align="left">Contact No</TableCell>
                                     <TableCell align="left">NIC</TableCell>
                                     <TableCell align="left">Driving Licence No</TableCell>
-                                    <TableCell align="left">Action</TableCell>
+
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -286,28 +287,7 @@ class ManageCustomer extends Component {
                                             <TableCell align="left">{row.userNIC}</TableCell>
                                             <TableCell align="left">{row.drivingLicenseNo}</TableCell>
 
-                                            <TableCell align="left">
-                                                <Tooltip title="Accept">
-                                                    <IconButton
-                                                        onClick={
 
-                                                            this.acceptCustomer
-
-                                                        }
-                                                    >
-                                                        <CheckIcon color="success"/>
-                                                    </IconButton>
-                                                </Tooltip>
-                                                <Tooltip title="Deny">
-                                                    <IconButton
-                                                        onClick={
-                                                            this.denyCustomer
-                                                        }
-                                                    >
-                                                        <ClearIcon color="error"/>
-                                                    </IconButton>
-                                                </Tooltip>
-                                            </TableCell>
                                         </TableRow>
                                     ))
                                 }
