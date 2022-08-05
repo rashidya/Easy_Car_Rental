@@ -1,5 +1,6 @@
 package lk.easy.rental.entity;
 
+import lk.easy.rental.enums.BookingStatus;
 import lk.easy.rental.enums.RequestType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +27,9 @@ public class Booking {
     private LocalTime returnTime;
     @Enumerated(EnumType.STRING)
     private RequestType needDriver;
-
+    @Enumerated(EnumType.STRING)
+    private BookingStatus status;
+    private String deniedReason;
 
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})

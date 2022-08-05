@@ -12,7 +12,6 @@ export const styleSheet = {
     loginContainer:{
         width: '25%',
         height:'50%',
-        backgroundColor:'#FCFCFC',
         display:'flex',
         flexDirection:'column !important',
         justifyContent: 'space-evenly'

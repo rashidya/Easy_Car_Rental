@@ -7,6 +7,9 @@ import lk.easy.rental.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @RestController
 @RequestMapping("driver")
 @CrossOrigin
@@ -28,9 +31,12 @@ public class DriverController {
     }
 
 
-    @GetMapping( "getAvailableDriver")
-    public ResponseUtil getAvailableDriver(){
-        return new ResponseUtil(200,"OK", driverService.getAvailableDriver());
+    @GetMapping( params = {"pickUpDate","returnDate"})
+    public ResponseUtil getAvailableDriver(@RequestParam String pickUpDate,@RequestParam String returnDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate pickUp = LocalDate.parse(pickUpDate,formatter);
+        LocalDate dropOff = LocalDate.parse(returnDate, formatter);
+        return new ResponseUtil(200,"OK", driverService.loadAvailableDriver(pickUp,dropOff));
     }
 
 
@@ -57,6 +63,13 @@ public class DriverController {
     public ResponseUtil searchDriverByUserName(@RequestParam String userName){
 
         return new ResponseUtil(200,"OK", driverService.searchDriverByUserName(userName));
+    }
+
+
+    @GetMapping(params = {"id"})
+    public ResponseUtil getDriverScheduleForDriver(@RequestParam String id){
+
+        return new ResponseUtil(200,"OK", driverService.getDriverScheduleForDriver(id));
     }
 
 

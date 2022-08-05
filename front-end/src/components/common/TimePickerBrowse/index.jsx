@@ -13,6 +13,7 @@ export default function BasicTimePicker(props) {
         <Grid style={{width: '50%', backgroundColor: 'white', borderRadius: '5px',margin:'2px'}}>
             < LocalizationProvider dateAdapter={AdapterDateFns}>
                 <TimePicker
+                    width={props.width}
                     label={props.label}
                     value={(props.label ==="PickUp-Time")?localStorage.getItem("pickUpTime"):localStorage.getItem("returnTime")
                     }
@@ -21,7 +22,7 @@ export default function BasicTimePicker(props) {
 
                         setValue(newValue);
                     }}
-                    renderInput={(params) => <TextField {...params} />}
+                    renderInput={(params) => <TextField {...params} size={'small'}/>}
                 />
             </LocalizationProvider>
         </Grid>

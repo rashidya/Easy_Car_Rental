@@ -1,13 +1,13 @@
 package lk.easy.rental.service.impl;
 
 import lk.easy.rental.dto.AdminDTO;
+import lk.easy.rental.dto.BookingDTO;
 import lk.easy.rental.dto.CustomerDTO;
 import lk.easy.rental.dto.DashBoardSummeryDTO;
-import lk.easy.rental.entity.Admin;
-import lk.easy.rental.entity.Customer;
-import lk.easy.rental.entity.User;
-import lk.easy.rental.entity.UserRequest;
+import lk.easy.rental.entity.*;
 import lk.easy.rental.enums.Availability;
+import lk.easy.rental.enums.BookingStatus;
+import lk.easy.rental.enums.RequestType;
 import lk.easy.rental.enums.Role;
 import lk.easy.rental.exception.DuplicateEntryException;
 import lk.easy.rental.exception.NotFoundException;
@@ -125,8 +125,8 @@ public class AdminServiceImpl implements AdminService {
         int noOfAvailableCars =vehicleRepo.countByVehicleAvailability(Availability.AVAILABLE);
         int noOfReservedCars=0;
         int noOfActiveBookings=bookingRepo.countByPickupTime(LocalTime.now());
-        int noOfAvailableDrivers=driverRepo.countByDriverAvailability(Availability.AVAILABLE);
-        int noOfOccupiedDrivers=driverRepo.countByDriverAvailability(Availability.NOT_AVAILABLE);
+        int noOfAvailableDrivers=0/*driverRepo.countByDriverAvailability(Availability.AVAILABLE)*/;
+        int noOfOccupiedDrivers=0/*driverRepo.countByDriverAvailability(Availability.NOT_AVAILABLE)*/;
         int noOfCarsNeedMaintenance=0;
         int noOfCarsNeedToBeRepaired=0;
 
@@ -157,4 +157,44 @@ public class AdminServiceImpl implements AdminService {
         return mapper.map(userRequestRepo.findAll(),new TypeToken<List<CustomerDTO>>() {
         }.getType());
     }
+
+
+    @Override
+    public void acceptBookingRequest(String id) {
+
+        Booking bookingRequest = bookingRepo.findById(id).get();
+        bookingRequest.setStatus(BookingStatus.ACCEPTED);
+        bookingRepo.save(bookingRequest);
+
+
+    }
+
+    @Override
+    public void denyBookingRequest(String id,String reason) {
+        Booking bookingRequest = bookingRepo.findById(id).get();
+        bookingRequest.setStatus(BookingStatus.DENIED);
+        bookingRequest.setDeniedReason(reason);
+        bookingRepo.save(bookingRequest);
+
+    }
+
+
+    @Override
+    public void notifyMaintenance() {
+        List<Vehicle> allVehicles = vehicleRepo.findAll();
+
+        for (Vehicle vehicle : allVehicles) {
+
+            int lastServiceMileage = vehicle.getLastServiceMileage();
+            int mileage = vehicle.getMileage();
+
+            if (mileage >= (lastServiceMileage+5000)){
+                vehicle.setNeedMaintenance(RequestType.YES);
+            }else {
+                vehicle.setNeedMaintenance(RequestType.NO);
+            }
+            vehicleRepo.save(vehicle);
+        }
+    }
+
 }

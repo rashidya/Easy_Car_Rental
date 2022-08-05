@@ -14,9 +14,6 @@ import loginBg from "../../assets/contact.jpg";
 import SignInService from "../../services/signInService";
 
 
-
-
-
 import MyButton from "../../components/common/Button";
 import GDSESnackBar from "../../components/common/snackBar";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -28,7 +25,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import {Link, Route} from "react-router-dom";
-
+import Button from "@mui/material/Button";
 
 
 class SignInPage extends Component {
@@ -36,14 +33,14 @@ class SignInPage extends Component {
         super(props);
 
         this.state = {
-            showPassword:false,
+            showPassword: false,
             formData: {
                 userName: '',
                 password: '',
 
             },
             loginUser: {
-                userName:'',
+                userName: '',
                 role: ''
 
             },
@@ -52,7 +49,7 @@ class SignInPage extends Component {
             severity: '',
 
 
-            link:'',
+            link: '',
 
             btnLabel: 'Login',
             btnColor: 'primary'
@@ -71,25 +68,29 @@ class SignInPage extends Component {
         let res = await SignInService.fetchUser(params);
         if (res.status === 200) {
 
-            localStorage.setItem("userName",res.data.data.userName);
+            localStorage.setItem("userName", res.data.data.userName);
 
-            if (res.data.data.role == 'ADMIN'){  this.setState({
-                link:'/adminDashBoard'
-            });}
+            if (res.data.data.role == 'ADMIN') {
+                this.setState({
+                    link: '/adminDashBoard'
+                });
+            }
 
-            if (res.data.data.role == 'DRIVER'){  this.setState({
-                link:'/driverDashBoard'
-            });}
+            if (res.data.data.role == 'DRIVER') {
+                this.setState({
+                    link: '/driverDashBoard'
+                });
+            }
 
-            if (res.data.data.role == 'REGISTERED_USER'){
+            if (res.data.data.role == 'REGISTERED_USER') {
 
-                localStorage.setItem("pickUpDate","");
-                localStorage.setItem("returnDate","");
+                localStorage.setItem("pickUpDate", "");
+                localStorage.setItem("returnDate", "");
                 this.setState({
 
-                link:'/customerDashBoard'
-            });}
-
+                    link: '/customerDashBoard'
+                });
+            }
 
 
             //this.clearFields();
@@ -111,33 +112,31 @@ class SignInPage extends Component {
         return (
 
 
-                <>
-
-                    <ValidatorForm ref="form" className="pt-2" onSubmit={this.Login}>
-                        <Grid className={classes.container} style={{
-                            backgroundImage: `url(${loginBg})`,
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: 'cover'
-                        }}>
+            <>
+                <Grid width={'100%'} height={'100vh'} display={"flex"} justifyContent={'center'} alignItems={'center'}
+                      style={{backgroundColor: '#f7f7f7'}}
+                >
 
 
-                            <Grid className={classes.loginContainer}>
+                    <Grid width={'35%'} height={'60vh'} display={"flex"} justifyContent={'center'} alignItems={'center'}
+                          style={{backgroundColor: '#ffffff'}}>
+                        <ValidatorForm ref="form" className="pt-2" onSubmit={this.Login}>
+
+
+                            <Grid className={classes.loginContainer} width={'100%'} height={'45vh'}>
                                 <Grid container className={classes.loginForm}>
 
-                                    <Grid item lg={12} md={12} sm={6} xm={6} width={'10%'}><Typography
-                                        textAlign={"center"}
-                                        fontWeight={'bolder'}
-                                        variant={'h5'}>Sign
-                                        In</Typography></Grid>
+                                    <Grid><Typography style={{fontSize: '30px'}}>Sign In</Typography></Grid>
+
 
                                     <Grid item lg={12} md={12} sm={6} xm={6} height={'60%'} display={"flex"}
                                           alignItems={"center"}
                                           flexDirection={"column"} justifyContent={"space-evenly"}>
 
-                                        <TextField id="outlined-basic" margin={'5px'} style={{width: '87%'}}
+                                        <TextField id="outlined-basic" margin={'5px'} style={{width: '40ch'}}
                                                    label="User name"
                                                    variant="outlined"
-
+                                                   size={'small'}
                                                    value={this.state.formData.userName}
                                                    onChange={(e) => {
                                                        let formDataOb = this.state.formData
@@ -148,7 +147,7 @@ class SignInPage extends Component {
                                         />
 
 
-                                        <FormControl sx={{m: 1, width: '87%'}} variant="outlined">
+                                        <FormControl sx={{m: 1, width: '40ch'}} variant="outlined" size={'small'}>
                                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                             <OutlinedInput
                                                 type={this.state.showPassword ? 'text' : 'password'}
@@ -170,44 +169,59 @@ class SignInPage extends Component {
                                                         </IconButton>
                                                     </InputAdornment>
                                                 }
+
                                                 label="Password"
 
                                                 value={this.state.formData.password}
                                                 onChange={(e) => {
-                                                    let formDataOb =this.state.formData
+                                                    let formDataOb = this.state.formData
                                                     this.state.formData.password = e.target.value
                                                     this.setState(formDataOb)
                                                 }}
                                                 validators={['required']}
+
                                             />
                                         </FormControl>
 
                                     </Grid>
 
                                 </Grid>
-                                <Grid className={classes.btn_container}>
-                                   <MyButton href={this.state.link} label={'LogIn'} type={'submit'} variant={'contained'}
 
-                                   />
+
+                                <Grid width={'100%'} display={"flex"} justifyContent={"center"}>
+
+                                    <Grid width={'80%'} display={"flex"} alignItems={"center"} flexDirection={'column'}>
+
+                                        <MyButton href={this.state.link} color={'success'} label={"Log In"}
+                                                  variant={'contained'} type={"submit"} style={{width: '95%'}}/>
+
+                                        <Typography style={{fontSize: '15px', marginTop: '1vh'}}>Not Registered? <Link
+                                            to={"/sighUpPage"}> Create an Account Now</Link></Typography>
+
+                                    </Grid>
+
 
                                 </Grid>
                             </Grid>
 
 
-                        </Grid>
-                    </ValidatorForm>
+                        </ValidatorForm>
+
+
+                    </Grid>
                     <GDSESnackBar
                         open={this.state.alert}
                         onClose={() => {
-                            this.setState({ alert: false })
+                            this.setState({alert: false})
                         }}
                         message={this.state.message}
                         autoHideDuration={3000}
                         severity={this.state.severity}
                         variant="filled"
                     />
-                </>
 
+                </Grid>
+            </>
 
 
         )

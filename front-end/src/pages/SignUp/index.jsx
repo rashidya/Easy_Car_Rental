@@ -30,16 +30,14 @@ import GDSESnackBar from "../../components/common/snackBar";
 import MyButton from "../../components/common/Button";
 
 
-
 import IconButton from "@mui/material/IconButton";
 import UploadButton from "../../components/UploadButton";
-
+import {Link} from "react-router-dom";
 
 
 class SignUp extends Component {
     constructor(props) {
         super(props);
-
 
 
         this.state = {
@@ -49,13 +47,12 @@ class SignUp extends Component {
                 id: '',
                 userNIC: '',
                 name: {
-                    firstName:'',
-                    lastName:''
+                    firstName: '',
+                    lastName: ''
                 },
                 drivingLicenseNo: '',
                 address: '',
                 contactNo: '',
-                driverAvailability: 'AVAILABLE',
                 user: {
                     userName: '',
                     password: '',
@@ -74,7 +71,7 @@ class SignUp extends Component {
             ]
             ,
 
-            link:'',
+            link: '',
             alert: false,
             message: '',
             severity: '',
@@ -82,7 +79,7 @@ class SignUp extends Component {
             data: [],
             btnLabel: 'register',
             btnColor: 'primary',
-            btnHref:''
+            btnHref: ''
         }
     }
 
@@ -93,11 +90,11 @@ class SignUp extends Component {
         console.log(formData)
 
         if (formData.user.role == 'DRIVER') {
-           let res = await SignUpService.postSignUpDriver(formData);
+            let res = await SignUpService.postSignUpDriver(formData);
             if (res.status === 200) {
 
                 this.setState({
-                    link:'/driverDashBoard',
+                    link: '/driverDashBoard',
                 });
 
 
@@ -113,7 +110,7 @@ class SignUp extends Component {
             if (res.status === 200) {
                 //this.clearFields();
                 this.setState({
-                    link:'/customerDashBoard',
+                    link: '/customerDashBoard',
                 });
 
 
@@ -127,10 +124,7 @@ class SignUp extends Component {
         }
 
 
-
-
     };
-
 
 
     /*handleClickShowPassword(event){
@@ -155,49 +149,35 @@ class SignUp extends Component {
 
 
                 <Grid className={classes.container} display={'flex'} alignItems={'center'} justifyContent={'center'}
-                      style={{
-                          backgroundImage: `url(${loginBg})`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundSize: 'cover',
-                          opacity: '90%'
-                      }}>
+                     >
 
 
-                    <Grid width="68vw" height={'80vh'} display={'flex'} justifyContent={'space-evenly'}
-                          alignItems={'center'} flexDirection={'column'}
+                    <Grid width="68vw" height={'100vh'} display={'flex'} justifyContent={'space-evenly'}
+                          alignItems={'center'}
                           style={{backgroundColor: 'white', opacity: '93%'}}>
 
-                        <Grid display={"flex"} width={'75vw'} height={"60vh"} justifyContent={'center'}>
-                            <Grid width={'50%'} display={"flex"} justifyContent={'center'} flexDirection={'column'}>
-                                <Grid display={'flex'} justifyContent={'center'} marginTop={"10px"}>
-                                    <div style={{
-                                        width: '10vw',
-                                        height: '10vw',
-                                        backgroundColor: '#c4c4c4',
-                                        borderRadius: '100%',
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <UploadButton/>
-                                    </div>
+                        <Grid display={"flex"} width={'75vw'} height={"80vh"} justifyContent={'space-evenly'}
+                              flexDirection={'column'}  alignItems={'center'}>
 
-                                </Grid>
+                            <Grid><Typography marginBottom={'2vh'} style={{fontSize: '30px'}}>Create New Account</Typography></Grid>
 
-                                <Grid >
+                            <Grid display={"flex"} justifyContent={'center'} height={'75vh'}  alignItems={'center'}>
+
+                                <Grid display={'flex'} height={'100%'}>
                                     <ValidatorForm ref="form" className="pt-2" onSubmit={this.submitUser}>
-                                        <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
+                                        <div style={{display: 'flex', flexWrap: 'wrap',justifyContent:'center'}}>
 
                                             <TextField
                                                 required
                                                 id="outlined-required"
                                                 label="Id"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '30ch'}}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
 
                                                 value={this.state.formData.id}
                                                 onChange={(e) => {
-                                                    let formDataOb =this.state.formData
+                                                    let formDataOb = this.state.formData
                                                     formDataOb.id = e.target.value
                                                     this.setState(formDataOb)
                                                 }}
@@ -212,7 +192,7 @@ class SignUp extends Component {
 
                                                     formData.user.role = value.type
 
-                                                    this.setState({ formData })
+                                                    this.setState({formData})
 
                                                 }}
                                                 getOptionLabel={
@@ -220,11 +200,10 @@ class SignUp extends Component {
                                                 }
                                                 id="controllable-states-demo"
                                                 options={this.state.role}
-                                                sx={{ width: '28ch',m:1 }}
-                                                renderInput={(params) => <TextField {...params} label="Role" />}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
+                                                renderInput={(params) => <TextField {...params} label="Role"/>}
                                             />
-
-
 
 
                                             <TextField
@@ -232,7 +211,8 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="Email"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '30ch'}}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
 
 
                                                 value={this.state.formData.user.userName}
@@ -244,7 +224,8 @@ class SignUp extends Component {
                                                 validators={['required']}
                                             />
 
-                                            <FormControl sx={{m: 1, width: '28ch'}} variant="outlined">
+                                            <FormControl sx={{m: 1, width: '40ch'}}
+                                                         size={"small"} variant="outlined">
                                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                                 <OutlinedInput
                                                     id="outlined-adornment-password"
@@ -263,7 +244,8 @@ class SignUp extends Component {
                                                                 }}
                                                                 edge="end"
                                                             >
-                                                                {this.state.showPassword ? <VisibilityOff/> : <Visibility/>}
+                                                                {this.state.showPassword ? <VisibilityOff/> :
+                                                                    <Visibility/>}
                                                             </IconButton>
                                                         </InputAdornment>
                                                     }
@@ -271,7 +253,7 @@ class SignUp extends Component {
 
                                                     value={this.state.formData.user.password}
                                                     onChange={(e) => {
-                                                        let formDataOb =this.state.formData
+                                                        let formDataOb = this.state.formData
                                                         this.state.formData.user.password = e.target.value
                                                         this.setState(formDataOb)
                                                     }}
@@ -284,7 +266,8 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="Name"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '30ch'}}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
                                                 value={this.state.formData.name.firstName}
                                                 onChange={(e) => {
                                                     let formDataOb = this.state.formData
@@ -300,7 +283,8 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="Last Name"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '28ch'}}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
                                                 value={this.state.formData.name.lastName}
                                                 onChange={(e) => {
                                                     let formDataOb = this.state.formData
@@ -316,7 +300,8 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="Contact No"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '30ch'}}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
                                                 value={this.state.formData.contactNo}
                                                 onChange={(e) => {
                                                     let formDataOb = this.state.formData
@@ -332,7 +317,8 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="Address"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '28ch'}}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
                                                 value={this.state.formData.address}
                                                 onChange={(e) => {
                                                     let formDataOb = this.state.formData
@@ -347,10 +333,11 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="NIC No"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '30ch'}}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
                                                 value={this.state.formData.userNIC}
                                                 onChange={(e) => {
-                                                    let formDataOb =this.state.formData
+                                                    let formDataOb = this.state.formData
                                                     this.state.formData.userNIC = e.target.value
                                                     this.setState(formDataOb)
                                                 }}
@@ -363,10 +350,11 @@ class SignUp extends Component {
                                                 id="outlined-required"
                                                 label="Driving Lisence No"
                                                 defaultValue=""
-                                                sx={{m: 1, width: '28ch'}}
+                                                sx={{m: 1, width: '40ch'}}
+                                                size={"small"}
                                                 value={this.state.formData.drivingLicenseNo}
                                                 onChange={(e) => {
-                                                    let formDataOb =this.state.formData
+                                                    let formDataOb = this.state.formData
                                                     this.state.formData.drivingLicenseNo = e.target.value
                                                     this.setState(formDataOb)
                                                 }}
@@ -376,12 +364,53 @@ class SignUp extends Component {
 
                                         </div>
 
-                                        <Grid display={'flex'} justifyContent={'center'}>
 
-                                            <MyButton href={this.state.link}  color={'primary'}  label={"Register"} variant={'contained'} type={"submit"}/>
+                                        <Grid width={'100%'} height={'40%'} display={'flex'}
+                                              justifyContent={"center"}
+                                        >
+                                            <div style={{
+                                                width: '40ch',
+                                                margin: '1vh',
+                                                border: '1px solid black',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                backgroundColor: '',
+                                                flexDirection: 'column'
+                                            }}>
+                                                <UploadButton />
+                                                <Typography>NIC Image</Typography>
+                                            </div>
 
 
+                                            <div style={{
+                                                width: '40ch',
+                                                margin: '1vh',
+                                                border: '1px solid black',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                backgroundColor: '',
+                                                flexDirection: 'column'
+                                            }}>
+                                                <UploadButton/>
+                                                <Typography>Driving license Image</Typography>
+                                            </div>
 
+
+                                        </Grid>
+
+
+                                        <Grid width={'100%'}  marginTop={'2vh'} display={"flex"} justifyContent={"center"}>
+
+                                            <Grid width={'80%'}   display={"flex"} alignItems={"center"} flexDirection={'column'}>
+
+                                                <MyButton href={this.state.link} color={'success'} label={"Register"}
+                                                          variant={'contained'} type={"submit"} style={{width:'85%'}} />
+
+                                                <Typography style={{fontSize:'15px',marginTop:'1vh'}}>Already Registered? <Link to={"/signInPage"}> Log In Now</Link></Typography>
+
+                                            </Grid>
 
 
                                         </Grid>
@@ -393,39 +422,6 @@ class SignUp extends Component {
                             </Grid>
 
 
-                            <Grid width={'35%'} display={'flex'} justifyContent={'space-evenly'} alignItems={"center"}
-                                  flexDirection={'column'}>
-                                <div style={{
-                                    width: '80%',
-                                    height: '40%',
-                                    border: '1px solid black',
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    backgroundColor: '',
-                                    flexDirection: 'column'
-                                }}>
-                                    <IconButton/>
-                                    <Typography>NIC Image</Typography>
-                                </div>
-
-
-                                <div style={{
-                                    width: '80%',
-                                    height: '40%',
-                                    border: '1px solid black',
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    backgroundColor: '',
-                                    flexDirection: 'column'
-                                }}>
-                                    <IconButton/>
-                                    <Typography>Driving license Image</Typography>
-                                </div>
-
-
-                            </Grid>
                         </Grid>
 
 
@@ -437,7 +433,7 @@ class SignUp extends Component {
                 <GDSESnackBar
                     open={this.state.alert}
                     onClose={() => {
-                        this.setState({ alert: false })
+                        this.setState({alert: false})
                     }}
                     message={this.state.message}
                     autoHideDuration={3000}
@@ -449,7 +445,6 @@ class SignUp extends Component {
 
         );
     }
-
 
 
 }

@@ -1,5 +1,5 @@
 import {Grid, TableCell} from "@material-ui/core";
-import {Avatar, Button, Tab, Tabs} from "@mui/material";
+import {Autocomplete, Avatar, Button, Tab, Tabs, TextField} from "@mui/material";
 import DatePicker from "../common/DatePicker";
 import TimePicker from "../common/TimePicker";
 import BrowseDatePicker from "../common/DatePickerBrowse";
@@ -26,6 +26,10 @@ import DatePickerBrowse from "../common/DatePickerBrowse";
 import TimePickerBrowse from "../common/TimePickerBrowse";
 import {format} from "date-fns";
 import {Link} from "react-router-dom";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 class BrowseGrid extends Component {
 
@@ -33,10 +37,46 @@ class BrowseGrid extends Component {
         super(props);
 
 
-
         this.state = {
 
+            fuelTypeSort:'',
+            transmissionTypeSort:'',
+            noOfPassengersSort:'',
+            vehicleTypeSort:'',
+            brandSort:'',
             vehicleList: [],
+
+            fuel: [
+                {
+                    type: 'PETROL'
+                },
+                {
+                    type: 'DIESEL'
+                }
+            ],
+            transmission: [
+                {
+                    type: 'AUTO'
+                },
+                {
+                    type: 'MANUAL'
+                }
+            ]
+            ,
+            vehicleCategory: [
+                {
+                    type: 'GENERAL'
+                },
+                {
+                    type: 'PREMIUM'
+                },
+                {
+                    type: 'LUXURY'
+                }
+            ],
+            brand:[],
+            noOfPassengers:[]
+
 
         }
     }
@@ -44,8 +84,8 @@ class BrowseGrid extends Component {
 
     loadAvailableVehicles = async () => {
         let params = {
-            pickupDate: format(new Date(localStorage.getItem("pickUpDate")),'yyyy-MM-dd') ,
-            returnDate: format(new Date(localStorage.getItem("returnDate")),'yyyy-MM-dd')
+            pickupDate: format(new Date(localStorage.getItem("pickUpDate")), 'yyyy-MM-dd'),
+            returnDate: format(new Date(localStorage.getItem("returnDate")), 'yyyy-MM-dd')
         }
         let res = await BrowseService.fetchAvailableVehicles(params);
 
@@ -82,54 +122,47 @@ class BrowseGrid extends Component {
 
         return (
             <Grid style={{
-                height: '100%',
-                width: '100%',
-                overflow: 'hidden',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
+                width: '100%'
             }}>
 
 
                 <Grid style={{
-                    width: '30%',
-                    height: '100%',
-                    backgroundColor: '#f6f6f6',
+                    width: '100%',
+                    overflow: 'hidden',
                     display: 'flex',
-                    justifyContent: 'space-evenly',
+                    justifyContent: 'center',
                     alignItems: 'center',
-                    flexDirection: 'column'
-
-
+                    flexDirection:'column'
                 }}>
 
 
                     <Grid style={{
-                        width: '90%',
-                        height: '30%',
+                        height: '10vh',
                         display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center'
+                        width: '80vw',
+                        marginTop: '5vh'
+
                     }}>
-                        <Grid style={{display: 'flex', width: '100%'}}>
 
-                            <DatePickerBrowse label={"PickUp-Date"}/>
+                        <Grid style={{display: 'flex'}}>
+                            <DatePickerBrowse label={"PickUp-Date"} width={'25vw'}/>
 
 
-                            <TimePickerBrowse label={"PickUp-Time"}/>
+                            <TimePickerBrowse label={"PickUp-Time"} width={'25vw'}/>
+
+
+                            <DatePickerBrowse label={"Return-Date"} width={'25vw'}/>
+                            <TimePickerBrowse label={"Return-Time"} width={'25vw'}/>
                         </Grid>
 
-                        <Grid style={{display: 'flex', width: '100%'}}> <DatePickerBrowse label={"Return-Date"}/>
-                            <TimePickerBrowse label={"Return-Time"}/>
-                        </Grid>
-
-                        <Grid style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                        <Grid style={{width: '20%', height: '65%', display: 'flex', justifyContent: 'center'}}>
 
 
                             <Button variant="contained"
                                     onClick={this.loadAvailableVehicles}
+                                    size={"small"}
                                     style={{
-                                        width: '30%',
+                                        width: '10vw',
                                         margin: '2%',
                                         backgroundColor: '#595959',
 
@@ -144,20 +177,115 @@ class BrowseGrid extends Component {
 
 
                     <Grid style={{
-                        width: '90%',
-                        height: '65%',
+                        height: '10vh',
                         display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center'
                     }}>
 
-                        <FilterList/>
+                        <Autocomplete
+                            size={'small'}
+                            style={{ padding: '10px', width: '230px' }}
+                            onChange={(e, value, r) => {
 
+                                this.setState({
+                                    vehicleTypeSort:value.type
+                                })
+
+                            }}
+                            getOptionLabel={
+                                (option) => option.type
+                            }
+
+                            id="controllable-states-demo"
+                            options={this.state.vehicleCategory}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Vehicle Type" />}
+                        />
+
+                        <Autocomplete
+                            size={'small'}
+
+                            style={{ padding: '10px', width: '230px' }}
+                            onChange={(e, value, r) => {
+
+                                this.setState({
+                                    vehicleTypeSort:value.type
+                                })
+
+                            }}
+                            getOptionLabel={
+                                (option) => option.type
+                            }
+
+                            id="controllable-states-demo"
+                            options={this.state.fuel}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Fuel Type" />}
+                        />
+
+
+                        <Autocomplete
+                            size={'small'}
+                            style={{ padding: '10px', width: '230px' }}
+                            onChange={(e, value, r) => {
+
+                                this.setState({
+                                    vehicleTypeSort:value.type
+                                })
+
+                            }}
+                            getOptionLabel={
+                                (option) => option.type
+                            }
+
+                            id="controllable-states-demo"
+                            options={this.state.transmission}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Transmission Type" />}
+                        />
+
+                        <Autocomplete
+                            size={'small'}
+                            style={{ padding: '10px', width: '230px' }}
+                            onChange={(e, value, r) => {
+
+                                this.setState({
+                                    brandSort:value.type
+                                })
+
+                            }}
+                            getOptionLabel={
+                                (option) => option.type
+                            }
+
+                            id="controllable-states-demo"
+                            options={this.state.brand}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Brand " />}
+                        />
+
+
+                        <Autocomplete
+                            size={'small'}
+                            style={{ padding: '10px', width: '230px' }}
+                            onChange={(e, value, r) => {
+
+                                this.setState({
+                                    noOfPassengersSort:value.type
+                                })
+
+                            }}
+                            getOptionLabel={
+                                (option) => option.type
+                            }
+
+                            id="controllable-states-demo"
+                            options={this.state.noOfPassengers}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="No Of Passengers " />}
+                        />
                     </Grid>
-                </Grid>
 
-                <Grid style={{
-                    width: '70%',
+                      <Grid style={{
                     display: 'flex',
                     flexWrap: 'wrap',
                     justifyContent: 'space-evenly',
@@ -165,40 +293,43 @@ class BrowseGrid extends Component {
                 }}>
 
 
-                        {
-                            this.state.vehicleList.map((vehicle) =>
+                    {
+                        this.state.vehicleList.map((vehicle) =>
 
 
-                                <Card style={{width:'20vw',margin:'1vh'} }>
-                                    <CardMedia
-                                        component="img"
-                                        alt="img"
-                                        height="130"
-                                        image={carImage}
+                            <Card style={{width: '20vw', margin: '1vh'}}>
+                                <CardMedia
+                                    component="img"
+                                    alt="img"
+                                    height="130"
+                                    image={carImage}
 
-                                    />
-                                    <CardContent>
-                                        <Typography  variant="h6" textAlign={'center'}>
-                                            {vehicle.vehicleId}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions style={{display:'flex',justifyContent:'center'}}>
-
-
-                                        <Link  to="rent" onClick={ ()=>{localStorage.setItem("vehicleId",vehicle.vehicleId)}} style={{ textDecoration: 'none', color: 'black' }}>
-                                            <Typography textAlign="center">BOOK NOW</Typography>
-                                        </Link>
-                                        {/*<Button size="small"  style={{backgroundColor:'green',color:'white'}}>Book Now</Button>*/}
-                                    </CardActions>
-                                </Card>
+                                />
+                                <CardContent>
+                                    <Typography variant="h6" textAlign={'center'}>
+                                        {vehicle.vehicleId}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions style={{display: 'flex', justifyContent: 'center'}}>
 
 
-                            )
-                        }
-
+                                    <Link to="rent" onClick={() => {
+                                        localStorage.setItem("vehicleId", vehicle.vehicleId)
+                                    }} style={{textDecoration: 'none', color: 'black'}}>
+                                        <Typography textAlign="center">BOOK NOW</Typography>
+                                    </Link>
+                                    <Button size="small"  style={{backgroundColor:'green',color:'white'}}>Book Now</Button>
+                                </CardActions>
+                            </Card>
+                        )
+                    }
 
 
                 </Grid>
+
+                </Grid>
+
+
 
             </Grid>
 

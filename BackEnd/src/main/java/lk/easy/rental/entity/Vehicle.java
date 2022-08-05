@@ -2,10 +2,7 @@ package lk.easy.rental.entity;
 
 import lk.easy.rental.embeded.FreeMileage;
 import lk.easy.rental.embeded.PriceRate;
-import lk.easy.rental.enums.Availability;
-import lk.easy.rental.enums.FuelType;
-import lk.easy.rental.enums.TransmissionType;
-import lk.easy.rental.enums.VehicleType;
+import lk.easy.rental.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,6 +35,8 @@ public class Vehicle {
     private FreeMileage freeMileage;
     @Enumerated(EnumType.STRING)
     private Availability vehicleAvailability;
+    @Enumerated(EnumType.STRING)
+    private RequestType needMaintenance;
     private double refundableDamageFee;
     private int mileage;
     private int lastServiceMileage;

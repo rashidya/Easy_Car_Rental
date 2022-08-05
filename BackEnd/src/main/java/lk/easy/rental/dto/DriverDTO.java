@@ -21,16 +21,7 @@ public class DriverDTO {
     private String drivingLicenseNo;
     private String address;
     private String contactNo;
-    private Availability driverAvailability;
     private UserDTO user;
 
-    public DriverDTO(String id, String nic, Name name, String drivingLicenseNo, String address, String contactNo, UserDTO user) {
-        this.id = id;
-        this.userNIC = nic;
-        this.name = name;
-        this.drivingLicenseNo = drivingLicenseNo;
-        this.address = address;
-        this.contactNo = contactNo;
-        this.user = user;
-    }
+
 }

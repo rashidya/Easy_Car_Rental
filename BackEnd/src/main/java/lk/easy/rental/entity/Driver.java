@@ -25,21 +25,9 @@ public class Driver {
     private String drivingLicenseNo;
     private String address;
     private String contactNo;
-    @Enumerated(EnumType.STRING)
-    private Availability driverAvailability;
-
 
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-    public Driver(String id, String nic, Name name, String drivingLicenseNo, String address, String contactNo, User user) {
-        this.id = id;
-        this.userNIC = nic;
-        this.name = name;
-        this.drivingLicenseNo = drivingLicenseNo;
-        this.address = address;
-        this.contactNo = contactNo;
-        this.user = user;
-    }
 }

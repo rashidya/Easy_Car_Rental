@@ -57,14 +57,14 @@ public class AdminController {
     public ResponseUtil acceptCustomer(@RequestBody CustomerDTO dto){
 
         adminService.acceptCustomer(dto);
-        return new ResponseUtil(200,"Admin added Successfully",null);
+        return new ResponseUtil(200,"OK",null);
     }
 
     @DeleteMapping( params = {"denyCustomerId"})
     public ResponseUtil denyCustomer(@RequestParam String denyCustomerId){
 
         adminService.denyCustomer(denyCustomerId);
-        return new ResponseUtil(200,"Admin added Successfully",null);
+        return new ResponseUtil(200,"OK",null);
     }
 
 
@@ -72,6 +72,36 @@ public class AdminController {
     public ResponseUtil loadUserRequests(){
         return new ResponseUtil(200,"OK", adminService.loadUserRequests());
     }
+
+
+
+    @PutMapping(params = {"id"})
+    public ResponseUtil acceptBookingRequest(@RequestParam String id){
+
+        adminService.acceptBookingRequest(id);
+        return new ResponseUtil(200,"Booking added Successfully",null);
+    }
+
+    @PutMapping( params = {"id","reason"})
+    public ResponseUtil denyBookingRequest(@RequestParam String id,@RequestParam String reason){
+
+        adminService.denyBookingRequest(id,reason);
+        return new ResponseUtil(200,"Booking denied",null);
+    }
+
+    @GetMapping("calculatePayment")
+    public ResponseUtil calculatePayment(){
+        return new ResponseUtil(200,"OK", adminService.loadUserRequests());
+    }
+
+
+
+    @PutMapping("notifyMaintenance")
+    public ResponseUtil notifyMaintenance(){
+        adminService.notifyMaintenance();
+        return new ResponseUtil(200,"OK", null);
+    }
+
 
 
 

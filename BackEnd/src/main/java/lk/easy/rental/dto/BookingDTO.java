@@ -1,6 +1,7 @@
 package lk.easy.rental.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lk.easy.rental.enums.BookingStatus;
 import lk.easy.rental.enums.RequestType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,6 @@ public class BookingDTO {
     private String bookingId;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate bookingDate;
-
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickupDate;
     @JsonFormat(pattern = "HH:mm:ss")
@@ -29,6 +29,8 @@ public class BookingDTO {
     @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime returnTime;
     private RequestType needDriver;
+    private BookingStatus status;
+    private String deniedReason;
     private CustomerDTO customer;
     private List<DriverScheduleDTO> driverScheduleList;
     private List<VehicleBookingDetailDTO> bookedVehicleList;

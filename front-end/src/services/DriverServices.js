@@ -4,9 +4,9 @@ class DriverService{
 
 
 
-    fetchAvailableDriver = async () => {
+    fetchAvailableDriver = async (params) => {
         const promise = new Promise((resolve, reject) => {
-            axios.get('driver/getAvailableDriver')
+            axios.get('driver',{params:params})
                 .then((res) => {
                     return resolve(res)
                 })

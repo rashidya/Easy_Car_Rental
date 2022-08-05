@@ -9,6 +9,7 @@ class MyButton extends Component {
         variant: PropTypes.string,
         className: PropTypes.any,
         label: PropTypes.string,
+        style:PropTypes.string,
         size: PropTypes.string,
         disabled: PropTypes.bool,
         color: PropTypes.string,

@@ -138,4 +138,18 @@ public class VehicleController {
 
         return new ResponseUtil(200, "car Delete success", null);
     }
+
+    @PutMapping( params = {"vehicleIdUnavailable"})
+    public ResponseUtil makeVehicleUnavailable(@RequestParam String vehicleIdUnavailable){
+
+        vehicleService.makeVehicleUnavailable(vehicleIdUnavailable);
+        return new ResponseUtil(200,"Booking denied",null);
+    }
+
+    @PutMapping( params = {"vehicleId"})
+    public ResponseUtil makeVehicleAvailable(@RequestParam String vehicleId){
+
+        vehicleService.makeVehicleAvailable(vehicleId);
+        return new ResponseUtil(200,"Booking denied",null);
+    }
 }

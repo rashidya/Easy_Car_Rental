@@ -4,6 +4,7 @@ import lk.easy.rental.dto.CustomerDTO;
 import lk.easy.rental.dto.VehicleDTO;
 import lk.easy.rental.entity.Customer;
 import lk.easy.rental.entity.Vehicle;
+import lk.easy.rental.enums.Availability;
 import lk.easy.rental.exception.DuplicateEntryException;
 import lk.easy.rental.exception.NotFoundException;
 import lk.easy.rental.repo.VehicleRepo;
@@ -72,6 +73,20 @@ public class VehicleServiceImpl implements VehicleService {
         }else{
             throw new NotFoundException("There is no Vehicles");
         }
+    }
+
+    @Override
+    public void makeVehicleUnavailable(String vehicleId) {
+        Vehicle vehicle = vehicleRepo.findById(vehicleId).get();
+        vehicle.setVehicleAvailability(Availability.NOT_AVAILABLE);
+        vehicleRepo.save(vehicle);
+    }
+
+    @Override
+    public void makeVehicleAvailable(String vehicleId) {
+        Vehicle vehicle = vehicleRepo.findById(vehicleId).get();
+        vehicle.setVehicleAvailability(Availability.AVAILABLE);
+        vehicleRepo.save(vehicle);
     }
 
 

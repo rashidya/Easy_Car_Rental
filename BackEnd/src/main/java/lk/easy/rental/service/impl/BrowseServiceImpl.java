@@ -79,7 +79,7 @@ public class BrowseServiceImpl implements BrowseService {
         LocalDate pickUpDate = pickupDate.minusDays(1);
         LocalDate returnDate = dropOffDate.plusDays(1);
         List<Booking> notAvailableBookingList = bookingRepo.findAllByReturnDateIsAfterAndPickupDateIsBefore(pickUpDate, returnDate);
-        List<Vehicle> notAvailableVehicles = new ArrayList<>();
+        List<Vehicle> notAvailableVehicles=new ArrayList<>();
         List<VehicleDTO> availableVehicles = new ArrayList<>();
 
         for (Booking booking : notAvailableBookingList) {

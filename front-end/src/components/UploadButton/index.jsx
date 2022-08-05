@@ -10,7 +10,7 @@ export default function UploadButtons() {
         <Stack direction="row" alignItems="center" spacing={2}>
             <IconButton color="primary" aria-label="upload picture" component="label" >
                 <input hidden accept="image/*" type="file" />
-                <PhotoCamera />
+                <PhotoCamera style={{color:'grey'}} />
 
             </IconButton>
         </Stack>

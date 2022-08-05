@@ -129,7 +129,12 @@ class RentPage extends Component {
 
     setDriver = async () => {
 
-        let res = await DriverServices.fetchAvailableDriver();
+        let params={
+            pickUpDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
+            returnDate:format(new Date(localStorage.getItem("returnDate")), "yyyy-MM-dd")
+        }
+
+        let res = await DriverServices.fetchAvailableDriver(params);
 
         if (res.status === 200) {
 
@@ -151,10 +156,10 @@ class RentPage extends Component {
             driverSchedule=[
                 {
                     driverId:this.state.driver.id,
-                    bookingId:"B-003",
+                    bookingId:"B-001",
                     driver:this.state.driver,
                     booking: {
-                        bookingId: 'B-003',
+                        bookingId: 'B-001',
                         bookingDate: format(new Date(), 'yyyy-MM-dd'),
                         pickupDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
                         pickupTime: format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss"),
@@ -165,21 +170,22 @@ class RentPage extends Component {
                         bookedVehicleList:[
                             {
                                 vehicleId: this.state.vehicleBooking.vehicleId,
-                                bookingId: "B-003",
+                                bookingId: "B-001",
                                 vehicle: this.state.vehicleBooking
                                 ,
                                 booking: {
-                                    bookingId: 'B-003',
+                                    bookingId: 'B-001',
                                     bookingDate: format(new Date(), 'yyyy-MM-dd'),
                                     pickupDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
                                     pickupTime: format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss"),
                                     returnDate: format(new Date(localStorage.getItem("returnDate")), "yyyy-MM-dd"),
                                     returnTime: format(new Date(localStorage.getItem("returnTime")), "HH:mm:ss"),
                                     needDriver: this.state.needDriver,
+                                    status:'UNDER_REVIEW',
                                     customer: this.state.customerBooking,
                                     driverScheduleList: [
                                         {  driverId:this.state.driver.driverId,
-                                            bookingId:"B-003",
+                                            bookingId:"B-001",
                                             driver:this.state.driver}
                                     ],
 
@@ -193,29 +199,31 @@ class RentPage extends Component {
 
 
         let booking = {
-            bookingId: 'B-003',
+            bookingId: 'B-001',
             bookingDate: format(new Date(), 'yyyy-MM-dd'),
             pickupDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
             pickupTime: format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss"),
             returnDate: format(new Date(localStorage.getItem("returnDate")), "yyyy-MM-dd"),
             returnTime: format(new Date(localStorage.getItem("returnTime")), "HH:mm:ss"),
             needDriver: this.state.needDriver,
+            status:'UNDER_REVIEW',
             customer: this.state.customerBooking,
             driverScheduleList: driverSchedule,
             bookedVehicleList: [
                 {
                     vehicleId: this.state.vehicleBooking.vehicleId,
-                    bookingId: "B-003",
+                    bookingId: "B-001",
                     vehicle: this.state.vehicleBooking
                     ,
                     booking: {
-                        bookingId: 'B-003',
+                        bookingId: 'B-001',
                         bookingDate: format(new Date(), 'yyyy-MM-dd'),
                         pickupDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
                         pickupTime: format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss"),
                         returnDate: format(new Date(localStorage.getItem("returnDate")), "yyyy-MM-dd"),
                         returnTime: format(new Date(localStorage.getItem("returnTime")), "HH:mm:ss"),
                         needDriver: this.state.needDriver,
+                        status:'UNDER_REVIEW',
                         customer: this.state.customerBooking,
                         driverScheduleList: [],
 

@@ -17,7 +17,7 @@ export default function BrowseDatePicker(props) {
         <Grid style={{width:'50%', backgroundColor:'white',borderRadius:'5px',margin:'2px'}}>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-
+                    width={props.width}
                     label={props.label}
                     value={ (props.label ==="PickUp-Date")?localStorage.getItem("pickUpDate"):localStorage.getItem("returnDate")
                     }
@@ -33,7 +33,7 @@ export default function BrowseDatePicker(props) {
                     }
 
                     dateFormat="YYYY-MM-dd"
-                    renderInput={(params) => <TextField {...params} />}
+                    renderInput={(params) => <TextField {...params} size={'small'} />}
                 />
             </LocalizationProvider>
         </Grid>

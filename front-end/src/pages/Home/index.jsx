@@ -44,12 +44,13 @@ class Home extends Component {
                         <Grid paddingBottom={'10vh'} paddingLeft={'2vh'}>
                             <Typography variant="h2" component="h2" style={{
                                 color: 'black',
-                                fontFamily: 'sans-serif'
+                                fontSize:'60px'
+
                             }}>
                                 Easy Car Rental
                             </Typography>
                             <Typography variant="h5" component="h2"
-                                        style={{color: 'black'}}>
+                                        style={{color: 'black',fontSize:'30px'}}>
                                 Hire your Dream Car
                             </Typography>
 
