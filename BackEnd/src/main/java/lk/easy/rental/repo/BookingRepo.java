@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
-public interface BookingRepo extends JpaRepository<Booking,String> {
+public interface BookingRepo extends JpaRepository<Booking, String> {
 
     List<Booking> findAllByPickupDateAndReturnDate(LocalDate pickUpDate, LocalDate returnDate);
 
@@ -23,7 +23,9 @@ public interface BookingRepo extends JpaRepository<Booking,String> {
 
     //No of Active Bookings
 
-    int countByPickupDateAndPickupTimeOrReturnDateIsAfter(LocalDate date, LocalTime time,LocalDate d);
+    int countByPickupDateAndPickupTimeOrReturnDateIsAfter(LocalDate date, LocalTime time, LocalDate d);
 
     int countByPickupTime(LocalTime now);
+
+    Booking findFirstByOrderByBookingIdDesc();
 }

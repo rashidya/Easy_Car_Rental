@@ -25,7 +25,7 @@ class RentPage extends Component {
 
         this.state = {
 
-
+            bookingId:'',
             needDriver: 'NO',
             customerBooking: {
                 id: '',
@@ -46,10 +46,10 @@ class RentPage extends Component {
 
             },
 
-            vehicleBooking: {},
-            driver:{}
 
-            /*vehicleBooking: {
+            driver:{},
+
+            vehicleBooking: {
                 vehicleId: "",
                 registrationNo: "",
                 color: "",
@@ -60,17 +60,26 @@ class RentPage extends Component {
                 transmissionType: "",
                 pricePerExtraKM: "",
                 priceRate: {dailyRate: '', monthlyRate: ''},
-                freeMileage: {dailyFreeMileage: 100, monthlyFreeMileage": 2400},
+                freeMileage: {dailyFreeMileage: '', monthlyFreeMileage: ''},
                 vehicleAvailability: "AVAILABLE",
-                refundableDamageFee: 15000,
-                mileage: 10000,
-                lastServiceMileage: 8000
-            }*/
+                refundableDamageFee: '',
+                mileage: '',
+                lastServiceMileage: ''
+            }
 
 
         }
     }
 
+
+    generateBookingId = async () =>{
+        let res = await BookingService.generateBookingId();
+        if (res.status === 200) {
+            this.setState({
+                bookingId:res.data.data
+            })
+        }
+    }
 
     loadData = async () => {
 
@@ -119,8 +128,25 @@ class RentPage extends Component {
         let res1 = await VehicleService.fetchVehicleData(paramsVehicle);
 
         if (res1.status === 200) {
+            let data = res1.data.data;
             this.setState({
-                vehicleBooking: res1.data.data
+                vehicleBooking: {
+                    vehicleId: data.vehicleId,
+                    registrationNo: data.registrationNo,
+                    color: data.color,
+                    brand: data.brand,
+                    noOfPassengers: data.noOfPassengers,
+                    fuelType: data.fuelType,
+                    vehicleType: data.vehicleType,
+                    transmissionType: data.transmissionType,
+                    pricePerExtraKM: data.pricePerExtraKM,
+                    priceRate: {dailyRate: data.priceRate.dailyRate, monthlyRate: data.priceRate.monthlyRate},
+                    freeMileage: {dailyFreeMileage: data.freeMileage.dailyFreeMileage, monthlyFreeMileage: data.freeMileage.monthlyFreeMileage},
+                        vehicleAvailability: "AVAILABLE",
+                        refundableDamageFee: data.refundableDamageFee,
+                        mileage: data.mileage,
+                        lastServiceMileage: data.lastServiceMileage
+                    }
             });
             console.log(res1.data.data)
         }
@@ -156,10 +182,10 @@ class RentPage extends Component {
             driverSchedule=[
                 {
                     driverId:this.state.driver.id,
-                    bookingId:"B-001",
+                    bookingId:this.state.bookingId,
                     driver:this.state.driver,
                     booking: {
-                        bookingId: 'B-001',
+                        bookingId: this.state.bookingId,
                         bookingDate: format(new Date(), 'yyyy-MM-dd'),
                         pickupDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
                         pickupTime: format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss"),
@@ -170,11 +196,11 @@ class RentPage extends Component {
                         bookedVehicleList:[
                             {
                                 vehicleId: this.state.vehicleBooking.vehicleId,
-                                bookingId: "B-001",
+                                bookingId: this.state.bookingId,
                                 vehicle: this.state.vehicleBooking
                                 ,
                                 booking: {
-                                    bookingId: 'B-001',
+                                    bookingId: this.state.bookingId,
                                     bookingDate: format(new Date(), 'yyyy-MM-dd'),
                                     pickupDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
                                     pickupTime: format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss"),
@@ -185,7 +211,7 @@ class RentPage extends Component {
                                     customer: this.state.customerBooking,
                                     driverScheduleList: [
                                         {  driverId:this.state.driver.driverId,
-                                            bookingId:"B-001",
+                                            bookingId:this.state.bookingId,
                                             driver:this.state.driver}
                                     ],
 
@@ -199,7 +225,7 @@ class RentPage extends Component {
 
 
         let booking = {
-            bookingId: 'B-001',
+            bookingId: this.state.bookingId,
             bookingDate: format(new Date(), 'yyyy-MM-dd'),
             pickupDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
             pickupTime: format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss"),
@@ -212,11 +238,11 @@ class RentPage extends Component {
             bookedVehicleList: [
                 {
                     vehicleId: this.state.vehicleBooking.vehicleId,
-                    bookingId: "B-001",
+                    bookingId:this.state.bookingId,
                     vehicle: this.state.vehicleBooking
                     ,
                     booking: {
-                        bookingId: 'B-001',
+                        bookingId: this.state.bookingId,
                         bookingDate: format(new Date(), 'yyyy-MM-dd'),
                         pickupDate: format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd"),
                         pickupTime: format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss"),
@@ -255,6 +281,7 @@ class RentPage extends Component {
     }
 
     componentDidMount() {
+        this.generateBookingId();
         this.loadData();
     }
 
@@ -262,53 +289,57 @@ class RentPage extends Component {
         return (
 
             <>
-                <Grid width={'81vw'} height={'84vh'}>
+                <Grid height={'84vh'} display={"flex"} alignItems={"center"}>
 
-                    <Box sx={{display: 'flex', flexWrap: 'wrap'}} width={'100vw'} height={'100vh'}
+                    <Box sx={{display: 'flex', flexWrap: 'wrap'}}
                          justifyContent={"center"}
                          alignItems={'center'}>
 
-                        <Grid width={'95vw'} height={'95vh'} display={'flex'} justifyContent={'space-evenly'}
+                        <Grid width={'95%'} height={'95%'} display={'flex'} justifyContent={'space-evenly'}
                               alignItems={'center'}
                         >
-                            <Grid width={'50%'} height={'80%'} marginTop={'20vh'}>
+                            <Grid width={'50%'} height={'80%'} >
                                 <Grid>
-                                    <Typography variant={'h5'}>Customer Details</Typography>
+                                    <Typography variant={'h5'} marginBottom={'2vh'}>Customer Details</Typography>
                                     <Grid>
 
 
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="First Name"
                                             value={this.state.customerBooking.name.firstName}
-                                            sx={{m: 1, width: '40ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="Last Name"
                                             value={this.state.customerBooking.name.lastName}
-                                            sx={{m: 1, width: '40ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
 
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="Contact No"
                                             value={this.state.customerBooking.contactNo}
-                                            sx={{m: 1, width: '25ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
 
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="Address"
                                             value={this.state.customerBooking.address}
-                                            sx={{m: 1, width: '55ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
 
@@ -316,63 +347,69 @@ class RentPage extends Component {
                                 </Grid>
 
                                 <Grid marginTop={'2vh'}>
-                                    <Typography variant={'h5'}>Vehicle Details</Typography>
+                                    <Typography variant={'h5'} marginBottom={'2vh'}>Vehicle Details</Typography>
                                     <Grid>
 
 
                                         <TextField
+                                            disabled
                                             required
                                             label="Registration number"
                                             value={this.state.vehicleBooking.registrationNo}
-                                            sx={{m: 1, width: '40ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
                                         <TextField
+                                            disabled
                                             required
                                             label="Brand "
                                             value={this.state.vehicleBooking.brand}
-                                            sx={{m: 1, width: '40ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="Type"
                                             value={this.state.vehicleBooking.vehicleType}
-                                            sx={{m: 1, width: '40ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
 
                                         <TextField
+                                            disabled
                                             required
 
                                             label="Color"
                                             value={this.state.vehicleBooking.color}
-                                            sx={{m: 1, width: '40ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
                                         <TextField
+                                            disabled
                                             required
 
                                             label="No Of Passengers"
                                             value={this.state.vehicleBooking.noOfPassengers}
-                                            sx={{m: 1, width: '26ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
                                         <TextField
+                                            disabled
                                             required
 
                                             label="Transmission Type"
                                             value={this.state.vehicleBooking.transmissionType}
-                                            sx={{m: 1, width: '26ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
                                         <TextField
+                                            disabled
                                             required
-
                                             label="Fuel Type"
                                             value={this.state.vehicleBooking.fuelType}
-                                            sx={{m: 1, width: '26ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
 
@@ -380,52 +417,56 @@ class RentPage extends Component {
                                 </Grid>
                             </Grid>
 
-                            <Grid width={'40%'} height={'80%'} marginTop={'20vh'}>
+                            <Grid width={'50%'} height={'80%'} >
                                 <Grid>
-                                    <Typography variant={'h5'}>Booking Details</Typography>
+                                    <Typography variant={'h5'} marginBottom={'2vh'}>Booking Details</Typography>
                                     <Grid>
 
-                                        <TextField
+                                        {/*<TextField
                                             required
                                             id="outlined-required"
                                             label="Booking Id"
                                             value={''}
-                                            sx={{m: 1, width: '30ch'}}
-                                        />
+                                            sx={{m: 1, width: '35ch'}}
+                                        />*/}
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="Pick-Up Date"
                                             value={format(new Date(localStorage.getItem("pickUpDate")), "yyyy-MM-dd")}
-                                            sx={{m: 1, width: '30ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="PickUp Time "
                                             value={format(new Date(localStorage.getItem("pickUpTime")), "HH:mm:ss")}
 
-                                            sx={{m: 1, width: '30ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="Drop-off Date"
                                             value={format(new Date(localStorage.getItem("returnDate")), "yyyy-MM-dd")}
 
-                                            sx={{m: 1, width: '30ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
 
                                         <TextField
+                                            disabled
                                             required
                                             id="outlined-required"
                                             label="Drop-off Time"
                                             value={format(new Date(localStorage.getItem("returnTime")), "HH:mm:ss")}
 
-                                            sx={{m: 1, width: '30ch'}}
+                                            sx={{m: 1, width: '35ch'}}
                                         />
 
 

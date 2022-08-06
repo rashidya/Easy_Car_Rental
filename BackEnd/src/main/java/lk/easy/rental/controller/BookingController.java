@@ -25,6 +25,11 @@ public class BookingController {
         return new ResponseUtil(200,"OK", bookingService.searchBooking(id));
     }
 
+    @GetMapping("generateBookingId")
+    public ResponseUtil generateBookingId( ){
+        return new ResponseUtil(200,"OK", bookingService.generateBookingId());
+    }
+
 
     @GetMapping()
     public ResponseUtil getAllBookings(){

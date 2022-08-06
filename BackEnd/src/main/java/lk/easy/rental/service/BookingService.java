@@ -14,4 +14,6 @@ public interface BookingService {
     void cancelBooking(String id);
 
     List<BookingDTO> getAllBookings();
+
+    String generateBookingId();
 }

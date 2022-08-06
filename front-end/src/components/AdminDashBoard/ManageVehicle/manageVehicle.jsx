@@ -582,7 +582,10 @@ class ManageVehicle extends Component{
                         <Grid width={'36%'}>
 
                             <Grid height={'80%'} display={'flex'} flexWrap={'wrap'} justifyContent={'space-evenly'}>
-                                <Grid width={'48%'} height={'48%'} border={'1px solid black'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'} style={{
+
+
+                                <Grid width={'48%'} height={'48%'} border={'1px solid black'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}
+                                      style={{
                                     backgroundImage:"url(" +this.state.frontView+ ")",
                                     backgroundSize: 'cover'
                                 }}>
@@ -611,6 +614,8 @@ class ManageVehicle extends Component{
                                     </div>
 
                                 </Grid>
+
+
 
                                 <Grid width={'48%'} height={'48%'} border={'1px solid black'} display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}
 

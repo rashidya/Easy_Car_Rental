@@ -33,6 +33,7 @@ import MyButton from "../../components/common/Button";
 import IconButton from "@mui/material/IconButton";
 import UploadButton from "../../components/UploadButton";
 import {Link} from "react-router-dom";
+import VehicleService from "../../services/VehicleService";
 
 
 class SignUp extends Component {
@@ -41,7 +42,10 @@ class SignUp extends Component {
 
 
         this.state = {
-
+            nicImage: null,
+            LicenseImage: null,
+            nicView: null,
+            LicenseView: null,
 
             formData: {
                 id: '',
@@ -91,6 +95,7 @@ class SignUp extends Component {
 
         if (formData.user.role == 'DRIVER') {
             let res = await SignUpService.postSignUpDriver(formData);
+            this.addRegisterUserImage(formData.id)
             if (res.status === 200) {
 
                 this.setState({
@@ -127,17 +132,19 @@ class SignUp extends Component {
     };
 
 
-    /*handleClickShowPassword(event){
-        this.setState({value: event.target.value})
-    }
 
-    handleMouseDownPassword(){
-        this.setState({
-            ...value,
-            showPassword: !value.showPassword,
-        });
+    addRegisterUserImage=async (id) =>{
+
+        var bodyFormData = new FormData();
+        bodyFormData.append('param', this.state.nicImage);
+        bodyFormData.append('param', this.state.LicenseImage);
+
+
+        let res = await SignUpService.addRegisterUserImage(bodyFormData,id);
+        if (res.data.code===200){alert(res.data.message)}else {
+            alert(res.data.message);
+        }
     }
-*/
 
 
     render() {
@@ -368,34 +375,73 @@ class SignUp extends Component {
                                         <Grid width={'100%'} height={'40%'} display={'flex'}
                                               justifyContent={"center"}
                                         >
-                                            <div style={{
+                                            <Grid style={{
                                                 width: '40ch',
                                                 margin: '1vh',
-                                                border: '1px solid black',
-                                                display: 'flex',
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                backgroundColor: '',
-                                                flexDirection: 'column'
+                                                border: '1px solid silver',
+
+                                                backgroundImage:"url(" +this.state.nicView+ ")",
+                                                backgroundSize: 'cover'
+
                                             }}>
-                                                <UploadButton />
-                                                <Typography>NIC Image</Typography>
-                                            </div>
+                                                <div style={{backgroundColor:'silver',display:'flex',justifyContent:'center'}}><input
+
+                                                    style={{display: 'none'}}
+                                                    accept="image/*"
+                                                    //className={classes.input}
+                                                    id="contained-button-file01"
+                                                    multiple
+                                                    type="file"
+                                                    onChange={(e) => {
+                                                        this.setState({
+                                                            nicImage: e.target.files[0],
+                                                            nicView : URL.createObjectURL(e.target.files[0])
+                                                        })
+                                                    }}
+                                                />
+                                                    <label htmlFor="contained-button-file01">
+                                                        <Button variant="text" color="primary" size="small" component="span">
+                                                            <UploadButton/> NIC Image
+                                                        </Button>
+                                                    </label>
+
+                                                </div>
+                                            </Grid>
 
 
-                                            <div style={{
+                                            <Grid style={{
                                                 width: '40ch',
                                                 margin: '1vh',
-                                                border: '1px solid black',
-                                                display: 'flex',
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                backgroundColor: '',
-                                                flexDirection: 'column'
+                                                border: '1px solid silver',
+
+                                                flexDirection: 'column',
+                                                backgroundImage:"url(" +this.state.LicenseView + ")",
+                                                backgroundSize: 'cover'
+
                                             }}>
-                                                <UploadButton/>
-                                                <Typography>Driving license Image</Typography>
-                                            </div>
+                                                <div style={{backgroundColor:'silver',display:'flex',justifyContent:'center'}} ><input
+
+                                                    style={{display: 'none'}}
+                                                    accept="image/*"
+                                                    //className={classes.input}
+                                                    id="contained-button-file02"
+                                                    multiple
+                                                    type="file"
+                                                    onChange={(e) => {
+                                                        this.setState({
+                                                            LicenseImage: e.target.files[0],
+                                                            LicenseView : URL.createObjectURL(e.target.files[0])
+                                                        })
+                                                    }}
+                                                />
+                                                    <label htmlFor="contained-button-file02">
+                                                        <Button variant="text" color="primary" size="small" component="span">
+                                                            <UploadButton/> Upload License Image
+                                                        </Button>
+                                                    </label>
+
+                                                </div>
+                                            </Grid>
 
 
                                         </Grid>

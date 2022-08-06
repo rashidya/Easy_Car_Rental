@@ -16,8 +16,8 @@ class Profile extends Component{
 
     render() {
         return(
-            <Grid display={"flex"} width={'81vw'} height={"84vh"} justifyContent={'center'} >
-                <Grid height={'100%'} width={'60%'} display={"flex"} justifyContent={'center'} flexDirection={'column'}>
+            <Grid display={"flex"}  height={"84vh"} justifyContent={'space-evenly'} >
+                <Grid height={'100%'} width={'50%'} display={"flex"} justifyContent={'center'} flexDirection={'column'}>
                     <Grid display={'flex'} justifyContent={'center'} >
                       <div style={{width:'10vw',height:'10vw',backgroundColor:'#c4c4c4',borderRadius:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
                           <IconButton/>
@@ -33,7 +33,7 @@ class Profile extends Component{
                 </Grid>
 
 
-                <Grid width={'40%'}  display={'flex'} justifyContent={'space-evenly'} alignItems={"center"} flexDirection={'column'}>
+                <Grid width={'30%'}  display={'flex'} justifyContent={'space-evenly'} alignItems={"center"} flexDirection={'column'}>
                     <div style={{width:'80%',height:'40%',border:'1px solid black',display:'flex',justifyContent:'center',alignItems:'center' ,backgroundColor:'',flexDirection:'column'}}>
                         <IconButton/>
                         <Typography>NIC Image</Typography>

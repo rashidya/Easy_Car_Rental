@@ -153,7 +153,7 @@ export default function CustomerDashBoard() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" open={open}>
+            <AppBar position="fixed" open={open} color={'success'}>
                 <Toolbar>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
                         <IconButton
@@ -175,7 +175,7 @@ export default function CustomerDashBoard() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="https://avatars.githubusercontent.com/u/71526158?v=4" />
+                                <Avatar alt="Remy Sharp" />
                             </IconButton>
                         </Tooltip>
                         <Menu

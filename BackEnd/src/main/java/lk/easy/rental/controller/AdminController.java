@@ -91,7 +91,8 @@ public class AdminController {
 
     @GetMapping("calculatePayment")
     public ResponseUtil calculatePayment(){
-        return new ResponseUtil(200,"OK", adminService.loadUserRequests());
+
+        return new ResponseUtil(200,"OK", null);
     }
 
 

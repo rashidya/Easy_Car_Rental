@@ -3,6 +3,23 @@ import axios from "../axios";
 class BookingService{
 
 
+    generateBookingId = async (data) => {
+        const promise = new Promise((resolve, reject) => {
+
+
+            axios.get('booking/generateBookingId')    // 20s
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        });
+
+        return await promise;
+    }
+
+
     postBooking = async (data) => {
         const promise = new Promise((resolve, reject) => {
 

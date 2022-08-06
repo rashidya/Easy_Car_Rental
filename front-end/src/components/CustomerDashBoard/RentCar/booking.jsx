@@ -9,7 +9,7 @@ class RentCar extends Component{
 
     render() {
         return(
-            <Grid width={'81vw'} height={'84vh'}>
+            <Grid height={'84vh'}>
                <BrowseGrid/>
             </Grid>
         )

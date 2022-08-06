@@ -84,8 +84,10 @@ class SignInPage extends Component {
 
             if (res.data.data.role == 'REGISTERED_USER') {
 
-                localStorage.setItem("pickUpDate", "");
-                localStorage.setItem("returnDate", "");
+                localStorage.setItem("pickUpDate", null);
+                localStorage.setItem("returnDate", null);
+                localStorage.setItem("pickUpTime", null);
+                localStorage.setItem("returnTime", null);
                 this.setState({
 
                     link: '/customerDashBoard'

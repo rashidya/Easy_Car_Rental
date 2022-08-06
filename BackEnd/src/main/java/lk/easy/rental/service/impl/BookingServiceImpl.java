@@ -116,8 +116,13 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
+    @Override
+    public String generateBookingId() {
+        String bookingId = bookingRepo.findFirstByOrderByBookingIdDesc().getBookingId();
+        int index = Integer.parseInt(bookingId.split("-")[1])+1;
 
-
+        return (index>=100)?"B-"+index:(index>=10)?"B-0"+index:"B-00"+index;
+    }
 
 
     //Filter
